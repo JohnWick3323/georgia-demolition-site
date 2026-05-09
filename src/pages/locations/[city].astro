@@ -135,7 +135,7 @@ const localBusinessSchema = {
               Demolition services in {location.name}
             </h2>
             <p class="leading-relaxed mb-4 font-body" style="color:#4B5563">
-              Georgia Demolition Experts provides complete demolition and removal services in {location.name} and throughout {location.county} County. Whether you need a residential structure torn down, a commercial property cleared, or specialty demolition work completed, our licensed and insured crews are ready to serve your {location.name} project.
+              Georgia Demolition & Removal provides complete demolition and removal services in {location.name} and throughout {location.county} County. Whether you need a residential structure torn down, a commercial property cleared, or specialty demolition work completed, our licensed and insured crews are ready to serve your {location.name} project.
             </p>
             <p class="leading-relaxed mb-4 font-body" style="color:#4B5563">
               We are intimately familiar with {location.county} County's building department processes, permit requirements, and local regulations. Our team handles the entire project lifecycle — from permit acquisition and utility disconnection to final grading and erosion control — ensuring your {location.name} demolition is completed on time, on budget, and in full compliance with Georgia law.
@@ -165,7 +165,7 @@ const localBusinessSchema = {
                   <div class="flex items-center justify-between mb-3">
                     <h3 class="font-semibold text-sm font-heading" style="color:#1A1A1A">{cat.name}</h3>
                     {hasComboPages && (
-                      <a href={`/services/${cat.slug}/${location.slug}/`} class="text-xs font-semibold font-heading transition-colors hover:underline" style="color:#C41C1C">
+                      <a href={`/locations/${location.slug}/${cat.slug}/`} class="text-xs font-semibold font-heading transition-colors hover:underline" style="color:#C41C1C">
                         {location.name} →
                       </a>
                     )}
@@ -337,7 +337,7 @@ const localBusinessSchema = {
         </h2>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
           {mainServices.map(cat => (
-            <a href={`/services/${cat.slug}/${location.slug}/`} class="p-4 rounded-xl bg-white border border-neutral-100 hover:border-primary-200 hover:bg-primary-50 transition-all text-center group font-body" style="font-size:0.85rem">
+            <a href={`/locations/${location.slug}/${cat.slug}/`} class="p-4 rounded-xl bg-white border border-neutral-100 hover:border-primary-200 hover:bg-primary-50 transition-all text-center group font-body" style="font-size:0.85rem">
               <div class="font-semibold group-hover:text-primary-700 transition-colors font-heading" style="color:#1A1A1A; font-size:0.8rem">{cat.name}</div>
               <div class="mt-1 font-heading" style="color:#C41C1C; font-size:0.7rem">in {location.name} →</div>
             </a>

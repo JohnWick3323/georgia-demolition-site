@@ -1,14 +1,15 @@
 export const site = {
-  name: 'Georgia Demolition Experts',
-  tagline: "Georgia's Most Trusted Demolition & Removal Specialists",
-  legalName: 'Georgia Demolition Experts LLC',
+  name: 'Georgia Demolition & Removal',
+  tagline: "Safe, Fast & Reliable Demolition Across Georgia",
+  legalName: 'Georgia Demolition & Removal LLC',
   url: 'https://georgiademolitionandremoval.com',
   address: {
-    street: '1234 Peachtree Industrial Blvd',
+    street: '',
     city: 'Atlanta',
     state: 'GA',
-    zip: '30318'
+    zip: '30301'
   },
+  serviceArea: 'Serving all 159 Georgia counties statewide',
   phone: '(843) 241-0787',
   phoneRaw: '8432410787',
   email: 'contact@georgiademolitionandremoval.com',
@@ -18,8 +19,8 @@ export const site = {
   googleMapsEmbedKey: 'YOUR_GOOGLE_MAPS_KEY',
   resendApiKey: 're_placeholder',
   social: {
-    facebook: 'https://facebook.com/georgiademolitionexperts',
-    instagram: 'https://instagram.com/georgiademolitionexperts'
+    facebook: 'https://facebook.com/georgiademolitionandremoval',
+    instagram: 'https://instagram.com/georgiademolitionandremoval'
   },
   aggregateRating: {
     ratingValue: '4.9',
