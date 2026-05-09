@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title="Terms & Conditions | Georgia Demolition Experts" description="Terms and conditions for Georgia Demolition Experts demolition services.">
+  <Header slot="header" />
+  <section class="bg-neutral-900 text-white pt-32 pb-12">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h1 class="text-4xl font-bold uppercase tracking-wide">Terms & Conditions</h1>
+    </div>
+  </section>
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl" style="font-family:var(--font-body);">
+      <p class="text-neutral-500 text-sm mb-8">Last updated: January 1, 2025</p>
+      <div class="space-y-6">
+        <div>
+          <h2 class="font-heading font-bold uppercase tracking-wide text-2xl mb-3">Services</h2>
+          <p class="text-neutral-700 leading-relaxed">Georgia Demolition Experts provides demolition and removal services across Georgia. All services are subject to a written contract executed prior to commencement. We reserve the right to decline any project at our discretion.</p>
+        </div>
+        <div>
+          <h2 class="font-heading font-bold uppercase tracking-wide text-2xl mb-3">Estimates</h2>
+          <p class="text-neutral-700 leading-relaxed">Free estimates are provided as a courtesy and are not binding contracts. Final pricing is established in a written contract after complete site assessment. Estimates may change if site conditions differ materially from what was represented at the time of assessment.</p>
+        </div>
+        <div>
+          <h2 class="font-heading font-bold uppercase tracking-wide text-2xl mb-3">Permits & Compliance</h2>
+          <p class="text-neutral-700 leading-relaxed">When permit acquisition is included in our scope of work, we make good-faith efforts to obtain required permits. The client is responsible for ensuring that demolition is permitted under applicable local zoning regulations and any deed restrictions or HOA covenants.</p>
+        </div>
+        <div>
+          <h2 class="font-heading font-bold uppercase tracking-wide text-2xl mb-3">Liability</h2>
+          <p class="text-neutral-700 leading-relaxed">Georgia Demolition Experts carries comprehensive liability insurance. Our liability is limited to the scope of services contracted. We are not responsible for pre-existing conditions, underground utilities not disclosed by 811 locates, or damage caused by conditions outside our control.</p>
+        </div>
+        <div>
+          <h2 class="font-heading font-bold uppercase tracking-wide text-2xl mb-3">Contact</h2>
+          <p class="text-neutral-700 leading-relaxed">Questions about these terms? Contact us at <a href={`mailto:${site.email}`} class="text-primary-600">{site.email}</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <Footer slot="footer" />
+</BaseLayout>

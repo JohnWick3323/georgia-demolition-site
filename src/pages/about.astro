@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CTASection from '../components/CTASection.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title="About Georgia Demolition Experts | Licensed Georgia Demolition Contractors"
+  description="Learn about Georgia Demolition Experts — Georgia's most trusted demolition company. Licensed, insured, and serving all 159 Georgia counties since our founding."
+>
+  <Header slot="header" />
+
+  <!-- Hero -->
+  <section class="bg-neutral-900 text-white pt-32 pb-16">
+    <div class="container mx-auto px-4 max-w-7xl text-center">
+      <h1 class="text-5xl font-bold uppercase tracking-wide mb-4">About Georgia Demolition Experts</h1>
+      <p class="text-xl text-neutral-300 max-w-3xl mx-auto" style="text-transform:none;font-family:var(--font-body);">
+        Georgia's most trusted demolition and removal specialists. Licensed, insured, and committed to excellence on every project across all 159 Georgia counties.
+      </p>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl font-bold uppercase tracking-wide mb-6">Our Story</h2>
+          <p class="text-neutral-700 leading-relaxed mb-4" style="text-transform:none;font-family:var(--font-body);">
+            Georgia Demolition Experts was founded with a single mission: to provide Georgia property owners, developers, and contractors with professional, reliable, and fully compliant demolition services across the entire state. We recognized that Georgia's rapid growth — from the booming suburbs of metro Atlanta to the revitalizing downtowns of Augusta and Savannah — created a significant need for a demolition partner that truly understands Georgia's diverse regulatory environment, soil conditions, and community needs.
+          </p>
+          <p class="text-neutral-700 leading-relaxed mb-4" style="text-transform:none;font-family:var(--font-body);">
+            Today, we operate across all 159 Georgia counties, with crews experienced in everything from historic structure preservation and sensitive demolition to large-scale commercial teardowns and industrial site clearances. Our team includes certified asbestos professionals, licensed demolition operators, and environmental compliance specialists who understand Georgia EPD regulations inside and out.
+          </p>
+          <p class="text-neutral-700 leading-relaxed" style="text-transform:none;font-family:var(--font-body);">
+            Every project we complete reflects our commitment to safety, environmental responsibility, and customer satisfaction. We handle every permit, every utility disconnection, every regulatory notification — so our clients can focus on their next project, not the paperwork.
+          </p>
+        </div>
+        <div class="space-y-4">
+          {[
+            { num: "500+", label: "Demolition Projects Completed" },
+            { num: "159", label: "Georgia Counties Served" },
+            { num: "100%", label: "Licensed & Insured Coverage" },
+            { num: "24/7", label: "Emergency Response Available" }
+          ].map(item => (
+            <div class="bg-primary-600 rounded-xl p-6 text-white flex items-center gap-6">
+              <div class="text-4xl font-bold font-heading">{item.num}</div>
+              <div class="text-primary-100 font-medium" style="text-transform:none;font-family:var(--font-body);">{item.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credentials -->
+  <section class="py-16 bg-neutral-50">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <h2 class="text-3xl font-bold uppercase tracking-wide text-center mb-10">Our Credentials & Compliance</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          { title: "Licensed Demolition Contractor", text: "Fully licensed for demolition contracting across all 159 Georgia counties, with all required state and local licenses maintained current." },
+          { title: "Fully Insured", text: "Comprehensive general liability, pollution liability, and workers compensation insurance protecting our clients and their properties on every project." },
+          { title: "Georgia EPD Compliant", text: "Our team is current on all Georgia EPD regulations including asbestos NESHAP, erosion and sedimentation control, solid waste disposal, and air quality requirements." },
+          { title: "Asbestos Certified", text: "Licensed asbestos surveyor and abatement operations for pre-demolition hazardous material management in compliance with Georgia EPD and federal NESHAP regulations." },
+          { title: "Safety First", text: "OSHA-compliant safety programs, daily safety briefings, and personal protective equipment on every project site. Worker safety and public safety are our top priorities." },
+          { title: "Environmental Responsibility", text: "Committed to maximum recycling and diversion of demolition waste from Georgia landfills. We document all material disposal for client transparency and compliance." }
+        ].map(item => (
+          <div class="bg-white rounded-xl p-6 border border-neutral-200 shadow-sm">
+            <div class="w-10 h-10 bg-primary-600 rounded flex items-center justify-center mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>
+            </div>
+            <h3 class="font-heading font-bold text-base uppercase tracking-wide mb-2">{item.title}</h3>
+            <p class="text-sm text-neutral-600 leading-relaxed" style="text-transform:none;font-family:var(--font-body);">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Info -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl text-center">
+      <h2 class="text-3xl font-bold uppercase tracking-wide mb-8">Get in Touch</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-xl border border-neutral-200">
+          <div class="text-primary-600 mb-3 flex justify-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <h3 class="font-heading font-bold uppercase tracking-wide mb-2">Phone</h3>
+          <a href={`tel:${site.phone}`} class="text-primary-600 font-medium" style="text-transform:none;font-family:var(--font-body);">{site.phone}</a>
+        </div>
+        <div class="p-6 rounded-xl border border-neutral-200">
+          <div class="text-primary-600 mb-3 flex justify-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <h3 class="font-heading font-bold uppercase tracking-wide mb-2">Email</h3>
+          <a href={`mailto:${site.email}`} class="text-primary-600 font-medium text-sm" style="text-transform:none;font-family:var(--font-body);">{site.email}</a>
+        </div>
+        <div class="p-6 rounded-xl border border-neutral-200">
+          <div class="text-primary-600 mb-3 flex justify-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
+          </div>
+          <h3 class="font-heading font-bold uppercase tracking-wide mb-2">Service Area</h3>
+          <p class="text-neutral-600 text-sm" style="text-transform:none;font-family:var(--font-body);">All 159 Georgia Counties</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+  <Footer slot="footer" />
+</BaseLayout>

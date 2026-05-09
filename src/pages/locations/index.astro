@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CTASection from '../../components/CTASection.astro';
+import { locations } from '../../data/locations';
+
+const grouped = locations.reduce<Record<string, typeof locations>>((acc, loc) => {
+  if (!acc[loc.region]) acc[loc.region] = [];
+  acc[loc.region].push(loc);
+  return acc;
+}, {});
+---
+
+<BaseLayout
+  title="Demolition Service Areas in Georgia | All 76 Cities"
+  description="Georgia Demolition Experts serves 76+ cities across all 159 Georgia counties. Find demolition services near you."
+>
+  <Header slot="header" />
+
+  <!-- Hero -->
+  <section class="bg-neutral-900 text-white pt-32 pb-16">
+    <div class="container mx-auto px-4 max-w-7xl text-center">
+      <h1 class="text-5xl font-bold uppercase tracking-wide mb-4">Georgia Service Areas</h1>
+      <p class="text-xl text-neutral-300 max-w-3xl mx-auto" style="text-transform:none;font-family:var(--font-body);">
+        Georgia Demolition Experts serves 76+ cities across all 159 Georgia counties. Professional demolition and removal services near you.
+      </p>
+    </div>
+  </section>
+
+  <!-- Cities Grid by Region -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-7xl">
+      <div class="space-y-12">
+        {Object.entries(grouped).map(([region, cities]) => (
+          <div>
+            <h2 class="text-2xl font-bold uppercase tracking-wide mb-6 pb-3 border-b border-neutral-200 text-primary-700">{region}</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+              {cities.map(city => (
+                <a href={`/locations/${city.slug}/`} class="group p-4 rounded-lg border border-neutral-200 hover:border-primary-500 hover:bg-primary-50 transition-all">
+                  <div class="font-heading font-bold text-sm uppercase tracking-wide text-neutral-900 group-hover:text-primary-700 transition-colors">{city.name}</div>
+                  <div class="text-xs text-neutral-500 mt-1" style="text-transform:none;font-family:var(--font-body);">{city.county} County</div>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Coverage Note -->
+  <section class="py-12 bg-neutral-50">
+    <div class="container mx-auto px-4 max-w-4xl text-center">
+      <h2 class="text-3xl font-bold uppercase tracking-wide mb-4">Don't See Your City?</h2>
+      <p class="text-neutral-700 mb-6" style="text-transform:none;font-family:var(--font-body);">
+        Georgia Demolition Experts serves all 159 Georgia counties. Even if your city isn't listed above, we can provide demolition services throughout the state. Contact us for availability in your area.
+      </p>
+      <a href="/contact/" class="bg-primary-600 hover:bg-primary-700 text-white font-bold px-8 py-3 rounded font-heading uppercase tracking-wide transition-all">Check Your Area</a>
+    </div>
+  </section>
+
+  <CTASection />
+  <Footer slot="footer" />
+</BaseLayout>

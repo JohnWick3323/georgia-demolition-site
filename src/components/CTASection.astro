@@ -1,0 +1,23 @@
+---
+interface Props {
+  heading?: string;
+  subtext?: string;
+}
+const {
+  heading = "Ready to Start Your Georgia Demolition Project?",
+  subtext = "Licensed, insured & serving all 159 Georgia counties. Get your free on-site estimate today."
+} = Astro.props;
+---
+
+<section class="bg-primary-600 py-16 text-white text-center">
+  <div class="max-w-4xl mx-auto px-6">
+    <h2 class="text-4xl font-bold uppercase tracking-wide mb-4">{heading}</h2>
+    <p class="text-lg opacity-90 mb-8 normal-case" style="text-transform:none;font-family:var(--font-body);">{subtext}</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/contact/" class="bg-white text-primary-700 font-bold px-8 py-4 rounded font-heading uppercase tracking-wide text-lg hover:bg-gray-100 transition-all shadow-lg">Get Free Quote</a>
+      <a href="tel:(843) 241-0787" class="bg-primary-800 text-white font-bold px-8 py-4 rounded font-heading uppercase tracking-wide text-lg hover:bg-primary-900 transition-all border border-primary-500">
+        (843) 241-0787
+      </a>
+    </div>
+  </div>
+</section>

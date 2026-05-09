@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors: Primary (Industrial Red) */
+  --color-primary-50: #FFF1F1;
+  --color-primary-100: #FFE0E0;
+  --color-primary-200: #FFC5C5;
+  --color-primary-300: #FF9B9B;
+  --color-primary-400: #FF6B6B;
+  --color-primary-500: #EF4444;
+  --color-primary-600: #CC1B1B;
+  --color-primary-700: #A81515;
+  --color-primary-800: #7F0E0E;
+  --color-primary-900: #560A0A;
+
+  /* Colors: Secondary (Steel Gray) */
+  --color-secondary-50: #F8F9FA;
+  --color-secondary-100: #F1F3F5;
+  --color-secondary-200: #DEE2E6;
+  --color-secondary-300: #ADB5BD;
+  --color-secondary-400: #6C757D;
+  --color-secondary-500: #495057;
+  --color-secondary-600: #343A40;
+  --color-secondary-700: #212529;
+  --color-secondary-800: #161A1D;
+  --color-secondary-900: #0D0F10;
+
+  /* Colors: Neutral (Warm Grays) */
+  --color-neutral-50: #F9F9F9;
+  --color-neutral-100: #F0F0F0;
+  --color-neutral-200: #E0E0E0;
+  --color-neutral-300: #BDBDBD;
+  --color-neutral-400: #9E9E9E;
+  --color-neutral-500: #757575;
+  --color-neutral-600: #616161;
+  --color-neutral-700: #424242;
+  --color-neutral-800: #212121;
+  --color-neutral-900: #121212;
+
+  /* Colors: Functional */
+  --color-accent: #1D4ED8;
+  --color-accent-hover: #1E40AF;
+  --color-success: #16A34A;
+  --color-success-light: #F0FDF4;
+  --color-warning: #D97706;
+  --color-warning-light: #FFFBEB;
+  --color-error: #DC2626;
+  --color-error-light: #FEF2F2;
+
+  /* Typography: Font Families */
+  --font-heading: "Barlow Condensed", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  /* Typography: Font Sizes */
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 2.25rem;
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: 2.5rem;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 1.1;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 1;
+
+  /* Spacing */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+  --spacing-24: 96px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+  --shadow-red: 0 4px 16px rgba(204,27,27,0.3);
+}
+
+@layer base {
+  body {
+    font-family: var(--font-body);
+    color: var(--color-neutral-900);
+    background-color: var(--color-neutral-50);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+  .font-body {
+    font-family: var(--font-body);
+  }
+  .shadow-red {
+    box-shadow: 0 4px 16px rgba(204,27,27,0.3);
+  }
+  .hover\:shadow-red:hover {
+    box-shadow: 0 4px 16px rgba(204,27,27,0.3);
+  }
+  .text-normal-case {
+    text-transform: none;
+  }
+}

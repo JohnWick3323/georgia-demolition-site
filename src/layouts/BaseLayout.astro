@@ -1,0 +1,85 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: string;
+  canonical?: string;
+}
+
+const {
+  title = `${site.name} | ${site.tagline}`,
+  description = "Professional demolition and removal services across Georgia. Licensed and insured for residential, commercial, and industrial demolition. Serving all 159 Georgia counties. Free estimates.",
+  image = "/images/og-image.jpg",
+  type = "website",
+  canonical
+} = Astro.props;
+
+const currentUrl = new URL(Astro.url.pathname.toLowerCase(), site.url).toString();
+const finalCanonical = currentUrl.replace(/\/$/, '') + '/';
+
+const siteTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{siteTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={finalCanonical} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+    <meta property="og:site_name" content={site.name} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={siteTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+    <!-- Google Fonts: Barlow Condensed + Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Georgia Demolition Experts",
+      "description": "Georgia's Most Trusted Demolition & Removal Specialists. Licensed and insured serving all 159 Georgia counties.",
+      "telephone": "(843) 241-0787",
+      "email": "contact@georgiademolitionandremoval.com",
+      "url": "https://georgiademolitionandremoval.com",
+      "areaServed": {
+        "@type": "State",
+        "name": "Georgia"
+      },
+      "serviceType": ["Demolition", "Removal", "Site Clearing"]
+    }
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <slot name="header" />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>

@@ -1,0 +1,212 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CTASection from '../components/CTASection.astro';
+import FAQAccordion from '../components/FAQAccordion.tsx';
+import { mainServices } from '../data/services';
+import { locations } from '../data/locations';
+import { site } from '../data/site';
+
+const featuredCities = locations.slice(0, 12);
+
+const serviceIcons: Record<string, string> = {
+  'residential-demolition': '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+  'post-demolition': '<polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>',
+  'core-demolition': '<rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/>',
+  'specialized-demolition': '<circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>',
+  'ancillary-demolition': '<path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>',
+};
+
+const homepageFaqs = [
+  { question: "Do you serve all 159 Georgia counties?", answer: "Yes. Georgia Demolition Experts provides demolition and removal services across all 159 Georgia counties, from Rabun County in the northeast mountains to Camden County on the Florida border. We have equipment strategically positioned across the state for fast mobilization." },
+  { question: "Are you licensed and insured for demolition work in Georgia?", answer: "Yes. We are fully licensed and insured for demolition work in Georgia, carrying general liability insurance, pollution liability coverage, and workers compensation insurance. We maintain all required Georgia state licenses for demolition contracting." },
+  { question: "How much does demolition cost in Georgia?", answer: "Demolition costs in Georgia vary widely depending on the structure type, size, construction materials, hazardous materials present, and site conditions. Residential structure demolitions typically range from $5,000 to $25,000. We provide free on-site estimates for all projects." },
+  { question: "Do I need a permit for demolition in Georgia?", answer: "Most demolition projects in Georgia require permits from the county building department. We handle the permit process for you, including required notifications to Georgia EPD for asbestos, utility disconnections, and any other regulatory requirements." },
+  { question: "How do you handle asbestos before demolition?", answer: "We conduct or coordinate licensed asbestos surveys for all structures built before 1981, as required by Georgia EPD and federal NESHAP regulations. If asbestos is found, we coordinate licensed abatement before demolition begins. We file all required Georgia EPD notifications at least 10 working days before demolition starts." }
+];
+
+const stats = [
+  { number: "500+", label: "Projects Completed" },
+  { number: "159", label: "Georgia Counties Served" },
+  { number: "100%", label: "Licensed & Insured" },
+  { number: "$0", label: "Cost for Estimates" }
+];
+
+const testimonials = [
+  { name: "Mike T.", location: "Atlanta, GA", text: "Georgia Demolition Experts took down our old garage in one day, cleaned everything up perfectly, and the price was very fair. Highly recommend for any demolition work in Atlanta." },
+  { name: "Sandra W.", location: "Savannah, GA", text: "We had an old pool that needed removing. They handled the permit, showed up on time, and did excellent work. The backfill looks perfect. Professional crew from start to finish." },
+  { name: "James R.", location: "Augusta, GA", text: "Used them for a full home demolition in Augusta. They handled the asbestos testing, utility disconnections, permits—everything. Site was cleared and graded in less than a week. Outstanding service." }
+];
+---
+
+<BaseLayout
+  title="Georgia Demolition Experts | Licensed Demolition Services Statewide"
+  description="Georgia's most trusted demolition and removal specialists. Licensed & insured for residential, commercial, and industrial demolition across all 159 Georgia counties. Free estimates."
+>
+  <Header slot="header" />
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center bg-neutral-900 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-neutral-900 via-secondary-700 to-primary-900 opacity-90"></div>
+    <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23CC1B1B\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    <div class="relative z-10 text-white text-center px-4 max-w-5xl mx-auto pt-24 pb-16">
+      <div class="inline-flex items-center gap-2 bg-primary-600 bg-opacity-30 border border-primary-500 border-opacity-50 rounded-full px-4 py-2 mb-6 text-sm text-primary-300 font-medium" style="text-transform:none;font-family:var(--font-body);">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
+        All 159 Georgia Counties
+      </div>
+      <h1 class="text-5xl md:text-6xl xl:text-7xl font-bold uppercase tracking-wide mb-6 leading-tight">
+        Georgia's Premier<br />
+        <span class="text-primary-400">Demolition</span> &<br />
+        Removal Experts
+      </h1>
+      <p class="text-lg md:text-xl text-neutral-300 mb-10 max-w-3xl mx-auto" style="text-transform:none;font-family:var(--font-body);">
+        Licensed & Insured · All 159 Georgia Counties · Free Estimates · Residential & Commercial
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact/" class="bg-primary-600 hover:bg-primary-700 text-white font-bold px-8 py-4 rounded uppercase tracking-wide text-lg font-heading transition-all shadow-red hover:shadow-xl hover:-translate-y-1">
+          Get Free Quote
+        </a>
+        <a href={`tel:${site.phone}`} class="bg-white bg-opacity-10 hover:bg-opacity-20 border border-white border-opacity-30 text-white font-bold px-8 py-4 rounded uppercase tracking-wide text-lg font-heading transition-all hover:-translate-y-1">
+          {site.phone}
+        </a>
+      </div>
+    </div>
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white opacity-60">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="bg-primary-600 py-10">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-white">
+        {stats.map(stat => (
+          <div>
+            <div class="text-4xl font-bold font-heading">{stat.number}</div>
+            <div class="text-sm text-primary-200 mt-1" style="text-transform:none;font-family:var(--font-body);">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 max-w-7xl">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold uppercase tracking-wide mb-4">Our Demolition Services</h2>
+        <p class="text-neutral-600 max-w-2xl mx-auto text-lg" style="text-transform:none;font-family:var(--font-body);">From small residential teardowns to large commercial projects, we handle every demolition need across Georgia.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {mainServices.map(service => (
+          <a href={`/services/${service.slug}/`} class="group bg-neutral-50 hover:bg-primary-600 rounded-xl p-6 transition-all duration-300 border border-neutral-200 hover:border-primary-600 hover:-translate-y-1 hover:shadow-red">
+            <div class="w-12 h-12 bg-primary-600 group-hover:bg-white rounded-lg flex items-center justify-center mb-4 transition-colors">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" class="group-hover:stroke-primary-600 transition-colors" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={serviceIcons[service.slug] || '<circle cx="12" cy="12" r="10"/>'} />
+            </div>
+            <h3 class="font-heading font-bold text-lg uppercase tracking-wide mb-2 text-neutral-900 group-hover:text-white transition-colors">{service.name}</h3>
+            <p class="text-sm text-neutral-600 group-hover:text-primary-100 transition-colors leading-relaxed mb-4" style="text-transform:none;font-family:var(--font-body);">{service.description}</p>
+            <span class="text-primary-600 group-hover:text-white text-sm font-semibold font-heading uppercase tracking-wide">Learn More →</span>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-10">
+        <a href="/services/" class="bg-primary-600 hover:bg-primary-700 text-white font-bold px-8 py-3 rounded font-heading uppercase tracking-wide transition-all">View All Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-20 bg-neutral-900 text-white">
+    <div class="container mx-auto px-4 max-w-7xl">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold uppercase tracking-wide mb-4">Why Choose Georgia Demolition Experts?</h2>
+        <p class="text-neutral-400 max-w-2xl mx-auto" style="text-transform:none;font-family:var(--font-body);">We're Georgia's most trusted demolition company for a reason. Here's what sets us apart from the competition.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { icon: '<path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/>', title: "Statewide Coverage", text: "Serving all 159 Georgia counties with strategically positioned crews for fast response anywhere in the state." },
+          { icon: '<path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/>', title: "Licensed & Insured", text: "Fully licensed for Georgia demolition contracting with comprehensive liability, pollution, and workers comp coverage." },
+          { icon: '<path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/>', title: "Expert Compliance", text: "We handle Georgia EPD notifications, asbestos surveys, permits, and all regulatory requirements for every project." },
+          { icon: '<path d="M12 2v20M2 12h20"/>', title: "Free Estimates", text: "Free on-site estimates for every project. No obligation, no hidden fees—just honest pricing and professional service." }
+        ].map(item => (
+          <div class="bg-neutral-800 rounded-xl p-6 border border-neutral-700">
+            <div class="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center mb-4">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={item.icon} />
+            </div>
+            <h3 class="font-heading font-bold text-lg uppercase tracking-wide mb-2">{item.title}</h3>
+            <p class="text-neutral-400 text-sm leading-relaxed" style="text-transform:none;font-family:var(--font-body);">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Cities -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 max-w-7xl">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold uppercase tracking-wide mb-4">Demolition Services Across Georgia</h2>
+        <p class="text-neutral-600 max-w-2xl mx-auto" style="text-transform:none;font-family:var(--font-body);">We serve all 159 Georgia counties. Here are some of our most active service areas.</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {featuredCities.map(city => (
+          <a href={`/locations/${city.slug}/`} class="group flex items-center gap-3 p-4 rounded-lg border border-neutral-200 hover:border-primary-600 hover:bg-primary-50 transition-all">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-600 shrink-0"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
+            <div>
+              <div class="font-heading font-bold text-sm uppercase tracking-wide text-neutral-900 group-hover:text-primary-700">{city.name}</div>
+              <div class="text-xs text-neutral-500" style="text-transform:none;font-family:var(--font-body);">{city.county} County</div>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/locations/" class="text-primary-600 hover:text-primary-700 font-semibold font-heading uppercase tracking-wide">View All 76 Georgia Cities →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-20 bg-neutral-50">
+    <div class="container mx-auto px-4 max-w-7xl">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold uppercase tracking-wide mb-4">What Georgia Customers Say</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {testimonials.map(t => (
+          <div class="bg-white rounded-xl p-6 shadow-md border border-neutral-100">
+            <div class="flex gap-1 mb-4">
+              {[1,2,3,4,5].map(() => (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#CC1B1B" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              ))}
+            </div>
+            <p class="text-neutral-700 text-sm leading-relaxed mb-4" style="text-transform:none;font-family:var(--font-body);">"{t.text}"</p>
+            <div>
+              <div class="font-heading font-bold text-sm uppercase tracking-wide">{t.name}</div>
+              <div class="text-xs text-neutral-500" style="text-transform:none;font-family:var(--font-body);">{t.location}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold uppercase tracking-wide mb-4">Frequently Asked Questions</h2>
+        <p class="text-neutral-600" style="text-transform:none;font-family:var(--font-body);">Common questions about demolition services in Georgia.</p>
+      </div>
+      <FAQAccordion faqs={homepageFaqs} client:load />
+      <div class="text-center mt-8">
+        <a href="/faqs/" class="text-primary-600 hover:text-primary-700 font-semibold font-heading uppercase tracking-wide">View All FAQs →</a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+
+  <Footer slot="footer" />
+</BaseLayout>

@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "@astrojs/react": "^5.0.3",
+    "@astrojs/sitemap": "^3.7.2",
+    "@tailwindcss/vite": "4.1.4",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^6.3.1",
+    "lucide-react": "^0.503.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "resend": "^4.0.0",
+    "tailwindcss": "4.1.4"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "name": "astro-site",
+  "scripts": {
+    "astro": "astro",
+    "build": "astro build",
+    "dev": "astro dev",
+    "preview": "astro preview"
+  },
+  "type": "module",
+  "version": "0.0.1"
+}

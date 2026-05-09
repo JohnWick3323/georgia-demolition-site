@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title="Privacy Policy | Georgia Demolition Experts" description="Privacy policy for Georgia Demolition Experts.">
+  <Header slot="header" />
+  <section class="bg-neutral-900 text-white pt-32 pb-12">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h1 class="text-4xl font-bold uppercase tracking-wide">Privacy Policy</h1>
+    </div>
+  </section>
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl prose max-w-none" style="font-family:var(--font-body);">
+      <p class="text-neutral-500 text-sm">Last updated: January 1, 2025</p>
+      <h2 class="font-heading font-bold uppercase tracking-wide text-2xl mt-8 mb-4">Information We Collect</h2>
+      <p class="text-neutral-700 leading-relaxed">When you contact Georgia Demolition Experts through our website or phone, we collect information you voluntarily provide including your name, email address, phone number, and project details. We use this information solely to respond to your inquiry and provide demolition estimates.</p>
+      <h2 class="font-heading font-bold uppercase tracking-wide text-2xl mt-8 mb-4">How We Use Your Information</h2>
+      <p class="text-neutral-700 leading-relaxed">We use your information to contact you about your demolition project, provide estimates, and communicate about services. We do not sell, rent, or share your personal information with third parties except as necessary to fulfill your project (e.g., permit applications with Georgia county authorities).</p>
+      <h2 class="font-heading font-bold uppercase tracking-wide text-2xl mt-8 mb-4">Cookies</h2>
+      <p class="text-neutral-700 leading-relaxed">Our website may use cookies for analytics purposes to understand how visitors use our site. You can disable cookies in your browser settings.</p>
+      <h2 class="font-heading font-bold uppercase tracking-wide text-2xl mt-8 mb-4">Contact Us</h2>
+      <p class="text-neutral-700 leading-relaxed">If you have questions about our privacy practices, contact us at <a href={`mailto:${site.email}`} class="text-primary-600">{site.email}</a> or call <a href={`tel:${site.phone}`} class="text-primary-600">{site.phone}</a>.</p>
+    </div>
+  </section>
+  <Footer slot="footer" />
+</BaseLayout>

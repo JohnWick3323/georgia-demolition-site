@@ -1,0 +1,160 @@
+---
+import { site } from '../data/site';
+import { mainServices } from '../data/services';
+---
+
+<header id="site-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent text-white">
+  <div class="container mx-auto px-4 md:px-8 max-w-7xl h-18 md:h-20 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="shrink-0 flex items-center gap-2 transition-transform hover:scale-105 group">
+      <div class="bg-primary-600 rounded p-1.5">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <div class="leading-tight">
+        <div id="logo-text" class="font-heading font-bold text-lg uppercase tracking-wide transition-colors">Georgia Demolition</div>
+        <div id="logo-sub" class="text-xs opacity-80 transition-colors normal-case" style="text-transform:none;font-family:var(--font-body);font-weight:400;">Experts</div>
+      </div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden lg:flex items-center gap-8">
+      <!-- Services Dropdown -->
+      <div class="relative group">
+        <a href="/services/" class="flex items-center gap-1 font-medium hover:text-primary-400 transition-colors py-2 text-sm xl:text-base uppercase tracking-wide font-heading">
+          Services
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 group-hover:rotate-180 transition-transform"><path d="m6 9 6 6 6-6"/></svg>
+        </a>
+        <div class="absolute top-full -left-4 w-72 bg-white shadow-xl rounded-lg opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 border border-neutral-100 mt-2 overflow-hidden">
+          <ul class="py-2">
+            {mainServices.map(s => (
+              <li>
+                <a href={`/services/${s.slug}/`} class="block px-6 py-3 text-sm text-neutral-800 hover:bg-primary-50 hover:text-primary-700 transition-colors font-medium uppercase tracking-wide font-heading">
+                  {s.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div class="px-6 py-3 bg-neutral-50 border-t border-neutral-100">
+            <a href="/services/" class="text-xs text-primary-600 font-semibold hover:text-primary-700 uppercase tracking-wide font-heading">View All Services →</a>
+          </div>
+        </div>
+      </div>
+
+      <a href="/locations/" class="font-medium hover:text-primary-400 transition-colors text-sm xl:text-base uppercase tracking-wide font-heading">Locations</a>
+      <a href="/about/" class="font-medium hover:text-primary-400 transition-colors text-sm xl:text-base uppercase tracking-wide font-heading">About</a>
+      <a href="/faqs/" class="font-medium hover:text-primary-400 transition-colors text-sm xl:text-base uppercase tracking-wide font-heading">FAQs</a>
+      <a href="/contact/" class="font-medium hover:text-primary-400 transition-colors text-sm xl:text-base uppercase tracking-wide font-heading">Contact</a>
+    </nav>
+
+    <!-- Right Side -->
+    <div class="flex items-center gap-3">
+      <a href={`tel:${site.phone}`} class="hidden md:flex items-center gap-2 text-sm font-semibold hover:text-primary-400 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-400"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        {site.phone}
+      </a>
+      <a href="/contact/" class="bg-primary-600 hover:bg-primary-700 text-white px-5 md:px-6 py-2 md:py-2.5 rounded font-bold text-sm uppercase tracking-wide font-heading transition-all shadow-red hover:shadow-lg hover:-translate-y-0.5 whitespace-nowrap">
+        Get Free Quote
+      </a>
+      <!-- Mobile Menu Toggle -->
+      <button id="mobile-menu-toggle" class="lg:hidden p-1.5 text-inherit" aria-label="Toggle Menu">
+        <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed inset-0 top-[64px] bg-white text-neutral-900 z-40 lg:hidden opacity-0 pointer-events-none transition-all duration-300 overflow-y-auto">
+    <div class="container mx-auto px-6 py-8 flex flex-col gap-6">
+      <div class="space-y-4">
+        <p class="text-xs font-bold text-neutral-400 uppercase tracking-widest border-b border-neutral-100 pb-2">Services</p>
+        <ul class="space-y-3">
+          {mainServices.map(s => (
+            <li>
+              <a href={`/services/${s.slug}/`} class="block text-sm font-bold text-neutral-800 hover:text-primary-600 transition-colors uppercase tracking-wide font-heading">
+                {s.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="space-y-3 border-t border-neutral-100 pt-4">
+        <a href="/locations/" class="block font-bold text-neutral-800 hover:text-primary-600 uppercase tracking-wide font-heading">Locations</a>
+        <a href="/about/" class="block font-bold text-neutral-800 hover:text-primary-600 uppercase tracking-wide font-heading">About</a>
+        <a href="/faqs/" class="block font-bold text-neutral-800 hover:text-primary-600 uppercase tracking-wide font-heading">FAQs</a>
+        <a href="/contact/" class="block font-bold text-neutral-800 hover:text-primary-600 uppercase tracking-wide font-heading">Contact</a>
+      </div>
+      <div class="border-t border-neutral-100 pt-4 space-y-3">
+        <a href={`tel:${site.phone}`} class="flex items-center gap-3 text-primary-600 font-bold text-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          {site.phone}
+        </a>
+        <a href="/contact/" class="block bg-primary-600 text-white text-center font-bold py-3 rounded uppercase tracking-wide font-heading">Get Free Quote</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header');
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  const logoText = document.getElementById('logo-text');
+  const logoSub = document.getElementById('logo-sub');
+
+  function setScrolled(scrolled: boolean) {
+    if (scrolled) {
+      header?.classList.remove('bg-transparent', 'text-white');
+      header?.classList.add('bg-white', 'text-neutral-900', 'shadow-md');
+      if (logoText) logoText.style.color = '#121212';
+      if (logoSub) logoSub.style.color = '#757575';
+    } else {
+      header?.classList.add('bg-transparent', 'text-white');
+      header?.classList.remove('bg-white', 'text-neutral-900', 'shadow-md');
+      if (logoText) logoText.style.color = '';
+      if (logoSub) logoSub.style.color = '';
+    }
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!menu?.classList.contains('opacity-100')) {
+      setScrolled(window.scrollY > 50);
+    }
+  });
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.contains('opacity-100');
+    if (isOpen) {
+      menu?.classList.remove('opacity-100', 'pointer-events-auto');
+      menu?.classList.add('opacity-0', 'pointer-events-none');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      document.body.style.overflow = '';
+      setScrolled(window.scrollY > 50);
+    } else {
+      menu?.classList.add('opacity-100', 'pointer-events-auto');
+      menu?.classList.remove('opacity-0', 'pointer-events-none');
+      menuIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      setScrolled(true);
+    }
+  });
+
+  // Close menu on navigation
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu?.classList.remove('opacity-100', 'pointer-events-auto');
+      menu?.classList.add('opacity-0', 'pointer-events-none');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      document.body.style.overflow = '';
+      setScrolled(window.scrollY > 50);
+    });
+  });
+</script>
