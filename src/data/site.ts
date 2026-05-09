@@ -4,10 +4,8 @@ export const site = {
   legalName: 'Georgia Demolition & Removal LLC',
   url: 'https://georgiademolitionandremoval.com',
   address: {
-    street: '',
     city: 'Atlanta',
     state: 'GA',
-    zip: '30301'
   },
   serviceArea: 'Serving all 159 Georgia counties statewide',
   phone: '(843) 241-0787',
@@ -16,7 +14,7 @@ export const site = {
   openingHours: 'Mo-Fr 07:00-18:00, Sa 08:00-16:00',
   priceRange: '$$',
   description: 'Licensed and insured demolition contractors serving all 159 Georgia counties. Residential, commercial, industrial, and specialized demolition services.',
-  googleMapsEmbedKey: 'YOUR_GOOGLE_MAPS_KEY',
+  googleMapsEmbedKey: 'AIzaSyAIWoZdoDfMNVAmW4uJ1q-tcT9f1Ec9_8k',
   resendApiKey: 're_placeholder',
   social: {
     facebook: 'https://facebook.com/georgiademolitionandremoval',

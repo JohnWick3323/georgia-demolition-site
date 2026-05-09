@@ -33,7 +33,8 @@ const topCities = locations.slice(0, 12);
             {site.email}
           </a>
         </div>
-        <div class="flex gap-3 pt-1">
+        {/* Social icons hidden — add real profiles later */}
+        {false && <div class="flex gap-3 pt-1">
           <a href={site.social.facebook} class="w-9 h-9 rounded-lg flex items-center justify-center transition-colors" style="background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.6)" onmouseover="this.style.background='#C41C1C'; this.style.color='white'" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.6)'">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           </a>
