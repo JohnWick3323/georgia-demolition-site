@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ContactForm from '../components/ContactForm.astro';
 import { site } from '../data/site';
 ---
 
@@ -11,6 +12,7 @@ import { site } from '../data/site';
 >
   <Header slot="header" />
 
+  <!-- Hero -->
   <section class="bg-neutral-900 text-white pt-32 pb-16">
     <div class="container mx-auto px-4 max-w-7xl text-center">
       <h1 class="text-5xl font-bold uppercase tracking-wide mb-4">Get a Free Demolition Estimate</h1>
@@ -20,60 +22,17 @@ import { site } from '../data/site';
     </div>
   </section>
 
+  <!-- Form + Contact Info -->
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4 max-w-6xl">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <!-- Form -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+        <!-- GHL Form -->
         <div>
-          <h2 class="text-3xl font-bold uppercase tracking-wide mb-6">Request Your Free Estimate</h2>
-          <form action="#" method="POST" class="space-y-5">
-            <div class="grid grid-cols-2 gap-4">
-              <div>
-                <label for="fname" class="block text-sm font-heading font-bold uppercase tracking-wide text-neutral-700 mb-2">First Name *</label>
-                <input type="text" id="fname" name="fname" required class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-neutral-900" style="text-transform:none;font-family:var(--font-body);" />
-              </div>
-              <div>
-                <label for="lname" class="block text-sm font-heading font-bold uppercase tracking-wide text-neutral-700 mb-2">Last Name *</label>
-                <input type="text" id="lname" name="lname" required class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-neutral-900" style="text-transform:none;font-family:var(--font-body);" />
-              </div>
-            </div>
-            <div>
-              <label for="email" class="block text-sm font-heading font-bold uppercase tracking-wide text-neutral-700 mb-2">Email Address *</label>
-              <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-neutral-900" style="text-transform:none;font-family:var(--font-body);" />
-            </div>
-            <div>
-              <label for="phone" class="block text-sm font-heading font-bold uppercase tracking-wide text-neutral-700 mb-2">Phone Number *</label>
-              <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-neutral-900" style="text-transform:none;font-family:var(--font-body);" />
-            </div>
-            <div>
-              <label for="city" class="block text-sm font-heading font-bold uppercase tracking-wide text-neutral-700 mb-2">City, GA</label>
-              <input type="text" id="city" name="city" placeholder="Your city in Georgia" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-neutral-900" style="text-transform:none;font-family:var(--font-body);" />
-            </div>
-            <div>
-              <label for="service" class="block text-sm font-heading font-bold uppercase tracking-wide text-neutral-700 mb-2">Service Needed</label>
-              <select id="service" name="service" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-neutral-900 bg-white" style="text-transform:none;font-family:var(--font-body);">
-                <option value="">Select a service...</option>
-                <option value="residential">Residential Demolition</option>
-                <option value="commercial">Commercial Demolition</option>
-                <option value="home">Full Home Demolition</option>
-                <option value="pool">Pool Removal</option>
-                <option value="garage">Garage Demolition</option>
-                <option value="deck">Deck Removal</option>
-                <option value="concrete">Concrete Removal</option>
-                <option value="mobile">Mobile Home Removal</option>
-                <option value="site">Site Clearing</option>
-                <option value="asbestos">Asbestos Abatement</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div>
-              <label for="message" class="block text-sm font-heading font-bold uppercase tracking-wide text-neutral-700 mb-2">Project Details</label>
-              <textarea id="message" name="message" rows="4" placeholder="Tell us about your demolition project — size, location, timeline, and any special requirements..." class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-neutral-900 resize-none" style="text-transform:none;font-family:var(--font-body);"></textarea>
-            </div>
-            <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-4 rounded font-heading uppercase tracking-wide text-lg transition-all shadow-red">
-              Request Free Estimate
-            </button>
-          </form>
+          <ContactForm
+            title="Request Your Free Estimate"
+            subtitle="We respond within 1 business day. Serving all 159 Georgia counties."
+          />
         </div>
 
         <!-- Contact Info -->
@@ -116,7 +75,14 @@ import { site } from '../data/site';
           <div class="bg-neutral-50 rounded-xl p-6 border border-neutral-200">
             <h3 class="font-heading font-bold uppercase tracking-wide mb-4">What to Expect</h3>
             <ol class="space-y-3">
-              {["Submit your request or call us directly","We contact you within 1 business day to schedule your estimate","Our team visits your Georgia property for a free on-site assessment","You receive a detailed written estimate with no obligation","We handle all permits, utilities, and regulatory requirements","Your project is completed on time and on budget"].map((step, i) => (
+              {[
+                "Submit your request or call us directly",
+                "We contact you within 1 business day to schedule your estimate",
+                "Our team visits your Georgia property for a free on-site assessment",
+                "You receive a detailed written estimate with no obligation",
+                "We handle all permits, utilities, and regulatory requirements",
+                "Your project is completed on time and on budget"
+              ].map((step, i) => (
                 <li class="flex items-start gap-3 text-sm text-neutral-700" style="text-transform:none;font-family:var(--font-body);">
                   <span class="w-6 h-6 bg-primary-600 rounded-full text-white text-xs font-bold flex items-center justify-center shrink-0 font-heading">{i+1}</span>
                   {step}
@@ -125,6 +91,7 @@ import { site } from '../data/site';
             </ol>
           </div>
         </div>
+
       </div>
     </div>
   </section>

@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
 import CTASection from '../../../components/CTASection.astro';
+import ContactForm from '../../../components/ContactForm.astro';
 import FAQAccordion from '../../../components/FAQAccordion.tsx';
 import { mainServices, type SubService, type MainService } from '../../../data/services';
 import { site } from '../../../data/site';
@@ -220,6 +221,22 @@ const serviceSchema = JSON.stringify({
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- GHL Contact Form -->
+  <section class="py-20" style="background:#F5F3EF">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-10">
+        <h2 class="font-bold mb-3 font-heading" style="font-size:2rem;color:#1A1A1A">
+          Free <span style="color:#C41C1C">{service.name}</span> Estimate
+        </h2>
+        <p class="font-body" style="color:#6B7280">Serving all 159 Georgia counties. We respond within 1 business day.</p>
+      </div>
+      <ContactForm
+        title={`Free ${service.name} Estimate`}
+        subtitle={`Tell us about your ${service.name.toLowerCase()} project and we'll respond within 1 business day.`}
+      />
     </div>
   </section>
 

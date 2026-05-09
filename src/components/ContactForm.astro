@@ -3,18 +3,36 @@ interface Props {
   title?: string;
   subtitle?: string;
   isDark?: boolean;
+  compact?: boolean;
 }
 
-const { 
-  isDark = false 
+const {
+  title = "Get a Free Demolition Estimate",
+  subtitle = "We respond within 1 business day. Serving all 159 Georgia counties.",
+  isDark = false,
+  compact = false,
 } = Astro.props;
 ---
 
-<div class={`rounded-3xl border overflow-hidden ${isDark ? 'bg-neutral-900 border-neutral-800' : 'bg-white border-neutral-100 shadow-2xl'}`}>
+<div class={`rounded-2xl overflow-hidden ${isDark ? 'bg-neutral-900 border border-neutral-800' : 'bg-white border border-neutral-100 shadow-xl'}`}>
+  {(title || subtitle) && (
+    <div class={`px-6 pt-6 pb-2 ${isDark ? '' : ''}`}>
+      {title && (
+        <h3 class="font-bold mb-1" style={`font-family:'Outfit',sans-serif; font-size:1.25rem; color:${isDark ? 'white' : '#1A1A1A'}`}>
+          {title}
+        </h3>
+      )}
+      {subtitle && (
+        <p class="text-sm mb-2" style={`font-family:'Inter',sans-serif; color:${isDark ? 'rgba(255,255,255,0.6)' : '#6B7280'}`}>
+          {subtitle}
+        </p>
+      )}
+    </div>
+  )}
   <iframe
-    src="https://YOUR_GHL_FORM_URL/widget/form/YOUR_FORM_ID"
-    style="width:100%;height:810px;border:none;border-radius:24px"
-    id="inline-georgia-demolition-form"
+    src="https://link.westlanddre.com/widget/form/XoJVeWMaNl1Ss98RouWi"
+    style={`width:100%;height:${compact ? '600px' : '831px'};border:none;`}
+    id="inline-XoJVeWMaNl1Ss98RouWi"
     data-layout="{'id':'INLINE'}"
     data-trigger-type="alwaysShow"
     data-trigger-value=""
@@ -22,12 +40,11 @@ const {
     data-activation-value=""
     data-deactivation-type="neverDeactivate"
     data-deactivation-value=""
-    data-form-name="Georgia Demolition & Removal"
-    data-height="810"
-    data-layout-iframe-id="inline-georgia-demolition-form"
-    data-form-id="YOUR_FORM_ID"
-    title="Georgia Demolition & Removal Contact Form"
-  >
-  </iframe>
-  <script src="https://YOUR_GHL_DOMAIN/js/form_embed.js"></script>
+    data-form-name="Georgia Demolition Form"
+    data-height="831"
+    data-layout-iframe-id="inline-XoJVeWMaNl1Ss98RouWi"
+    data-form-id="XoJVeWMaNl1Ss98RouWi"
+    title="Georgia Demolition Form"
+  ></iframe>
 </div>
+<script src="https://link.westlanddre.com/js/form_embed.js"></script>

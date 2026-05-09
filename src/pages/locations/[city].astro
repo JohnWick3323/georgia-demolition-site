@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import CTASection from '../../components/CTASection.astro';
+import ContactForm from '../../components/ContactForm.astro';
 import { locations, type Location } from '../../data/locations';
 import { mainServices } from '../../data/services';
 import { site } from '../../data/site';
@@ -346,6 +347,22 @@ const localBusinessSchema = {
       </div>
     </section>
   )}
+
+  <!-- GHL Contact Form -->
+  <section class="py-20" style="background:#F5F3EF">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-10">
+        <h2 class="font-bold mb-3 font-heading" style="font-size:2rem;color:#1A1A1A">
+          Free Demolition Estimate in <span style="color:#C41C1C">{location.name}</span>
+        </h2>
+        <p class="font-body" style="color:#6B7280">Licensed &amp; insured. Serving {location.county} County and all of Georgia. We respond within 1 business day.</p>
+      </div>
+      <ContactForm
+        title={`Free Estimate — ${location.name}, GA`}
+        subtitle={`Serving ${location.county} County and all 159 Georgia counties. We respond within 1 business day.`}
+      />
+    </div>
+  </section>
 
   <CTASection heading={`Ready for demolition in ${location.name}?`} subtext={`Licensed, insured, and serving all of ${location.county} County, Georgia. Free estimates — call us or get a quote online.`} />
   <Footer slot="footer" />
