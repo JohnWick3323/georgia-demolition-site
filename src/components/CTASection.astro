@@ -9,13 +9,15 @@ const {
 } = Astro.props;
 ---
 
-<section class="bg-primary-600 py-16 text-white text-center">
+<section class="py-16 text-white text-center" style="background:#C41C1C">
   <div class="max-w-4xl mx-auto px-6">
-    <h2 class="text-4xl font-bold uppercase tracking-wide mb-4">{heading}</h2>
-    <p class="text-lg opacity-90 mb-8 normal-case" style="text-transform:none;font-family:var(--font-body);">{subtext}</p>
+    <h2 class="font-bold text-white mb-4" style="font-family:'Outfit',sans-serif; font-size:2.2rem; line-height:1.2">{heading}</h2>
+    <p class="text-lg mb-8 max-w-2xl mx-auto" style="color:rgba(255,255,255,0.85); font-family:'Inter',sans-serif">{subtext}</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="/contact/" class="bg-white text-primary-700 font-bold px-8 py-4 rounded font-heading uppercase tracking-wide text-lg hover:bg-gray-100 transition-all shadow-lg">Get Free Quote</a>
-      <a href="tel:(843) 241-0787" class="bg-primary-800 text-white font-bold px-8 py-4 rounded font-heading uppercase tracking-wide text-lg hover:bg-primary-900 transition-all border border-primary-500">
+      <a href="/contact/" class="bg-white font-bold px-8 py-4 rounded-lg text-lg transition-all hover:bg-neutral-100 hover:-translate-y-0.5 shadow-lg" style="color:#C41C1C; font-family:'Outfit',sans-serif">
+        Get Free Estimate
+      </a>
+      <a href="tel:(843) 241-0787" class="border-2 border-white text-white font-bold px-8 py-4 rounded-lg text-lg transition-all hover:-translate-y-0.5" style="font-family:'Outfit',sans-serif">
         (843) 241-0787
       </a>
     </div>

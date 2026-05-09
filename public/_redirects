@@ -1,0 +1,10 @@
+# WWW to non-WWW redirect
+https://www.georgiademolitionandremoval.com/* https://georgiademolitionandremoval.com/:splat 301!
+
+# Trailing slash enforcement (Cloudflare Pages handles this, but explicit is better)
+/services /services/ 301
+/locations /locations/ 301
+/about /about/ 301
+/contact /contact/ 301
+/faqs /faqs/ 301
+/blog /blog/ 301

@@ -14,6 +14,7 @@ export interface SubService {
     methodology: string;
     localAdvice: string;
   };
+  commonIssues?: string[];
 }
 
 export interface MainService {
@@ -22,6 +23,7 @@ export interface MainService {
   description: string;
   metaDescription: string;
   heroHeading: string;
+  image?: string;
   subServices: SubService[];
 }
 
@@ -45,6 +47,7 @@ export const mainServices: MainService[] = [
     description: "Complete residential demolition services for Georgia homeowners. From basement removal to full home teardowns, we handle every project with precision and safety.",
     metaDescription: "Professional residential demolition services across Georgia. Licensed and insured for basement removal, garage demolition, pool removal, deck removal, and more. Free estimates.",
     heroHeading: "Residential Demolition & Removal Services in Georgia",
+    image: "/images/service-residential-demolition.webp",
     subServices: [
       sub("basement-removal","Basement Removal","residential-demolition","Residential Demolition and Removal",
         "Expert basement removal and excavation for Georgia homes. We safely demolish and remove basement structures, backfill, and grade the area.",
@@ -230,6 +233,7 @@ export const mainServices: MainService[] = [
     description: "Comprehensive post-demolition cleanup services for Georgia properties. Debris removal, junk hauling, recycling, and waste disposal after any demolition project.",
     metaDescription: "Post-demolition cleanup services in Georgia. Debris removal, junk hauling, recycling, and waste disposal. Serving all 159 Georgia counties.",
     heroHeading: "Post-Demolition Cleanup Services in Georgia",
+    image: "/images/service-post-demolition.webp",
     subServices: [
       sub("debris-clean-up","Debris Clean Up","post-demolition","Post Demolition",
         "Professional post-demolition debris cleanup for Georgia properties. We clear all construction debris, rubble, and waste from your demolition site.",
@@ -283,6 +287,7 @@ export const mainServices: MainService[] = [
     description: "Professional core demolition services for Georgia's most complex projects. Building, commercial, industrial, and infrastructure demolition by licensed experts.",
     metaDescription: "Core demolition services in Georgia. Commercial, industrial, building, and infrastructure demolition. Licensed, insured, serving all 159 Georgia counties.",
     heroHeading: "Core Demolition Services in Georgia",
+    image: "/images/service-core-demolition.webp",
     subServices: [
       sub("building-demolition","Building Demolition","core-demolition","Core Demolition",
         "Complete building demolition for Georgia commercial, institutional, and residential structures. Safe teardown of any building type or size.",
@@ -380,6 +385,7 @@ export const mainServices: MainService[] = [
     description: "Advanced specialized demolition services for unique Georgia projects. Asbestos abatement, hydro demolition, concrete recycling, and silo removal.",
     metaDescription: "Specialized demolition services in Georgia. Asbestos abatement, hydro demolition, concrete recycling, and silo removal. Licensed experts serving all Georgia counties.",
     heroHeading: "Specialized Demolition Services in Georgia",
+    image: "/images/service-specialized-demolition.webp",
     subServices: [
       sub("asbestos-abatement","Asbestos Abatement","specialized-demolition","Specialized Demolition",
         "Licensed asbestos abatement services for Georgia properties before and during demolition. Safe removal and disposal of all asbestos-containing materials.",
@@ -466,6 +472,7 @@ export const mainServices: MainService[] = [
     description: "Supporting demolition and site preparation services for Georgia projects. Environmental remediation, excavation, fire restoration, furniture removal, and land grading.",
     metaDescription: "Ancillary demolition services in Georgia. Environmental remediation, excavation, fire restoration, furniture removal, and land grading. Free estimates statewide.",
     heroHeading: "Ancillary Demolition Services in Georgia",
+    image: "/images/service-ancillary-demolition.webp",
     subServices: [
       sub("environmental-remediation","Environmental Remediation","ancillary-demolition","Ancillary Demolition",
         "Environmental remediation services coordinated with demolition for Georgia contaminated properties. Soil, groundwater, and building material contamination addressed.",
