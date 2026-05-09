@@ -28,7 +28,8 @@ const combo = combinations.find(
   c => c.serviceSlug === service.slug && c.locationSlug === location.slug
 );
 
-const title = `${service.name} in ${location.name}, GA | ${site.name}`;
+const titleFull = `${service.name} in ${location.name}, GA | ${site.name}`;
+const title = titleFull.length > 60 ? `${service.name} in ${location.name}, GA` : titleFull;
 const description = `Licensed ${service.name.toLowerCase()} in ${location.name}, Georgia. ${location.county} County experts for residential, commercial, and industrial projects. Free estimates — call ${site.phone}.`;
 
 const breadcrumbs = [

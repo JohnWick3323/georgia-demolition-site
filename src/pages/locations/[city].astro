@@ -19,32 +19,101 @@ interface Props {
 }
 
 const { location } = Astro.props;
+
+// Nearby cities (same region, not same city)
+const nearbyCities = locations
+  .filter(loc => loc.region === location.region && loc.slug !== location.slug)
+  .slice(0, 6);
+
+// Top cities for combo page links
+const topCitySlugs = ["atlanta","savannah","augusta","columbus","macon","athens","marietta","sandy-springs","alpharetta","warner-robins","valdosta","gainesville","dalton","rome","cumming"];
+const hasComboPages = topCitySlugs.includes(location.slug);
+
+// Breadcrumbs
+const breadcrumbs = [
+  { name: "Service Areas", url: "/locations/" },
+  { name: `${location.name}, GA`, url: `/locations/${location.slug}/` }
+];
+
+// LocalBusiness schema with geo
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": `${site.name} — ${location.name}`,
+  "description": location.metaDescription,
+  "url": `${site.url}/locations/${location.slug}/`,
+  "telephone": site.phone,
+  "email": site.email,
+  "areaServed": {
+    "@type": "City",
+    "name": location.name,
+    "addressRegion": "GA",
+    "addressCountry": "US"
+  },
+  ...(location.geo ? {
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": location.geo.lat,
+      "longitude": location.geo.lng
+    }
+  } : {})
+};
 ---
 
 <BaseLayout
   title={`Demolition Services in ${location.name}, GA | ${location.county} County`}
   description={location.metaDescription}
+  breadcrumbs={breadcrumbs}
+  schemaOverride={JSON.stringify(localBusinessSchema)}
 >
   <Header slot="header" />
 
   <!-- Hero -->
-  <section class="text-white pt-32 pb-20" style="background:linear-gradient(135deg, #1A0505 0%, #3D0808 60%, #560A0A 100%)">
+  <section class="relative text-white" style="background:linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.65)), url('/images/hero-areas.webp') center/cover no-repeat; padding-top:120px; padding-bottom:80px">
     <div class="max-w-7xl mx-auto px-6">
+      <!-- Breadcrumb -->
+      <nav class="mb-6">
+        <ol class="flex items-center gap-2 text-xs flex-wrap" style="color:rgba(255,255,255,0.65)">
+          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+          <li style="color:rgba(255,255,255,0.4)">/</li>
+          <li><a href="/locations/" class="hover:text-white transition-colors">Service areas</a></li>
+          <li style="color:rgba(255,255,255,0.4)">/</li>
+          <li style="color:rgba(255,255,255,0.85)">{location.name}, GA</li>
+        </ol>
+      </nav>
+
       <div class="max-w-3xl">
-        <div class="text-sm font-semibold mb-3" style="color:#FCA5A5; font-family:'Outfit',sans-serif">
-          Georgia Demolition Services · {location.county} County
+        <div class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-4 font-heading" style="background:#C41C1C; color:white">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          {location.county} County, Georgia
         </div>
-        <h1 class="font-bold text-white mb-5" style="font-family:'Outfit',sans-serif; font-size:clamp(2rem,5vw,3.2rem); line-height:1.15">
-          Demolition Services in {location.name}, GA
+        <h1 class="font-bold text-white mb-5 font-heading" style="font-size:clamp(2rem,5vw,3.2rem); line-height:1.15">
+          Demolition services in {location.name}, GA
         </h1>
-        <p class="text-lg mb-10" style="color:rgba(255,255,255,0.8); font-family:'Inter',sans-serif">
+        <p class="text-lg mb-8 font-body" style="color:rgba(255,255,255,0.82); max-width:600px; line-height:1.7">
           {location.localInsight}
         </p>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a href="/contact/" class="font-bold px-8 py-4 rounded-lg transition-all hover:-translate-y-0.5 shadow-lg" style="background:#C41C1C; color:white; font-family:'Outfit',sans-serif">
-            Get Free Estimate
+        <!-- Hero stats -->
+        <div class="flex flex-wrap gap-6 mb-10 pt-6" style="border-top:1px solid rgba(255,255,255,0.2)">
+          <div>
+            <div class="font-bold text-xl font-heading" style="color:#F87171">{location.county} County</div>
+            <div class="text-xs mt-0.5 font-body" style="color:rgba(255,255,255,0.6)">Primary service area</div>
+          </div>
+          <div>
+            <div class="font-bold text-xl font-heading" style="color:#F87171">{site.aggregateRating.ratingValue}★</div>
+            <div class="text-xs mt-0.5 font-body" style="color:rgba(255,255,255,0.6)">{site.aggregateRating.reviewCount} reviews</div>
+          </div>
+          <div>
+            <div class="font-bold text-xl font-heading" style="color:#F87171">Licensed</div>
+            <div class="text-xs mt-0.5 font-body" style="color:rgba(255,255,255,0.6)">& fully insured</div>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <a href="/contact/" class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-lg font-semibold font-heading transition-all shadow-lg hover:-translate-y-0.5">
+            Free estimate
           </a>
-          <a href={`tel:${site.phone}`} class="border-2 border-white text-white font-bold px-8 py-4 rounded-lg transition-all hover:-translate-y-0.5" style="font-family:'Outfit',sans-serif">
+          <a href={`tel:${site.phone}`} class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold font-heading flex items-center gap-2 transition-all hover:bg-white hover:text-neutral-900">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             {site.phone}
           </a>
         </div>
@@ -52,57 +121,99 @@ const { location } = Astro.props;
     </div>
   </section>
 
-  <!-- Content + Map -->
+  <!-- Content + Sidebar -->
   <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
         <!-- Main Content -->
         <div class="lg:col-span-2 space-y-10">
+
           <!-- Local Info -->
           <div>
-            <h2 class="font-bold mb-4" style="font-family:'Outfit',sans-serif; font-size:1.8rem; color:#1A1A1A">
-              Demolition Services in {location.name}
+            <h2 class="font-bold mb-4 font-heading" style="font-size:1.8rem; color:#1A1A1A">
+              Demolition services in {location.name}
             </h2>
-            <p class="leading-relaxed mb-4" style="color:#4B5563; font-family:'Inter',sans-serif">
-              Georgia Demolition Experts provides complete demolition and removal services in {location.name} and throughout {location.county} County. Whether you need a residential structure torn down, commercial property cleared, or specialty demolition work, our licensed and insured crews are ready to serve your {location.name} property.
+            <p class="leading-relaxed mb-4 font-body" style="color:#4B5563">
+              Georgia Demolition Experts provides complete demolition and removal services in {location.name} and throughout {location.county} County. Whether you need a residential structure torn down, a commercial property cleared, or specialty demolition work completed, our licensed and insured crews are ready to serve your {location.name} project.
             </p>
-            <p class="leading-relaxed" style="color:#4B5563; font-family:'Inter',sans-serif">
-              We are familiar with {location.county} County's building departments, permitting requirements, and local regulations. Our team handles the entire process from permits to final site grading, ensuring your {location.name} demolition project is completed on time, on budget, and in full compliance with Georgia regulations.
+            <p class="leading-relaxed mb-4 font-body" style="color:#4B5563">
+              We are intimately familiar with {location.county} County's building department processes, permit requirements, and local regulations. Our team handles the entire project lifecycle — from permit acquisition and utility disconnection to final grading and erosion control — ensuring your {location.name} demolition is completed on time, on budget, and in full compliance with Georgia law.
             </p>
+            {location.soilType && (
+              <div class="p-4 rounded-xl flex gap-3 mb-4" style="background:#F5F3EF">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                <p class="text-sm font-body" style="color:#374151"><strong class="font-heading">Local soil conditions:</strong> {location.soilType}. This affects excavation depths, backfill compaction requirements, and foundation removal techniques in {location.name}.</p>
+              </div>
+            )}
+            {location.hoaNotes && (
+              <div class="p-4 rounded-xl flex gap-3" style="background:#FEF2F2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+                <p class="text-sm font-body" style="color:#7A1010"><strong class="font-heading">HOA note for {location.name}:</strong> {location.hoaNotes}</p>
+              </div>
+            )}
           </div>
 
-          <!-- Services in this City -->
+          <!-- Services Grid with combo links -->
           <div>
-            <h2 class="font-bold mb-6" style="font-family:'Outfit',sans-serif; font-size:1.8rem; color:#1A1A1A">
-              Services We Offer in {location.name}
+            <h2 class="font-bold mb-6 font-heading" style="font-size:1.8rem; color:#1A1A1A">
+              Services we offer in {location.name}
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {mainServices.map(cat => (
                 <div class="p-5 rounded-xl transition-all" style="border:1px solid #E5E7EB; background:white">
-                  <h3 class="font-semibold text-sm mb-3" style="color:#1A1A1A; font-family:'Outfit',sans-serif">{cat.name}</h3>
+                  <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-semibold text-sm font-heading" style="color:#1A1A1A">{cat.name}</h3>
+                    {hasComboPages && (
+                      <a href={`/services/${cat.slug}/${location.slug}/`} class="text-xs font-semibold font-heading transition-colors hover:underline" style="color:#C41C1C">
+                        {location.name} →
+                      </a>
+                    )}
+                  </div>
                   <ul class="space-y-1.5">
                     {cat.subServices.slice(0, 4).map(sub => (
                       <li>
-                        <a href={`/services/${cat.slug}/${sub.slug}/`} class="text-xs transition-colors hover:text-red-700" style="color:#C41C1C; font-family:'Inter',sans-serif">
+                        <a href={`/services/${cat.slug}/${sub.slug}/`} class="text-xs transition-colors hover:text-primary-700 font-body" style="color:#C41C1C">
                           → {sub.name}
                         </a>
                       </li>
                     ))}
+                    {cat.subServices.length > 4 && (
+                      <li class="text-xs font-body" style="color:#9CA3AF">+{cat.subServices.length - 4} more services</li>
+                    )}
                   </ul>
                 </div>
               ))}
             </div>
           </div>
 
-          <!-- Local Details -->
+          <!-- Testimonial -->
+          {location.testimonial && (
+            <div class="p-8 rounded-2xl" style="background:#F5F3EF">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="#C41C1C" class="mb-4 opacity-30"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+              <blockquote class="font-body text-lg mb-4 leading-relaxed italic" style="color:#374151">"{location.testimonial.quote}"</blockquote>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold font-heading text-white text-sm" style="background:#C41C1C">
+                  {location.testimonial.author.charAt(0)}
+                </div>
+                <div>
+                  <div class="font-semibold font-heading text-sm" style="color:#1A1A1A">{location.testimonial.author}</div>
+                  <div class="text-xs font-body" style="color:#9CA3AF">{location.testimonial.service} · {location.name}, GA</div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <!-- Landmarks -->
           {location.landmarks.length > 0 && (
             <div>
-              <h2 class="font-bold mb-4" style="font-family:'Outfit',sans-serif; font-size:1.5rem; color:#1A1A1A">
-                Local Landmarks Near Our {location.name} Projects
+              <h2 class="font-bold mb-4 font-heading" style="font-size:1.5rem; color:#1A1A1A">
+                Familiar with {location.name} landmarks
               </h2>
+              <p class="text-sm mb-4 font-body" style="color:#6B7280">Our crews work throughout {location.name}, regularly serving properties near:</p>
               <div class="flex flex-wrap gap-2">
                 {location.landmarks.map(lm => (
-                  <span class="px-3 py-1.5 text-sm rounded-full" style="background:#FEF2F2; color:#C41C1C; font-family:'Inter',sans-serif">
+                  <span class="px-3 py-1.5 text-sm rounded-full font-body" style="background:#FEF2F2; color:#C41C1C">
                     {lm}
                   </span>
                 ))}
@@ -110,55 +221,65 @@ const { location } = Astro.props;
             </div>
           )}
 
+          <!-- Neighborhoods -->
           {location.neighborhoods.length > 0 && (
             <div>
-              <h2 class="font-bold mb-4" style="font-family:'Outfit',sans-serif; font-size:1.5rem; color:#1A1A1A">
-                Neighborhoods We Serve in {location.name}
+              <h2 class="font-bold mb-4 font-heading" style="font-size:1.5rem; color:#1A1A1A">
+                Neighborhoods we serve in {location.name}
               </h2>
               <div class="flex flex-wrap gap-2">
                 {location.neighborhoods.map(n => (
-                  <span class="px-3 py-1.5 text-sm rounded-full" style="background:#F9FAFB; color:#4B5563; border:1px solid #E5E7EB; font-family:'Inter',sans-serif">
+                  <span class="px-3 py-1.5 text-sm rounded-full font-body" style="background:#F9FAFB; color:#4B5563; border:1px solid #E5E7EB">
                     {n}
                   </span>
                 ))}
               </div>
             </div>
           )}
+
+          <!-- Water/Environmental Notes -->
+          {location.waterRestrictions && (
+            <div class="p-5 rounded-xl flex gap-3" style="background:#EFF6FF; border:1px solid #BFDBFE">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5"><path d="M12 2v1"/><path d="M5.2 5.2 4.1 4.1"/><path d="M2 12H1"/><path d="M5.2 18.8l-1.1 1.1"/><path d="M12 22v-1"/><path d="M18.8 18.8l1.1 1.1"/><path d="M22 12h1"/><path d="M18.8 5.2l1.1-1.1"/><path d="M17 12a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z"/></svg>
+              <p class="text-sm font-body" style="color:#1E40AF"><strong class="font-heading">Environmental note:</strong> {location.waterRestrictions}</p>
+            </div>
+          )}
+
         </div>
 
         <!-- Sidebar -->
         <div class="space-y-6">
           <!-- CTA Card -->
-          <div class="rounded-xl p-6 text-white" style="background:#C41C1C">
-            <h3 class="font-bold mb-2" style="font-family:'Outfit',sans-serif; font-size:1.1rem">
-              Free Estimate in {location.name}
+          <div class="rounded-2xl p-6 text-white" style="background:#C41C1C">
+            <h3 class="font-bold mb-2 font-heading" style="font-size:1.1rem">
+              Free estimate in {location.name}
             </h3>
-            <p class="text-sm mb-4" style="color:rgba(255,255,255,0.85); font-family:'Inter',sans-serif">
-              Licensed &amp; insured demolition contractors serving {location.county} County. No obligation.
+            <p class="text-sm mb-4 font-body" style="color:rgba(255,255,255,0.85)">
+              Licensed &amp; insured demolition crews serving {location.county} County.
             </p>
-            <a href="/contact/" class="block bg-white font-bold py-3 rounded-lg text-center text-sm mb-3 transition-colors hover:bg-neutral-100" style="color:#C41C1C; font-family:'Outfit',sans-serif">
-              Get Free Estimate
+            <a href="/contact/" class="block bg-white font-bold py-3 rounded-lg text-center text-sm mb-3 transition-colors hover:bg-neutral-100 font-heading" style="color:#C41C1C">
+              Get free estimate
             </a>
-            <a href={`tel:${site.phone}`} class="block text-white font-bold py-3 rounded-lg text-center text-sm border border-white/30 hover:bg-white/10 transition-colors" style="font-family:'Outfit',sans-serif">
+            <a href={`tel:${site.phone}`} class="block text-white font-bold py-3 rounded-lg text-center text-sm font-heading" style="border:1px solid rgba(255,255,255,0.35)">
               {site.phone}
             </a>
           </div>
 
           <!-- Why Us -->
-          <div class="rounded-xl p-6" style="background:#F9F9F9; border:1px solid #E5E7EB">
-            <h3 class="font-semibold mb-4 text-sm" style="font-family:'Outfit',sans-serif; color:#1A1A1A">
-              Why {location.name} Chooses Us
+          <div class="rounded-2xl p-6" style="background:#F5F3EF; border:1px solid #E5E7EB">
+            <h3 class="font-semibold mb-4 text-sm font-heading" style="color:#1A1A1A">
+              Why {location.name} chooses us
             </h3>
             <ul class="space-y-3">
               {[
                 `Licensed in ${location.county} County`,
-                "Fully insured (GL + Workers Comp)",
+                "Fully insured (GL + workers comp)",
                 "Free on-site estimates",
                 "Georgia EPD compliant",
-                "Fast mobilization statewide",
+                "Fast statewide mobilization",
                 "Permit handling included"
               ].map(item => (
-                <li class="flex items-center gap-2 text-sm" style="color:#4B5563; font-family:'Inter',sans-serif">
+                <li class="flex items-center gap-2 text-sm font-body" style="color:#4B5563">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><path d="m20 6-11 11-5-5"/></svg>
                   {item}
                 </li>
@@ -166,22 +287,66 @@ const { location } = Astro.props;
             </ul>
           </div>
 
+          <!-- Nearby Cities -->
+          {nearbyCities.length > 0 && (
+            <div class="rounded-2xl p-6" style="border:1px solid #E5E7EB">
+              <h3 class="font-semibold mb-4 text-sm font-heading" style="color:#1A1A1A">
+                Nearby service areas
+              </h3>
+              <ul class="space-y-2">
+                {nearbyCities.map(city => (
+                  <li>
+                    <a href={`/locations/${city.slug}/`} class="flex items-center justify-between text-sm transition-colors hover:text-primary-700 font-body group" style="color:#4B5563">
+                      <span>{city.name}, GA</span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-hover:opacity-100 transition-opacity"><path d="m9 18 6-6-6-6"/></svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <a href="/locations/" class="block text-center mt-4 text-xs font-semibold font-heading transition-colors hover:text-primary-700" style="color:#C41C1C">
+                All 159 Georgia counties →
+              </a>
+            </div>
+          )}
+
           <!-- Map -->
-          <div class="rounded-xl overflow-hidden" style="border:1px solid #E5E7EB; aspect-ratio:4/3">
-            <iframe
-              width="100%"
-              height="100%"
-              style="border:0"
-              loading="lazy"
-              allowfullscreen
-              src={`https://www.google.com/maps/embed/v1/place?key=${site.googleMapsKey}&q=${encodeURIComponent(location.name + ', ' + location.county + ' County, Georgia')}&zoom=12`}
-            ></iframe>
-          </div>
+          {location.geo && (
+            <div class="rounded-2xl overflow-hidden" style="border:1px solid #E5E7EB; aspect-ratio:4/3">
+              <iframe
+                width="100%"
+                height="100%"
+                style="border:0"
+                loading="lazy"
+                allowfullscreen
+                src={`https://www.google.com/maps/embed/v1/place?key=${site.googleMapsEmbedKey}&q=${encodeURIComponent(location.name + ', ' + location.county + ' County, Georgia')}&zoom=12`}
+                title={`Map of ${location.name}, GA`}
+              ></iframe>
+            </div>
+          )}
         </div>
       </div>
     </div>
   </section>
 
-  <CTASection heading={`Ready for Demolition in ${location.name}?`} subtext={`Licensed, insured, and serving all of ${location.county} County, Georgia. Free estimates.`} />
+  <!-- Combo Links (only for top cities that have combo pages) -->
+  {hasComboPages && (
+    <section class="py-12" style="background:#F5F3EF">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="font-bold mb-6 font-heading" style="font-size:1.5rem; color:#1A1A1A">
+          {location.name} demolition services by type
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+          {mainServices.map(cat => (
+            <a href={`/services/${cat.slug}/${location.slug}/`} class="p-4 rounded-xl bg-white border border-neutral-100 hover:border-primary-200 hover:bg-primary-50 transition-all text-center group font-body" style="font-size:0.85rem">
+              <div class="font-semibold group-hover:text-primary-700 transition-colors font-heading" style="color:#1A1A1A; font-size:0.8rem">{cat.name}</div>
+              <div class="mt-1 font-heading" style="color:#C41C1C; font-size:0.7rem">in {location.name} →</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CTASection heading={`Ready for demolition in ${location.name}?`} subtext={`Licensed, insured, and serving all of ${location.county} County, Georgia. Free estimates — call us or get a quote online.`} />
   <Footer slot="footer" />
 </BaseLayout>

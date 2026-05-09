@@ -5,6 +5,7 @@ import Footer from '../../../components/Footer.astro';
 import CTASection from '../../../components/CTASection.astro';
 import FAQAccordion from '../../../components/FAQAccordion.tsx';
 import { mainServices, type SubService, type MainService } from '../../../data/services';
+import { site } from '../../../data/site';
 
 export function getStaticPaths() {
   return mainServices.flatMap(ms =>
@@ -21,11 +22,38 @@ interface Props {
 }
 
 const { service, category } = Astro.props;
+
+const breadcrumbs = [
+  { name: "Services", url: "/services/" },
+  { name: category.name, url: `/services/${category.slug}/` },
+  { name: service.name, url: `/services/${category.slug}/${service.slug}/` }
+];
+
+const faqSchema = service.faqs && service.faqs.length > 0 ? JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": service.faqs.map((faq: {question: string; answer: string}) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+  }))
+}) : null;
+
+const serviceSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": service.name,
+  "description": service.description,
+  "provider": { "@id": `${site.url}/#organization` },
+  "areaServed": { "@type": "State", "name": "Georgia" }
+});
 ---
 
 <BaseLayout
-  title={`${service.name} in Georgia | ${category.name}`}
+  title={`${service.name} in Georgia | ${site.name}`.length > 60 ? `${service.name} in Georgia` : `${service.name} in Georgia | ${site.name}`}
   description={service.metaDescription}
+  breadcrumbs={breadcrumbs}
+  schemaOverride={faqSchema ?? serviceSchema}
 >
   <Header slot="header" />
 
@@ -45,7 +73,7 @@ const { service, category } = Astro.props;
   </nav>
 
   <!-- Hero -->
-  <section class="text-white py-16" style="background:linear-gradient(135deg, #1A0505 0%, #3D0808 60%, #560A0A 100%)">
+  <section class="relative text-white py-16" style={`background:linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.65)), url('${category.image || "/images/hero-services.webp"}') center/cover no-repeat`}>
     <div class="max-w-7xl mx-auto px-6">
       <div class="max-w-3xl">
         <div class="text-sm font-semibold mb-3" style="color:#FCA5A5; font-family:'Outfit',sans-serif">{category.name}</div>
