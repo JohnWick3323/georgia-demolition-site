@@ -7,24 +7,28 @@ https://www.georgiademolitionandremoval.com/* https://georgiademolitionandremova
 /about /about/ 301
 /contact /contact/ 301
 /faqs /faqs/ 301
-/blog /blog/ 301
 
-# Old service+city combo URLs → new location-first URLs
-/services/:category/:city/*  /locations/:city/:category/:splat  301
-
-# Sub-service pages (don't exist) → redirect to parent service category
-/services/:category/:subservice/  /services/:category/  301
-/services/:category/:subservice   /services/:category/  301
+# Sub-service pages → parent category (MUST be before the old :city rule below)
+/services/residential-demolition/:subservice/  /services/residential-demolition/  301
+/services/commercial-demolition/:subservice/   /services/commercial-demolition/   301
+/services/industrial-demolition/:subservice/   /services/industrial-demolition/   301
+/services/post-demolition/:subservice/         /services/post-demolition/         301
+/services/core-demolition/:subservice/         /services/core-demolition/         301
+/services/specialized-demolition/:subservice/  /services/specialized-demolition/  301
+/services/ancillary-demolition/:subservice/    /services/ancillary-demolition/    301
 
 # Wrong location/service-as-city pattern → locations index
-/locations/residential-demolition/*  /locations/  301
-/locations/commercial-demolition/*  /locations/  301
-/locations/industrial-demolition/*  /locations/  301
-/locations/concrete-slabs-removal/*  /locations/  301
-/locations/pool-removal/*  /locations/  301
-/locations/garage-demolition/*  /locations/  301
-/locations/site-clearing/*  /locations/  301
-/locations/post-demolition/*  /locations/  301
-/locations/core-demolition/*  /locations/  301
-/locations/specialized-demolition/*  /locations/  301
-/locations/ancillary-demolition/*  /locations/  301
+/locations/residential-demolition/*   /locations/  301
+/locations/commercial-demolition/*    /locations/  301
+/locations/industrial-demolition/*    /locations/  301
+/locations/concrete-slabs-removal/*   /locations/  301
+/locations/pool-removal/*             /locations/  301
+/locations/garage-demolition/*        /locations/  301
+/locations/site-clearing/*            /locations/  301
+/locations/post-demolition/*          /locations/  301
+/locations/core-demolition/*          /locations/  301
+/locations/specialized-demolition/*   /locations/  301
+/locations/ancillary-demolition/*     /locations/  301
+
+# Old service+city combo URLs → new location-first URLs (keep last)
+/services/:category/:city  /locations/:city/:category/  301
