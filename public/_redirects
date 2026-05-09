@@ -1,7 +1,7 @@
 # WWW to non-WWW redirect
 https://www.georgiademolitionandremoval.com/* https://georgiademolitionandremoval.com/:splat 301!
 
-# Trailing slash enforcement (Cloudflare Pages handles this, but explicit is better)
+# Trailing slash enforcement
 /services /services/ 301
 /locations /locations/ 301
 /about /about/ 301
@@ -11,3 +11,20 @@ https://www.georgiademolitionandremoval.com/* https://georgiademolitionandremova
 
 # Old service+city combo URLs → new location-first URLs
 /services/:category/:city/*  /locations/:city/:category/:splat  301
+
+# Sub-service pages (don't exist) → redirect to parent service category
+/services/:category/:subservice/  /services/:category/  301
+/services/:category/:subservice   /services/:category/  301
+
+# Wrong location/service-as-city pattern → locations index
+/locations/residential-demolition/*  /locations/  301
+/locations/commercial-demolition/*  /locations/  301
+/locations/industrial-demolition/*  /locations/  301
+/locations/concrete-slabs-removal/*  /locations/  301
+/locations/pool-removal/*  /locations/  301
+/locations/garage-demolition/*  /locations/  301
+/locations/site-clearing/*  /locations/  301
+/locations/post-demolition/*  /locations/  301
+/locations/core-demolition/*  /locations/  301
+/locations/specialized-demolition/*  /locations/  301
+/locations/ancillary-demolition/*  /locations/  301

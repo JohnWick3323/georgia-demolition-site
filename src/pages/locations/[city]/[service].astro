@@ -215,7 +215,7 @@ const otherServices = mainServices.filter(ms => ms.slug !== service.slug);
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {service.subServices.map(sub => (
           <a
-            href={`/services/${service.slug}/${sub.slug}/`}
+            href={`/services/${service.slug}/`}
             class="bg-white rounded-xl p-6 transition-all hover:-translate-y-1 group"
             style="box-shadow:0 1px 4px rgba(0,0,0,0.07)"
           >

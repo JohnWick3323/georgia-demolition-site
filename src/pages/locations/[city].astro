@@ -174,9 +174,9 @@ const localBusinessSchema = {
                   <ul class="space-y-1.5">
                     {cat.subServices.slice(0, 4).map(sub => (
                       <li>
-                        <a href={`/services/${cat.slug}/${sub.slug}/`} class="text-xs transition-colors hover:text-primary-700 font-body" style="color:#C41C1C">
+                        <span class="text-xs font-body" style="color:#6B7280">
                           → {sub.name}
-                        </a>
+                        </span>
                       </li>
                     ))}
                     {cat.subServices.length > 4 && (

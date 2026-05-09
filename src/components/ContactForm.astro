@@ -16,14 +16,14 @@ const {
 
 <div class={`rounded-2xl overflow-hidden ${isDark ? 'bg-neutral-900 border border-neutral-800' : 'bg-white border border-neutral-100 shadow-xl'}`}>
   {(title || subtitle) && (
-    <div class={`px-6 pt-6 pb-2 ${isDark ? '' : ''}`}>
+    <div class="px-6 pt-6 pb-2 text-center">
       {title && (
-        <h3 class="font-bold mb-1" style={`font-family:'Outfit',sans-serif; font-size:1.25rem; color:${isDark ? 'white' : '#1A1A1A'}`}>
+        <h3 class="font-bold mb-1" style={`font-family:'Outfit',sans-serif; font-size:1.25rem; color:${isDark ? 'white' : '#1A1A1A'}; text-align:center`}>
           {title}
         </h3>
       )}
       {subtitle && (
-        <p class="text-sm mb-2" style={`font-family:'Inter',sans-serif; color:${isDark ? 'rgba(255,255,255,0.6)' : '#6B7280'}`}>
+        <p class="text-sm mb-2" style={`font-family:'Inter',sans-serif; color:${isDark ? 'rgba(255,255,255,0.6)' : '#6B7280'}; text-align:center`}>
           {subtitle}
         </p>
       )}
