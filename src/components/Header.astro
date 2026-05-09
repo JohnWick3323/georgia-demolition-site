@@ -7,7 +7,7 @@ import { mainServices } from '../data/services';
   <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
     <!-- Logo -->
     <a href="/" class="flex items-center shrink-0 transition-transform hover:scale-105">
-      <img src="/images/logo-hero.webp" alt={site.name} id="header-logo" class="h-10 md:h-12 w-auto" />
+      <img src="/images/logo.webp" alt={site.name} id="header-logo" class="h-10 md:h-12 w-auto" />
     </a>
 
     <!-- Desktop Nav -->
@@ -110,7 +110,7 @@ import { mainServices } from '../data/services';
       if (!mobileMenu?.classList.contains('opacity-100')) {
         header.classList.add('bg-transparent', 'text-white');
         header.classList.remove('bg-white', 'text-neutral-900', 'shadow-md');
-        if (logo) logo.src = '/images/logo-hero.webp';
+        if (logo) logo.src = '/images/logo.webp';
       }
     }
   });
@@ -126,7 +126,7 @@ import { mainServices } from '../data/services';
       if (window.scrollY <= 50) {
         header.classList.add('bg-transparent', 'text-white');
         header.classList.remove('bg-white', 'text-neutral-900', 'shadow-md');
-        if (logo) logo.src = '/images/logo-hero.webp';
+        if (logo) logo.src = '/images/logo.webp';
       }
     } else {
       mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
