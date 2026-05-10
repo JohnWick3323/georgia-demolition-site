@@ -3,12 +3,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../data/site';
+
+const breadcrumbs = [
+  { name: 'Privacy Policy', url: '/privacy-policy/' }
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": site.url + "/" },
+    { "@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": site.url + "/privacy-policy/" }
+  ]
+};
 ---
 
-<BaseLayout title="Privacy Policy | Georgia Demolition & Removal" description="Privacy policy for Georgia Demolition & Removal.">
+<BaseLayout title="Privacy Policy | Georgia Demolition & Removal" description="Privacy policy for Georgia Demolition & Removal." breadcrumbs={breadcrumbs}>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <Header slot="header" />
   <section class="bg-neutral-900 text-white pt-32 pb-12">
     <div class="container mx-auto px-4 max-w-4xl">
+      <nav class="flex mb-6">
+        <ol class="flex items-center gap-2 text-xs" style="color:rgba(255,255,255,0.65)">
+          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+          <li style="color:rgba(255,255,255,0.4)">/</li>
+          <li style="color:rgba(255,255,255,0.9)">Privacy Policy</li>
+        </ol>
+      </nav>
       <h1 class="text-4xl font-bold uppercase tracking-wide">Privacy Policy</h1>
     </div>
   </section>

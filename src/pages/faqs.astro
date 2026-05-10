@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CTASection from '../components/CTASection.astro';
 import FAQAccordion from '../components/FAQAccordion.tsx';
+import { site } from '../data/site';
 
 const allFaqs = [
   { question: "Do you serve all 159 Georgia counties?", answer: "Yes. Georgia Demolition & Removal provides demolition and removal services across all 159 Georgia counties. We have equipment and crews positioned strategically across the state for fast mobilization anywhere in Georgia." },
@@ -22,16 +23,52 @@ const allFaqs = [
   { question: "Do you recycle demolition materials in Georgia?", answer: "Yes. Recycling is built into our standard operations. We typically achieve 75–95% diversion from landfills on Georgia demolition projects through concrete crushing, metal recycling, wood chipping, and asphalt recycling at Georgia-certified facilities." },
   { question: "Can you demolish a building in a Georgia historic district?", answer: "Yes, with appropriate approvals. Demolition in Georgia historic districts requires review by the local historic preservation commission before permits are issued. We coordinate with preservation authorities and the Georgia State Historic Preservation Office (SHPO) as needed for projects in historic areas." }
 ];
+
+const breadcrumbs = [
+  { name: 'FAQs', url: '/faqs/' }
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": site.url + "/" },
+    { "@type": "ListItem", "position": 2, "name": "FAQs", "item": site.url + "/faqs/" }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": allFaqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
 ---
 
 <BaseLayout
   title="Demolition FAQs | Georgia Demolition & Removal"
   description="Frequently asked questions about demolition services in Georgia. Learn about costs, permits, asbestos requirements, and more from Georgia's trusted demolition experts."
+  breadcrumbs={breadcrumbs}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <Header slot="header" />
 
-  <section class="bg-neutral-900 text-white pt-32 pb-16">
+  <section class="relative text-white pt-32 pb-16" style="background:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('/images/hero-services.webp') center/cover no-repeat; background-color:#1a0a0a">
     <div class="container mx-auto px-4 max-w-7xl text-center">
+      <nav class="flex justify-center mb-6">
+        <ol class="flex items-center gap-2 text-xs" style="color:rgba(255,255,255,0.65)">
+          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+          <li style="color:rgba(255,255,255,0.4)">/</li>
+          <li style="color:rgba(255,255,255,0.9)">FAQs</li>
+        </ol>
+      </nav>
       <h1 class="text-5xl font-bold uppercase tracking-wide mb-4">Demolition FAQs</h1>
       <p class="text-xl text-neutral-300 max-w-2xl mx-auto" style="text-transform:none;font-family:var(--font-body);">
         Common questions about demolition services in Georgia. Can't find your answer? Call us at (843) 241-0787.

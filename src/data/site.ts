@@ -14,6 +14,8 @@ export const site = {
   openingHours: 'Mo-Fr 07:00-18:00, Sa 08:00-16:00',
   priceRange: '$$',
   description: 'Licensed and insured demolition contractors serving all 159 Georgia counties. Residential, commercial, industrial, and specialized demolition services.',
+  gtmId: '',
+  ga4Id: '',
   googleMapsEmbedKey: 'AIzaSyAIWoZdoDfMNVAmW4uJ1q-tcT9f1Ec9_8k',
   resendApiKey: 're_placeholder',
   social: {

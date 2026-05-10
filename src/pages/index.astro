@@ -32,12 +32,40 @@ const testimonials = [
   { name: "Sandra W.", location: "Savannah, GA", text: "We had an old pool that needed removing. They handled the permit, showed up on time, and did excellent work. The backfill looks perfect. Professional crew from start to finish." },
   { name: "James R.", location: "Augusta, GA", text: "Used them for a full home demolition in Augusta. They handled the asbestos testing, utility disconnections, permits—everything. Site was cleared and graded in less than a week. Outstanding service." }
 ];
+
+const homeBreadcrumbs = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": site.url + "/"
+    }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": homepageFaqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
 ---
 
 <BaseLayout
   title="Georgia Demolition & Removal | Licensed Demolition Services Statewide"
   description="Georgia's most trusted demolition and removal specialists. Licensed & insured for residential, commercial, and industrial demolition across all 159 Georgia counties. Free estimates."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(homeBreadcrumbs)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <Header slot="header" />
 
   <!-- SECTION 1 — HERO -->
