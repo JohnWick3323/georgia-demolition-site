@@ -27,7 +27,6 @@ const finalCanonical = currentUrl.replace(/\/$/, '') + '/';
 
 const siteTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
 
-// Build LocalBusiness schema with aggregateRating + openingHours + priceRange
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -39,7 +38,12 @@ const localBusinessSchema = {
   "telephone": site.phone,
   "email": site.email,
   "priceRange": site.priceRange,
-  "openingHours": site.openingHours,
+  "openingHoursSpecification": site.openingHoursSpecification.map(spec => ({
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": spec.dayOfWeek,
+    "opens": spec.opens,
+    "closes": spec.closes
+  })),
   "address": {
     "@type": "PostalAddress",
     "addressLocality": site.address.city,
@@ -55,7 +59,8 @@ const localBusinessSchema = {
     "@type": "AggregateRating",
     "ratingValue": site.aggregateRating.ratingValue,
     "reviewCount": site.aggregateRating.reviewCount,
-    "bestRating": site.aggregateRating.bestRating
+    "bestRating": site.aggregateRating.bestRating,
+    "worstRating": site.aggregateRating.worstRating
   },
   "serviceType": ["Residential Demolition", "Commercial Demolition", "Industrial Demolition", "Specialized Demolition"],
   "image": `${site.url}/images/og-image.webp`,
@@ -119,6 +124,9 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
     <meta name="twitter:image" content={new URL(image, site.url).toString()} />
     <meta name="twitter:url" content={finalCanonical} />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    {site.googleVerification && <meta name="google-site-verification" content={site.googleVerification} />}
+    {site.bingVerification && <meta name="msvalidate.01" content={site.bingVerification} />}
 
     <!-- Google Fonts: Outfit + Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

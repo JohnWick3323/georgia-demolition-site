@@ -105,6 +105,8 @@ const otherServices = mainServices.filter(ms => ms.slug !== service.slug);
   <!-- HERO -->
   <section
     class="relative pt-24 pb-16"
+    role="img"
+    aria-label={`${service.name} in ${location.name}, Georgia`}
     style={`background:linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.55)),url('${service.image || "/images/hero-services.webp"}') center/cover no-repeat; background-color:#1a0a0a`}
   >
     <div class="max-w-7xl mx-auto px-6">

@@ -74,7 +74,7 @@ const serviceSchema = JSON.stringify({
   </nav>
 
   <!-- Hero -->
-  <section class="relative text-white py-16" style={`background:linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.65)), url('${category.image || "/images/hero-services.webp"}') center/cover no-repeat`}>
+  <section class="relative text-white py-16" role="img" aria-label={`${service.name} demolition service in Georgia`} style={`background:linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.65)), url('${category.image || "/images/hero-services.webp"}') center/cover no-repeat`}>
     <div class="max-w-7xl mx-auto px-6">
       <div class="max-w-3xl">
         <div class="text-sm font-semibold mb-3" style="color:#FCA5A5; font-family:'Outfit',sans-serif">{category.name}</div>

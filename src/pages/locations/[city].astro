@@ -7,6 +7,7 @@ import ContactForm from '../../components/ContactForm.astro';
 import { locations, type Location } from '../../data/locations';
 import { mainServices } from '../../data/services';
 import { site } from '../../data/site';
+import { demolitionNews } from '../../data/demolitionNews';
 
 export function getStaticPaths() {
   return locations.map(loc => ({
@@ -36,28 +37,64 @@ const breadcrumbs = [
   { name: `${location.name}, GA`, url: `/locations/${location.slug}/` }
 ];
 
-// LocalBusiness schema with geo
-const localBusinessSchema = {
+// City-specific FAQs
+const cityFaqs = [
+  { question: `What demolition services do you offer in ${location.name}, GA?`, answer: `We offer residential demolition, commercial demolition, industrial demolition, pool removal, deck demolition, garage teardowns, interior gutting, and complete site clearing in ${location.name} and throughout ${location.county} County, Georgia.` },
+  { question: `Do I need a permit for demolition in ${location.name}?`, answer: `Yes, most demolition projects in ${location.name} require permits from the ${location.county} County building department. We handle the entire permit process for you, including notifications to Georgia EPD.` },
+  { question: `How much does demolition cost in ${location.name}, GA?`, answer: `Demolition costs in ${location.name} vary based on structure size, materials, and site conditions. Residential demolitions typically range from $5,000 to $25,000. Contact us for a free on-site estimate in ${location.county} County.` },
+  { question: `Are you licensed and insured for demolition in ${location.county} County?`, answer: `Yes. Georgia Demolition & Removal is fully licensed and insured for all demolition work in ${location.county} County, carrying general liability, pollution liability, and workers compensation coverage.` }
+];
+
+// Combined @graph schema: LocalBusiness + FAQPage
+const pageSchema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": `${site.name} — ${location.name}`,
-  "description": location.metaDescription,
-  "url": `${site.url}/locations/${location.slug}/`,
-  "telephone": site.phone,
-  "email": site.email,
-  "areaServed": {
-    "@type": "City",
-    "name": location.name,
-    "addressRegion": "GA",
-    "addressCountry": "US"
-  },
-  ...(location.geo ? {
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": location.geo.lat,
-      "longitude": location.geo.lng
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "name": `${site.name} — ${location.name}`,
+      "description": location.metaDescription,
+      "url": `${site.url}/locations/${location.slug}/`,
+      "telephone": site.phone,
+      "email": site.email,
+      "openingHoursSpecification": site.openingHoursSpecification.map(spec => ({
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": spec.dayOfWeek,
+        "opens": spec.opens,
+        "closes": spec.closes
+      })),
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": site.aggregateRating.ratingValue,
+        "reviewCount": site.aggregateRating.reviewCount,
+        "bestRating": site.aggregateRating.bestRating,
+        "worstRating": site.aggregateRating.worstRating
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": location.name,
+        "addressRegion": "GA",
+        "addressCountry": "US"
+      },
+      ...(location.geo ? {
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": location.geo.lat,
+          "longitude": location.geo.lng
+        }
+      } : {})
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": cityFaqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
     }
-  } : {})
+  ]
 };
 ---
 
@@ -65,12 +102,12 @@ const localBusinessSchema = {
   title={`Demolition Services in ${location.name}, GA | ${location.county} County`}
   description={location.metaDescription}
   breadcrumbs={breadcrumbs}
-  schemaOverride={JSON.stringify(localBusinessSchema)}
+  schemaOverride={JSON.stringify(pageSchema)}
 >
   <Header slot="header" />
 
   <!-- Hero -->
-  <section class="relative text-white" style="background:linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.65)), url('/images/hero-areas.webp') center/cover no-repeat; padding-top:120px; padding-bottom:80px">
+  <section class="relative text-white" role="img" aria-label={`Demolition services in ${location.name}, ${location.county} County, Georgia`} style="background:linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.65)), url('/images/hero-areas.webp') center/cover no-repeat; padding-top:120px; padding-bottom:80px">
     <div class="max-w-7xl mx-auto px-6">
       <!-- Breadcrumb -->
       <nav class="mb-6">
@@ -245,6 +282,45 @@ const localBusinessSchema = {
               <p class="text-sm font-body" style="color:#1E40AF"><strong class="font-heading">Environmental note:</strong> {location.waterRestrictions}</p>
             </div>
           )}
+
+          <!-- FAQs -->
+          <div>
+            <h2 class="font-bold mb-6 font-heading" style="font-size:1.5rem; color:#1A1A1A">
+              Demolition FAQs for {location.name}, GA
+            </h2>
+            <div class="space-y-4">
+              {cityFaqs.map(faq => (
+                <details class="group rounded-xl" style="border:1px solid #E5E7EB">
+                  <summary class="cursor-pointer p-4 font-semibold text-sm font-heading flex items-center justify-between" style="color:#1A1A1A">
+                    {faq.question}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 ml-2 transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+                  </summary>
+                  <div class="px-4 pb-4">
+                    <p class="text-sm font-body leading-relaxed" style="color:#4B5563">{faq.answer}</p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+
+          <!-- Demolition Industry News -->
+          <div>
+            <h2 class="font-bold mb-6 font-heading" style="font-size:1.5rem; color:#1A1A1A">
+              Demolition industry news for {location.name}
+            </h2>
+            <div class="space-y-4">
+              {demolitionNews.slice(0, 4).map(news => (
+                <article class="p-4 rounded-xl transition-all" style="border:1px solid #E5E7EB; background:white">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="text-xs font-semibold px-2 py-0.5 rounded-full font-heading" style="background:#FEF2F2; color:#C41C1C">{news.category}</span>
+                    <time class="text-xs font-body" style="color:#9CA3AF" datetime={news.date}>{new Date(news.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
+                  </div>
+                  <h3 class="font-semibold text-sm font-heading mb-1" style="color:#1A1A1A">{news.title}</h3>
+                  <p class="text-xs font-body leading-relaxed" style="color:#6B7280">{news.summary}</p>
+                </article>
+              ))}
+            </div>
+          </div>
 
         </div>
 
