@@ -24,6 +24,15 @@ interface Props {
 
 const { service, category } = Astro.props;
 
+const categoryImages: Record<string, string> = {
+  'residential-demolition': '/images/services/residential-demolition-work.webp',
+  'post-demolition': '/images/services/site-cleanup.webp',
+  'core-demolition': '/images/services/commercial-demolition-work.webp',
+  'specialized-demolition': '/images/services/industrial-demolition.webp',
+  'ancillary-demolition': '/images/services/excavator-demolition.webp',
+};
+const contentImage = categoryImages[category.slug] || '/images/services/excavator-demolition.webp';
+
 const breadcrumbs = [
   { name: "Services", url: "/services/" },
   { name: category.name, url: `/services/${category.slug}/` },
@@ -127,6 +136,11 @@ const serviceSchema = JSON.stringify({
             </div>
           </div>
 
+          <!-- Content Image -->
+          <div class="rounded-xl overflow-hidden" style="box-shadow:0 2px 12px rgba(0,0,0,0.08)">
+            <img src={contentImage} alt={`${service.name} service in Georgia - professional demolition crew`} class="w-full h-auto object-cover" style="max-height:400px" loading="lazy" width="800" height="400" />
+          </div>
+
           <!-- Methodology -->
           <div>
             <h2 class="font-bold mb-4" style="font-family:'Outfit',sans-serif; font-size:1.8rem; color:#1A1A1A">
@@ -192,6 +206,15 @@ const serviceSchema = JSON.stringify({
             </div>
           </div>
 
+          <!-- Sticky Sidebar Contact Form -->
+          <div class="sticky top-28">
+            <ContactForm
+              title={`Free ${service.name} Quote`}
+              subtitle="Licensed demolition experts. We respond within 1 business day."
+              compact={true}
+            />
+          </div>
+
           <!-- Other services in category -->
           <div class="rounded-xl p-6" style="border:1px solid #E5E7EB; background:white">
             <h3 class="font-semibold mb-4 text-sm" style="font-family:'Outfit',sans-serif; color:#1A1A1A">Also in {category.name}</h3>
@@ -205,6 +228,37 @@ const serviceSchema = JSON.stringify({
                 </li>
               ))}
             </ul>
+          </div>
+
+          <!-- Quick Info Cards -->
+          <div class="grid grid-cols-1 gap-3">
+            <div class="bg-white p-4 rounded-xl flex items-center gap-4" style="border:1px solid #E5E7EB; box-shadow:0 1px 3px rgba(0,0,0,0.05)">
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background:#FEF2F2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <p class="font-bold text-sm" style="color:#1A1A1A; font-family:'Outfit',sans-serif">Fully Insured</p>
+                <p class="text-xs" style="color:#6B7280; font-family:'Inter',sans-serif">GL + Workers Comp coverage</p>
+              </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl flex items-center gap-4" style="border:1px solid #E5E7EB; box-shadow:0 1px 3px rgba(0,0,0,0.05)">
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background:#FEF2F2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <p class="font-bold text-sm" style="color:#1A1A1A; font-family:'Outfit',sans-serif">Fast Response</p>
+                <p class="text-xs" style="color:#6B7280; font-family:'Inter',sans-serif">Emergency crews available 24/7</p>
+              </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl flex items-center gap-4" style="border:1px solid #E5E7EB; box-shadow:0 1px 3px rgba(0,0,0,0.05)">
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background:#FEF2F2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <p class="font-bold text-sm" style="color:#1A1A1A; font-family:'Outfit',sans-serif">159 Counties</p>
+                <p class="text-xs" style="color:#6B7280; font-family:'Inter',sans-serif">Statewide Georgia coverage</p>
+              </div>
+            </div>
           </div>
 
           <!-- Why Us -->

@@ -192,6 +192,11 @@ const pageSchema = {
             )}
           </div>
 
+          <!-- Content Image -->
+          <div class="rounded-xl overflow-hidden" style="box-shadow:0 2px 12px rgba(0,0,0,0.08)">
+            <img src="/images/content/building-demolition.webp" alt={`Professional demolition services in ${location.name}, Georgia`} class="w-full h-auto object-cover" style="max-height:360px" loading="lazy" width="800" height="360" />
+          </div>
+
           <!-- Services Grid with combo links -->
           <div>
             <h2 class="font-bold mb-6 font-heading" style="font-size:1.8rem; color:#1A1A1A">
@@ -340,6 +345,15 @@ const pageSchema = {
             <a href={`tel:${site.phone}`} class="block text-white font-bold py-3 rounded-lg text-center text-sm font-heading" style="border:1px solid rgba(255,255,255,0.35)">
               {site.phone}
             </a>
+          </div>
+
+          <!-- Sticky Sidebar Contact Form -->
+          <div class="sticky top-28">
+            <ContactForm
+              title={`Free Estimate — ${location.name}`}
+              subtitle="Licensed demolition experts. We respond within 1 business day."
+              compact={true}
+            />
           </div>
 
           <!-- Why Us -->
