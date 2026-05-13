@@ -24,6 +24,15 @@ interface Props {
 
 const { service, category } = Astro.props;
 
+const categoryImages: Record<string, string> = {
+  'residential-demolition': '/images/services/residential-demolition-work.webp',
+  'post-demolition': '/images/services/site-cleanup.webp',
+  'core-demolition': '/images/services/commercial-demolition-work.webp',
+  'specialized-demolition': '/images/services/industrial-demolition.webp',
+  'ancillary-demolition': '/images/services/excavator-demolition.webp',
+};
+const contentImage = categoryImages[category.slug] || '/images/services/excavator-demolition.webp';
+
 const breadcrumbs = [
   { name: "Services", url: "/services/" },
   { name: category.name, url: `/services/${category.slug}/` },
@@ -74,7 +83,7 @@ const serviceSchema = JSON.stringify({
   </nav>
 
   <!-- Hero -->
-  <section class="relative text-white py-16" style={`background:linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.65)), url('${category.image || "/images/hero-services.webp"}') center/cover no-repeat`}>
+  <section class="relative text-white py-16" role="img" aria-label={`${service.name} demolition service in Georgia`} style={`background:linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.65)), url('${category.image || "/images/hero-services.webp"}') center/cover no-repeat`}>
     <div class="max-w-7xl mx-auto px-6">
       <div class="max-w-3xl">
         <div class="text-sm font-semibold mb-3" style="color:#FCA5A5; font-family:'Outfit',sans-serif">{category.name}</div>
@@ -88,8 +97,8 @@ const serviceSchema = JSON.stringify({
           <a href="/contact/" class="font-bold px-8 py-3.5 rounded-lg transition-all hover:-translate-y-0.5 shadow-lg" style="background:#C41C1C; color:white; font-family:'Outfit',sans-serif">
             Get Free Estimate
           </a>
-          <a href="tel:(843) 241-0787" class="border-2 border-white text-white font-bold px-8 py-3.5 rounded-lg transition-all hover:-translate-y-0.5" style="font-family:'Outfit',sans-serif">
-            (843) 241-0787
+          <a href={`tel:${site.phoneRaw}`} class="border-2 border-white text-white font-bold px-8 py-3.5 rounded-lg transition-all hover:-translate-y-0.5" style="font-family:'Outfit',sans-serif">
+            {site.phone}
           </a>
         </div>
       </div>
@@ -125,6 +134,11 @@ const serviceSchema = JSON.stringify({
                 </div>
               ))}
             </div>
+          </div>
+
+          <!-- Content Image -->
+          <div class="rounded-xl overflow-hidden" style="box-shadow:0 2px 12px rgba(0,0,0,0.08)">
+            <img src={contentImage} alt={`${service.name} service in Georgia - professional demolition crew`} class="w-full h-auto object-cover" style="max-height:400px" loading="lazy" width="800" height="400" />
           </div>
 
           <!-- Methodology -->
@@ -186,10 +200,19 @@ const serviceSchema = JSON.stringify({
               <a href="/contact/" class="block bg-white font-bold py-3 rounded-lg text-center text-sm transition-colors hover:bg-neutral-100" style="color:#C41C1C; font-family:'Outfit',sans-serif">
                 Request Quote
               </a>
-              <a href="tel:(843) 241-0787" class="block text-white font-bold py-3 rounded-lg text-center text-sm transition-colors border border-white/30 hover:bg-white/10" style="font-family:'Outfit',sans-serif">
-                (843) 241-0787
+              <a href={`tel:${site.phoneRaw}`} class="block text-white font-bold py-3 rounded-lg text-center text-sm transition-colors border border-white/30 hover:bg-white/10" style="font-family:'Outfit',sans-serif">
+                {site.phone}
               </a>
             </div>
+          </div>
+
+          <!-- Sticky Sidebar Contact Form -->
+          <div class="sticky top-28">
+            <ContactForm
+              title={`Free ${service.name} Quote`}
+              subtitle="Licensed demolition experts. We respond within 1 business day."
+              compact={true}
+            />
           </div>
 
           <!-- Other services in category -->
@@ -205,6 +228,37 @@ const serviceSchema = JSON.stringify({
                 </li>
               ))}
             </ul>
+          </div>
+
+          <!-- Quick Info Cards -->
+          <div class="grid grid-cols-1 gap-3">
+            <div class="bg-white p-4 rounded-xl flex items-center gap-4" style="border:1px solid #E5E7EB; box-shadow:0 1px 3px rgba(0,0,0,0.05)">
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background:#FEF2F2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <p class="font-bold text-sm" style="color:#1A1A1A; font-family:'Outfit',sans-serif">Fully Insured</p>
+                <p class="text-xs" style="color:#6B7280; font-family:'Inter',sans-serif">GL + Workers Comp coverage</p>
+              </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl flex items-center gap-4" style="border:1px solid #E5E7EB; box-shadow:0 1px 3px rgba(0,0,0,0.05)">
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background:#FEF2F2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <p class="font-bold text-sm" style="color:#1A1A1A; font-family:'Outfit',sans-serif">Fast Response</p>
+                <p class="text-xs" style="color:#6B7280; font-family:'Inter',sans-serif">Emergency crews available 24/7</p>
+              </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl flex items-center gap-4" style="border:1px solid #E5E7EB; box-shadow:0 1px 3px rgba(0,0,0,0.05)">
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background:#FEF2F2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <p class="font-bold text-sm" style="color:#1A1A1A; font-family:'Outfit',sans-serif">159 Counties</p>
+                <p class="text-xs" style="color:#6B7280; font-family:'Inter',sans-serif">Statewide Georgia coverage</p>
+              </div>
+            </div>
           </div>
 
           <!-- Why Us -->

@@ -1,4 +1,6 @@
 ---
+import { site } from '../data/site';
+
 interface Props {
   heading?: string;
   subtext?: string;
@@ -17,8 +19,8 @@ const {
       <a href="/contact/" class="bg-white font-bold px-8 py-4 rounded-lg text-lg transition-all hover:bg-neutral-100 hover:-translate-y-0.5 shadow-lg" style="color:#C41C1C; font-family:'Outfit',sans-serif">
         Get Free Estimate
       </a>
-      <a href="tel:(843) 241-0787" class="border-2 border-white text-white font-bold px-8 py-4 rounded-lg text-lg transition-all hover:-translate-y-0.5" style="font-family:'Outfit',sans-serif">
-        (843) 241-0787
+      <a href={`tel:${site.phoneRaw}`} class="border-2 border-white text-white font-bold px-8 py-4 rounded-lg text-lg transition-all hover:-translate-y-0.5" style="font-family:'Outfit',sans-serif">
+        {site.phone}
       </a>
     </div>
   </div>

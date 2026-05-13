@@ -4,17 +4,39 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CTASection from '../components/CTASection.astro';
 import { site } from '../data/site';
+
+const breadcrumbs = [
+  { name: 'About Us', url: '/about/' }
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": site.url + "/" },
+    { "@type": "ListItem", "position": 2, "name": "About Us", "item": site.url + "/about/" }
+  ]
+};
 ---
 
 <BaseLayout
-  title="About Georgia Demolition & Removal | Licensed Georgia Demolition Contractors"
-  description="Learn about Georgia Demolition & Removal — Georgia's most trusted demolition company. Licensed, insured, and serving all 159 Georgia counties since our founding."
+  title="About Us | Georgia Demolition & Removal"
+  description="Meet Georgia's trusted demolition experts. Fully licensed, insured, and serving all 159 counties with safe residential, commercial, and industrial demolition."
+  breadcrumbs={breadcrumbs}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <Header slot="header" />
 
   <!-- Hero -->
-  <section class="relative text-white pt-32 pb-16" style="background:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('/images/about-hero.webp') center/cover no-repeat; background-color:#1a0a0a">
+  <section class="relative text-white pt-32 pb-16" role="img" aria-label="About Georgia Demolition and Removal, licensed contractors" style="background:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('/images/about-hero.webp') center/cover no-repeat; background-color:#1a0a0a">
     <div class="container mx-auto px-4 max-w-7xl text-center">
+      <nav class="flex justify-center mb-6">
+        <ol class="flex items-center gap-2 text-xs" style="color:rgba(255,255,255,0.65)">
+          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+          <li style="color:rgba(255,255,255,0.4)">/</li>
+          <li style="color:rgba(255,255,255,0.9)">About Us</li>
+        </ol>
+      </nav>
       <h1 class="text-5xl font-bold uppercase tracking-wide mb-4">About Georgia Demolition & Removal</h1>
       <p class="text-xl text-neutral-300 max-w-3xl mx-auto" style="text-transform:none;font-family:var(--font-body);">
         Georgia's most trusted demolition and removal specialists. Licensed, insured, and committed to excellence on every project across all 159 Georgia counties.
@@ -28,6 +50,9 @@ import { site } from '../data/site';
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
           <h2 class="text-3xl font-bold uppercase tracking-wide mb-6">Our Story</h2>
+          <div class="rounded-xl overflow-hidden mb-6 lg:hidden" style="box-shadow:0 2px 12px rgba(0,0,0,0.08)">
+            <img src="/images/content/demolition-team.webp" alt="Georgia Demolition & Removal professional demolition crew" class="w-full h-auto object-cover" loading="lazy" width="600" height="400" />
+          </div>
           <p class="text-neutral-700 leading-relaxed mb-4" style="text-transform:none;font-family:var(--font-body);">
             Georgia Demolition & Removal was founded with a single mission: to provide Georgia property owners, developers, and contractors with professional, reliable, and fully compliant demolition services across the entire state. We recognized that Georgia's rapid growth — from the booming suburbs of metro Atlanta to the revitalizing downtowns of Augusta and Savannah — created a significant need for a demolition partner that truly understands Georgia's diverse regulatory environment, soil conditions, and community needs.
           </p>
@@ -39,6 +64,9 @@ import { site } from '../data/site';
           </p>
         </div>
         <div class="space-y-4">
+          <div class="hidden lg:block rounded-xl overflow-hidden mb-4" style="box-shadow:0 2px 12px rgba(0,0,0,0.08)">
+            <img src="/images/content/demolition-team.webp" alt="Georgia Demolition & Removal professional demolition crew at work" class="w-full h-auto object-cover" loading="lazy" width="600" height="400" />
+          </div>
           {[
             { num: "500+", label: "Demolition Projects Completed" },
             { num: "159", label: "Georgia Counties Served" },

@@ -4,23 +4,46 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import CTASection from '../../components/CTASection.astro';
 import { locations } from '../../data/locations';
+import { site } from '../../data/site';
 
 const grouped = locations.reduce<Record<string, typeof locations>>((acc, loc) => {
   if (!acc[loc.region]) acc[loc.region] = [];
   acc[loc.region].push(loc);
   return acc;
 }, {});
+
+const breadcrumbs = [
+  { name: 'Service Areas', url: '/locations/' }
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": site.url + "/" },
+    { "@type": "ListItem", "position": 2, "name": "Service Areas", "item": site.url + "/locations/" }
+  ]
+};
 ---
 
 <BaseLayout
-  title="Demolition Service Areas in Georgia | All 76 Cities"
-  description="Georgia Demolition & Removal serves 76+ cities across all 159 Georgia counties. Find demolition services near you."
+  title="Demolition Service Areas | All 159 Georgia Counties"
+  description="Find licensed demolition services near you. We serve 76+ cities across all 159 Georgia counties with fast mobilization and free on-site estimates."
+  breadcrumbs={breadcrumbs}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <Header slot="header" />
 
   <!-- Hero -->
-  <section class="bg-neutral-900 text-white pt-32 pb-16">
+  <section class="relative text-white pt-32 pb-16" role="img" aria-label="Georgia demolition service areas covering all 159 counties" style="background:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('/images/hero-areas.webp') center/cover no-repeat; background-color:#1a0a0a">
     <div class="container mx-auto px-4 max-w-7xl text-center">
+      <nav class="flex justify-center mb-6">
+        <ol class="flex items-center gap-2 text-xs" style="color:rgba(255,255,255,0.65)">
+          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+          <li style="color:rgba(255,255,255,0.4)">/</li>
+          <li style="color:rgba(255,255,255,0.9)">Service Areas</li>
+        </ol>
+      </nav>
       <h1 class="text-5xl font-bold uppercase tracking-wide mb-4">Georgia Service Areas</h1>
       <p class="text-xl text-neutral-300 max-w-3xl mx-auto" style="text-transform:none;font-family:var(--font-body);">
         Georgia Demolition & Removal serves 76+ cities across all 159 Georgia counties. Professional demolition and removal services near you.

@@ -32,16 +32,44 @@ const testimonials = [
   { name: "Sandra W.", location: "Savannah, GA", text: "We had an old pool that needed removing. They handled the permit, showed up on time, and did excellent work. The backfill looks perfect. Professional crew from start to finish." },
   { name: "James R.", location: "Augusta, GA", text: "Used them for a full home demolition in Augusta. They handled the asbestos testing, utility disconnections, permits—everything. Site was cleared and graded in less than a week. Outstanding service." }
 ];
+
+const homeBreadcrumbs = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": site.url + "/"
+    }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": homepageFaqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
 ---
 
 <BaseLayout
-  title="Georgia Demolition & Removal | Licensed Demolition Services Statewide"
-  description="Georgia's most trusted demolition and removal specialists. Licensed & insured for residential, commercial, and industrial demolition across all 159 Georgia counties. Free estimates."
+  title="Georgia Demolition & Removal | Trusted Statewide Experts"
+  description="Licensed demolition contractors serving all 159 Georgia counties. Residential, commercial, and industrial demolition with free on-site estimates. Call today."
 >
+  <script type="application/ld+json" set:html={JSON.stringify(homeBreadcrumbs)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <Header slot="header" />
 
   <!-- SECTION 1 — HERO -->
-  <section class="relative min-h-screen flex items-center" style="background: linear-gradient(to right, rgba(0,0,0,0.84) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.25) 100%), url('/images/hero-home.webp') center/cover no-repeat; background-color:#1a0a0a;">
+  <section class="relative min-h-screen flex items-center" role="img" aria-label="Georgia Demolition and Removal — safe, fast, and reliable demolition across Georgia" style="background: linear-gradient(to right, rgba(0,0,0,0.84) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.25) 100%), url('/images/hero-home.webp') center/cover no-repeat; background-color:#1a0a0a;">
     <div class="absolute top-24 left-6 md:left-16 text-white text-xs font-semibold px-4 py-2 rounded-full flex items-center gap-2" style="background:rgba(122,16,16,0.92); backdrop-filter:blur(8px); font-family:'Outfit',sans-serif">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
       FULLY LICENSED &amp; INSURED GEORGIA EXPERTS

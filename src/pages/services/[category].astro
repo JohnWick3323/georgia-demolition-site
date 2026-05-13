@@ -20,6 +20,15 @@ interface Props {
 
 const { service } = Astro.props;
 
+const categoryImages: Record<string, string> = {
+  'residential-demolition': '/images/services/residential-demolition-work.webp',
+  'post-demolition': '/images/services/site-cleanup.webp',
+  'core-demolition': '/images/services/commercial-demolition-work.webp',
+  'specialized-demolition': '/images/services/industrial-demolition.webp',
+  'ancillary-demolition': '/images/services/excavator-demolition.webp',
+};
+const contentImage = categoryImages[service.slug] || '/images/services/excavator-demolition.webp';
+
 const breadcrumbs = [
   { name: "Services", url: "/services/" },
   { name: service.name, url: `/services/${service.slug}/` }
@@ -46,7 +55,7 @@ const serviceSchema = {
   <Header slot="header" />
 
   <!-- Hero with real image -->
-  <section class="relative text-white" style={`background:linear-gradient(rgba(0,0,0,0.70),rgba(0,0,0,0.60)), url('${service.image || "/images/hero-services.webp"}') center/cover no-repeat; padding-top:128px; padding-bottom:80px`}>
+  <section class="relative text-white" role="img" aria-label={`${service.name} services in Georgia`} style={`background:linear-gradient(rgba(0,0,0,0.70),rgba(0,0,0,0.60)), url('${service.image || "/images/hero-services.webp"}') center/cover no-repeat; padding-top:128px; padding-bottom:80px`}>
     <div class="max-w-7xl mx-auto px-6">
       <!-- Breadcrumb -->
       <nav class="mb-6">
@@ -83,8 +92,36 @@ const serviceSchema = {
     </div>
   </section>
 
+  <!-- Category Overview with Image -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+        <div>
+          <h2 class="font-bold mb-5 font-heading" style="font-size:2rem; color:#1A1A1A">
+            Professional {service.name} Services
+          </h2>
+          <p class="text-lg leading-relaxed font-body mb-6" style="color:#4B5563">
+            {service.description}
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/contact/" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-semibold text-sm font-heading transition-all shadow-md hover:-translate-y-0.5">
+              Get Free Estimate
+            </a>
+            <a href={`tel:${site.phone}`} class="border-2 text-sm px-6 py-3 rounded-lg font-semibold font-heading flex items-center gap-2 transition-all hover:-translate-y-0.5" style="border-color:#C41C1C; color:#C41C1C">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              {site.phone}
+            </a>
+          </div>
+        </div>
+        <div class="rounded-xl overflow-hidden" style="box-shadow:0 4px 20px rgba(0,0,0,0.1)">
+          <img src={contentImage} alt={`${service.name} services in Georgia - professional demolition work`} class="w-full h-auto object-cover" style="max-height:380px" loading="lazy" width="800" height="380" />
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Sub-services Grid -->
-  <section class="py-20 bg-white">
+  <section class="py-20" style="background:#F9FAFB">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-12">
         <div class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-1.5 rounded-full mb-4 font-heading" style="background:#FEF2F2; color:#C41C1C">
@@ -98,7 +135,7 @@ const serviceSchema = {
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {service.subServices.map(sub => (
-          <a href={`/services/${service.slug}/`} class="group bg-white rounded-xl p-6 transition-all hover:-translate-y-1 hover:shadow-red" style="box-shadow:0 2px 12px rgba(0,0,0,0.07); border:1px solid #F3F4F6">
+          <a href={`/services/${service.slug}/${sub.slug}/`} class="group bg-white rounded-xl p-6 transition-all hover:-translate-y-1 hover:shadow-red" style="box-shadow:0 2px 12px rgba(0,0,0,0.07); border:1px solid #F3F4F6">
             <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-4" style="background:#FEF2F2">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2H2v2z"/><path d="M20 15V9a8 8 0 1 0-16 0v6"/><path d="M4 15h16"/></svg>
             </div>

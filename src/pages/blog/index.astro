@@ -2,16 +2,61 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import { site } from '../../data/site';
+
+const breadcrumbs = [
+  { name: 'Blog', url: '/blog/' }
+];
+
+const blogPosts = [
+  { title: "How to Prepare for Home Demolition in Georgia", excerpt: "Everything you need to know before your house demolition in Georgia—permits, utility disconnections, hazmat surveys, and what to expect on demo day.", category: "Guides", date: "2026-04-20" },
+  { title: "Georgia Asbestos Regulations: What Homeowners Need to Know", excerpt: "Understanding Georgia EPD's asbestos notification requirements and why pre-demolition surveys are required for pre-1981 structures across all Georgia counties.", category: "Regulations", date: "2026-04-05" },
+  { title: "Pool Removal vs. Pool Fill-In: Which Is Right for Your Georgia Property?", excerpt: "Comparing full pool excavation and pool fill-in demolition options for Georgia homeowners—costs, benefits, and local considerations by county.", category: "Services", date: "2026-03-18" },
+  { title: "The True Cost of Demolition in Georgia", excerpt: "A comprehensive breakdown of demolition costs for homes, garages, pools, and commercial buildings across Georgia's diverse markets.", category: "Pricing", date: "2026-03-01" },
+  { title: "Georgia EPD Requirements for Demolition Projects", excerpt: "A guide to Georgia Environmental Protection Division regulations that affect demolition projects statewide, including erosion control, asbestos, and waste disposal.", category: "Regulations", date: "2026-02-15" },
+  { title: "Mobile Home Removal in Rural Georgia: What You Need to Know", excerpt: "Addressing the unique challenges of mobile home removal in Georgia's rural counties—from limited access and hazardous materials to permits and disposal.", category: "Services", date: "2026-01-28" }
+];
+
+const blogSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": site.url + "/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": site.url + "/blog/" }
+      ]
+    },
+    ...blogPosts.map(post => ({
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "description": post.excerpt,
+      "datePublished": post.date,
+      "author": { "@type": "Organization", "name": site.name },
+      "publisher": { "@type": "Organization", "name": site.name, "logo": { "@type": "ImageObject", "url": `${site.url}/images/logo.webp` } },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": site.url + "/blog/" }
+    }))
+  ]
+};
 ---
 
 <BaseLayout
-  title="Demolition Blog | Georgia Demolition & Removal"
-  description="Read the Georgia Demolition & Removal blog for tips, guides, and information about demolition services in Georgia."
+  title="Demolition Blog & Guides | Georgia Demolition"
+  description="Expert demolition tips, Georgia EPD regulations, cost guides, and industry insights. Trusted advice from Georgia's licensed demolition contractors."
+  breadcrumbs={breadcrumbs}
+  schemaOverride={JSON.stringify(blogSchema)}
 >
   <Header slot="header" />
 
-  <section class="bg-neutral-900 text-white pt-32 pb-16">
+  <section class="relative text-white pt-32 pb-16" role="img" aria-label="Georgia Demolition blog and industry guides" style="background:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('/images/hero-services.webp') center/cover no-repeat; background-color:#1a0a0a">
     <div class="container mx-auto px-4 max-w-7xl text-center">
+      <nav class="flex justify-center mb-6">
+        <ol class="flex items-center gap-2 text-xs" style="color:rgba(255,255,255,0.65)">
+          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+          <li style="color:rgba(255,255,255,0.4)">/</li>
+          <li style="color:rgba(255,255,255,0.9)">Blog</li>
+        </ol>
+      </nav>
       <h1 class="text-5xl font-bold uppercase tracking-wide mb-4">Demolition Blog</h1>
       <p class="text-xl text-neutral-300 max-w-2xl mx-auto" style="text-transform:none;font-family:var(--font-body);">
         Tips, guides, and information about demolition services across Georgia.
@@ -22,14 +67,7 @@ import Footer from '../../components/Footer.astro';
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4 max-w-7xl">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {[
-          { title: "How to Prepare for Home Demolition in Georgia", excerpt: "Everything you need to know before your house demolition in Georgia—permits, utility disconnections, hazmat surveys, and what to expect on demo day.", category: "Guides" },
-          { title: "Georgia Asbestos Regulations: What Homeowners Need to Know", excerpt: "Understanding Georgia EPD's asbestos notification requirements and why pre-demolition surveys are required for pre-1981 structures across all Georgia counties.", category: "Regulations" },
-          { title: "Pool Removal vs. Pool Fill-In: Which Is Right for Your Georgia Property?", excerpt: "Comparing full pool excavation and pool fill-in demolition options for Georgia homeowners—costs, benefits, and local considerations by county.", category: "Services" },
-          { title: "The True Cost of Demolition in Georgia", excerpt: "A comprehensive breakdown of demolition costs for homes, garages, pools, and commercial buildings across Georgia's diverse markets.", category: "Pricing" },
-          { title: "Georgia EPD Requirements for Demolition Projects", excerpt: "A guide to Georgia Environmental Protection Division regulations that affect demolition projects statewide, including erosion control, asbestos, and waste disposal.", category: "Regulations" },
-          { title: "Mobile Home Removal in Rural Georgia: What You Need to Know", excerpt: "Addressing the unique challenges of mobile home removal in Georgia's rural counties—from limited access and hazardous materials to permits and disposal.", category: "Services" }
-        ].map(post => (
+        {blogPosts.map(post => (
           <div class="bg-white rounded-xl overflow-hidden border border-neutral-200 shadow-sm hover:shadow-md transition-all">
             <div class="bg-primary-600 h-3"></div>
             <div class="p-6">

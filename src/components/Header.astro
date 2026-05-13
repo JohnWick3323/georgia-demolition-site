@@ -3,6 +3,33 @@ import { site } from '../data/site';
 import { mainServices } from '../data/services';
 ---
 
+{site.gtmId && (
+  <Fragment>
+    <script is:inline define:vars={{ gtmId: site.gtmId }}>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer',gtmId);
+    </script>
+    <noscript>
+      <iframe src={`https://www.googletagmanager.com/ns.html?id=${site.gtmId}`} height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+  </Fragment>
+)}
+
+{site.ga4Id && (
+  <Fragment>
+    <script is:inline src={`https://www.googletagmanager.com/gtag/js?id=${site.ga4Id}`} async></script>
+    <script is:inline define:vars={{ ga4Id: site.ga4Id }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', ga4Id);
+    </script>
+  </Fragment>
+)}
+
 <header id="site-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent text-white" style="height:72px">
   <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
     <!-- Logo -->

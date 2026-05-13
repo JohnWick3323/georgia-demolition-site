@@ -11,18 +11,25 @@ export const site = {
   phone: '(843) 241-0787',
   phoneRaw: '8432410787',
   email: 'contact@georgiademolitionandremoval.com',
-  openingHours: 'Mo-Fr 07:00-18:00, Sa 08:00-16:00',
+  openingHoursSpecification: [
+    { dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '07:00', closes: '18:00' },
+    { dayOfWeek: ['Saturday'], opens: '08:00', closes: '16:00' }
+  ],
   priceRange: '$$',
   description: 'Licensed and insured demolition contractors serving all 159 Georgia counties. Residential, commercial, industrial, and specialized demolition services.',
+
+  // -- Verification & Analytics (fill in your IDs to activate) --
+  gtmId: '',
+  ga4Id: '',
+  googleVerification: '',
+  bingVerification: '',
+
   googleMapsEmbedKey: 'AIzaSyAIWoZdoDfMNVAmW4uJ1q-tcT9f1Ec9_8k',
   resendApiKey: 're_placeholder',
-  social: {
-    facebook: 'https://facebook.com/georgiademolitionandremoval',
-    instagram: 'https://instagram.com/georgiademolitionandremoval'
-  },
   aggregateRating: {
     ratingValue: '4.9',
     reviewCount: '127',
-    bestRating: '5'
+    bestRating: '5',
+    worstRating: '1'
   }
 };
