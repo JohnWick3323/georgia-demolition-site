@@ -14,8 +14,7 @@ describe('Site configuration', () => {
     const rating = Number(site.aggregateRating.ratingValue);
     expect(rating).toBeGreaterThan(0);
     expect(rating).toBeLessThanOrEqual(5);
-    const count = Number(site.aggregateRating.reviewCount);
-    expect(count).toBeGreaterThan(0);
+    expect(site.aggregateRating.reviewCount).toBeGreaterThan(0);
   });
 
   it('has valid opening hours', () => {

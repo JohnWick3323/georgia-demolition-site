@@ -1,0 +1,335 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import CTASection from '../../../components/CTASection.astro';
+import ContactForm from '../../../components/ContactForm.astro';
+import { mainServices } from '../../../data/services';
+import { locations, type Location } from '../../../data/locations';
+import { combinations } from '../../../data/combinations';
+import { site } from '../../../data/site';
+
+export function getStaticPaths() {
+  return locations.flatMap(loc =>
+    mainServices.map(ms => ({
+      params: { city: loc.slug, service: ms.slug },
+      props: { location: loc, service: ms }
+    }))
+  );
+}
+
+interface Props {
+  location: Location;
+  service: typeof mainServices[0];
+}
+
+const { location, service } = Astro.props;
+
+// Find combination data if it exists
+const combo = combinations.find(
+  c => c.serviceSlug === service.slug && c.locationSlug === location.slug
+);
+
+// Title under 60 chars
+const titleFull = `${service.name} ${location.name}, GA | Licensed Demo Experts`;
+const title = titleFull.length > 60
+  ? `${service.name} ${location.name}, GA | Georgia Demo`
+  : titleFull;
+
+const description = combo
+  ? combo.uniqueIntro.slice(0, 155)
+  : `Licensed ${service.name.toLowerCase()} in ${location.name}, Georgia. ${location.county} County experts for residential, commercial, and industrial projects. Free estimates — call ${site.phone}.`;
+
+// Breadcrumbs
+const breadcrumbs = [
+  { name: 'Service Areas', url: '/locations/' },
+  { name: `${location.name}, GA`, url: `/locations/${location.slug}/` },
+  { name: service.name, url: `/locations/${location.slug}/${service.slug}/` }
+];
+
+// Schema — Service
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": `${service.name} in ${location.name}, GA`,
+  "description": description,
+  "url": `${site.url}/locations/${location.slug}/${service.slug}/`,
+  "areaServed": {
+    "@type": "City",
+    "name": location.name,
+    "addressRegion": "GA",
+    "containedIn": {
+      "@type": "AdministrativeArea",
+      "name": `${location.county} County`
+    }
+  },
+  "provider": {
+    "@type": "LocalBusiness",
+    "@id": `${site.url}/#organization`,
+    "name": site.name,
+    "telephone": site.phone,
+    "email": site.email
+  }
+};
+
+// FAQ schema
+const faqItems = combo?.uniqueFaqs ?? service.subServices.slice(0, 3).map(sub => ({
+  question: `Do you offer ${sub.name.toLowerCase()} in ${location.name}?`,
+  answer: `Yes. ${site.name} provides ${sub.name.toLowerCase()} services throughout ${location.name} and all of ${location.county} County, Georgia. Contact us for a free estimate.`
+}));
+
+const faqSchema = faqItems.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+  }))
+} : null;
+
+// Other services for this city (sidebar)
+const otherServices = mainServices.filter(ms => ms.slug !== service.slug);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  breadcrumbs={breadcrumbs}
+  schemaOverride={JSON.stringify(serviceSchema)}
+>
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />}
+
+  <Header slot="header" />
+
+  <!-- HERO -->
+  <section
+    class="relative pt-24 pb-16"
+    aria-label={`${service.name} in ${location.name}, Georgia`}
+    style={`background:linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.55)),url('${service.image || "/images/hero-services.webp"}') center/cover no-repeat; background-color:#1a0a0a`}
+  >
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- Breadcrumb -->
+      <nav class="mb-6" aria-label="Breadcrumb">
+        <ol class="flex items-center gap-2 text-xs flex-wrap" style="color:rgba(255,255,255,0.65)">
+          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+          <li style="color:rgba(255,255,255,0.35)">/</li>
+          <li><a href="/locations/" class="hover:text-white transition-colors">Service Areas</a></li>
+          <li style="color:rgba(255,255,255,0.35)">/</li>
+          <li><a href={`/locations/${location.slug}/`} class="hover:text-white transition-colors">{location.name}</a></li>
+          <li style="color:rgba(255,255,255,0.35)">/</li>
+          <li style="color:rgba(255,255,255,0.9)">{service.name}</li>
+        </ol>
+      </nav>
+
+      <div class="max-w-3xl">
+        <!-- Location badge -->
+        <div
+          class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-4"
+          style="background:#C41C1C; color:white; font-family:'Outfit',sans-serif"
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          {location.name}, {location.county} County, GA
+        </div>
+
+        <h1
+          class="font-bold text-white mb-5"
+          style="font-family:'Outfit',sans-serif; font-size:clamp(2rem,5vw,3.25rem); line-height:1.15"
+        >
+          {service.name} in {location.name},&nbsp;<span style="color:#F87171">Georgia</span>
+        </h1>
+
+        <p class="text-lg mb-8" style="color:rgba(255,255,255,0.82); max-width:580px; line-height:1.7; font-family:'Inter',sans-serif">
+          {combo
+            ? combo.uniqueIntro
+            : `Licensed and insured ${service.name.toLowerCase()} serving ${location.name} and all of ${location.county} County. Free on-site estimates — call today.`}
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="/contact/"
+            class="text-white px-7 py-3.5 rounded-lg font-semibold transition-all shadow-lg hover:-translate-y-0.5"
+            style="background:#C41C1C; font-family:'Outfit',sans-serif"
+          >
+            Get a Free Estimate
+          </a>
+          <a
+            href={`tel:${site.phoneRaw}`}
+            class="border-2 border-white text-white px-7 py-3.5 rounded-lg font-semibold flex items-center gap-2 transition-all hover:bg-white"
+            style="font-family:'Outfit',sans-serif"
+            onmouseover="this.style.color='#1A1A1A'"
+            onmouseout="this.style.color='white'"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.13 11.8 19.79 19.79 0 0 1 1.06 3.18 2 2 0 0 1 3.03 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/>
+            </svg>
+            {site.phone}
+          </a>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="flex flex-wrap gap-6 mt-10 pt-8" style="border-top:1px solid rgba(255,255,255,0.18)">
+          {["Licensed & Insured", "Free Estimates", "All 159 GA Counties", "Same-Week Response"].map(badge => (
+            <div class="flex items-center gap-2 text-sm" style="color:rgba(255,255,255,0.75); font-family:'Inter',sans-serif">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              {badge}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCAL CHALLENGES -->
+  {combo && combo.localProblems.length > 0 && (
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="font-bold mb-8" style="font-size:1.75rem; color:#1A1A1A; font-family:'Outfit',sans-serif">
+          Common {service.name.toLowerCase()} challenges in {location.name}
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {combo.localProblems.map(problem => (
+            <div class="flex items-start gap-3 p-5 rounded-xl" style="background:#F5F3EF">
+              <div class="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background:#FEE2E2">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </div>
+              <p style="color:#374151; font-size:0.9rem; line-height:1.6; font-family:'Inter',sans-serif">{problem}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- SUB-SERVICES GRID -->
+  <section class="py-16" style="background:#F5F3EF">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="font-bold mb-3" style="font-size:1.75rem; color:#1A1A1A; font-family:'Outfit',sans-serif">
+        Our {service.name.toLowerCase()} services in {location.name}
+      </h2>
+      <p class="mb-8" style="color:#6B7280; font-family:'Inter',sans-serif; max-width:640px">
+        Every project in {location.name} is handled by licensed, insured crews familiar with {location.county} County regulations and permit requirements.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {service.subServices.map(sub => (
+          <a
+            href={`/locations/${location.slug}/${service.slug}/${sub.slug}/`}
+            class="bg-white rounded-xl p-6 transition-all hover:-translate-y-1 group"
+            style="box-shadow:0 1px 4px rgba(0,0,0,0.07)"
+          >
+            <h3
+              class="font-semibold mb-2 group-hover:text-red-700 transition-colors"
+              style="color:#1A1A1A; font-family:'Outfit',sans-serif"
+            >
+              {sub.name}
+            </h3>
+            <p style="color:#6B7280; font-size:0.875rem; line-height:1.6; font-family:'Inter',sans-serif">
+              {sub.description.slice(0, 110)}…
+            </p>
+            <span
+              class="mt-4 flex items-center gap-1 text-sm font-semibold"
+              style="color:#C41C1C; font-family:'Outfit',sans-serif"
+            >
+              Learn more
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- OTHER SERVICES IN THIS CITY (sidebar-style row) -->
+  <section class="py-14 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="font-bold mb-6" style="font-size:1.4rem; color:#1A1A1A; font-family:'Outfit',sans-serif">
+        More demolition services in {location.name}
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {otherServices.map(ms => (
+          <a
+            href={`/locations/${location.slug}/${ms.slug}/`}
+            class="rounded-xl p-4 text-sm font-semibold transition-all hover:-translate-y-0.5"
+            style="background:#F5F3EF; color:#1A1A1A; font-family:'Outfit',sans-serif; box-shadow:0 1px 3px rgba(0,0,0,0.06)"
+          >
+            {ms.name}
+            <span class="block mt-1 text-xs font-normal" style="color:#6B7280; font-family:'Inter',sans-serif">
+              {location.name}, GA
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  {faqItems.length > 0 && (
+    <section class="py-16" style="background:#F5F3EF">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="font-bold mb-8" style="font-size:1.75rem; color:#1A1A1A; font-family:'Outfit',sans-serif">
+          {service.name} in {location.name} — frequently asked questions
+        </h2>
+        <div class="space-y-4">
+          {faqItems.map(faq => (
+            <details class="rounded-xl bg-white border border-neutral-100 p-6">
+              <summary class="font-semibold cursor-pointer" style="color:#1A1A1A; font-family:'Outfit',sans-serif">
+                {faq.question}
+              </summary>
+              <p class="mt-3" style="color:#6B7280; line-height:1.7; font-family:'Inter',sans-serif">
+                {faq.answer}
+              </p>
+            </details>
+          ))}
+        </div>
+
+        {combo?.localTip && (
+          <div class="mt-8 p-5 rounded-xl flex gap-4" style="background:#FEF2F2">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5">
+              <circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/>
+            </svg>
+            <p class="text-sm" style="color:#7A1010; font-family:'Inter',sans-serif">
+              <strong style="font-family:'Outfit',sans-serif">Local tip:</strong> {combo.localTip}
+            </p>
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+  <!-- BACK TO CITY -->
+  <div class="py-8 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <a
+        href={`/locations/${location.slug}/`}
+        class="inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:underline"
+        style="color:#C41C1C; font-family:'Outfit',sans-serif"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
+        Back to {location.name} service area overview
+      </a>
+    </div>
+  </div>
+
+  <!-- GHL Contact Form -->
+  <section class="py-20" style="background:#F5F3EF">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-10">
+        <h2 class="font-bold mb-3 font-heading" style="font-size:2rem;color:#1A1A1A">
+          Free <span style="color:#C41C1C">{service.name}</span> Estimate in {location.name}
+        </h2>
+        <p class="font-body" style="color:#6B7280">Serving {location.county} County and all of Georgia. We respond within 1 business day.</p>
+      </div>
+      <ContactForm
+        title={`Free ${service.name} Estimate — ${location.name}, GA`}
+        subtitle={`Serving ${location.county} County and all 159 Georgia counties. We respond within 1 business day.`}
+      />
+    </div>
+  </section>
+
+  <CTASection />
+
+  <Footer slot="footer" />
+</BaseLayout>

@@ -1,0 +1,373 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Header.astro';
+import Footer from '../../../../components/Footer.astro';
+import CTASection from '../../../../components/CTASection.astro';
+import ContactForm from '../../../../components/ContactForm.astro';
+import { mainServices, type SubService, type MainService } from '../../../../data/services';
+import { getContentForService, type ServiceContentSections } from '../../../../data/services/common-content';
+import { locations, type Location } from '../../../../data/locations';
+import { site } from '../../../../data/site';
+
+export function getStaticPaths() {
+  return locations.flatMap(loc =>
+    mainServices.flatMap(ms =>
+      ms.subServices.map(sub => ({
+        params: { city: loc.slug, service: ms.slug, subservice: sub.slug },
+        props: { location: loc, category: ms, subService: sub }
+      }))
+    )
+  );
+}
+
+interface Props {
+  location: Location;
+  category: MainService;
+  subService: SubService;
+}
+
+const { location, category, subService } = Astro.props;
+
+const contentSections: ServiceContentSections = getContentForService(subService.slug);
+
+// Title
+const titleFull = `${subService.name} in ${location.name}, GA | Licensed & Insured`;
+const title = titleFull.length > 60
+  ? `${subService.name} ${location.name}, GA | Georgia Demo Pros`
+  : titleFull;
+
+const description = `Licensed ${subService.name.toLowerCase()} in ${location.name}, Georgia. ${location.county} County — serving ${location.name} and all 159 GA counties with professional demolition. Free estimates.`;
+
+// Breadcrumbs
+const breadcrumbs = [
+  { name: 'Service Areas', url: '/locations/' },
+  { name: `${location.name}, GA`, url: `/locations/${location.slug}/` },
+  { name: category.name, url: `/locations/${location.slug}/${category.slug}/` },
+  { name: subService.name, url: `/locations/${location.slug}/${category.slug}/${subService.slug}/` }
+];
+
+// Sibling sub-services for cross-linking
+const siblingSubServices = category.subServices.filter(s => s.slug !== subService.slug);
+
+// Other categories in this city (for cross-linking)
+const otherCategories = mainServices.filter(ms => ms.slug !== category.slug);
+
+// Schema
+const serviceSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": `${subService.name} in ${location.name}, GA`,
+  "description": description,
+  "url": `${site.url}/locations/${location.slug}/${category.slug}/${subService.slug}/`,
+  "areaServed": {
+    "@type": "City",
+    "name": location.name,
+    "addressRegion": "GA",
+    "containedIn": { "@type": "AdministrativeArea", "name": location.county + " County" }
+  },
+  "provider": { "@id": `${site.url}/#organization` }
+});
+
+const faqItems = contentSections.costFactors
+  ? [].concat(
+      [{ question: `How much does ${subService.name.toLowerCase()} cost in ${location.name}, GA?`, answer: `${contentSections.typicalCostRange}. Get a free on-site estimate for your specific project in ${location.name}.` }],
+      [{ question: `Do I need a permit for ${subService.name.toLowerCase()} in ${location.county} County?`, answer: `Yes, most ${subService.name.toLowerCase()} projects in ${location.county} County require demolition permits from the county building department. Georgia Demolition & Removal handles the entire permit process — from application to final inspection — for all ${location.name} projects.` }],
+      [{ question: `How long does ${subService.name.toLowerCase()} take in ${location.name}?`, answer: `Typical ${subService.name.toLowerCase()} in ${location.name} is completed within the timeline phases outlined for our Georgia operations. Specific timing depends on project scope, access, and ${location.county} County inspection schedules. We provide a detailed timeline during your free on-site estimate.` }],
+      [{ question: `Which areas do you serve for ${subService.name.toLowerCase()} near ${location.name}?`, answer: `We serve ${subService.name.toLowerCase()} in ${location.name} and all surrounding ${location.county} County communities. We also serve all 159 Georgia counties — from Chattahoochee to Camden, from the Blue Ridge Mountains to the Golden Isles.` }],
+      [{ question: `Is your ${subService.name.toLowerCase()} work in ${location.name} environmentally friendly?`, answer: `Yes. We use dust suppression systems, recycle concrete at Georgia-certified facilities, sort metals for scrap recycling, and follow Georgia EPD waste management regulations for all ${location.name} projects.` }],
+      [{ question: `Are you licensed for ${subService.name.toLowerCase()} in ${location.name}?`, answer: `Yes, Georgia Demolition & Removal is fully licensed and insured for ${subService.name.toLowerCase()} in ${location.name} and throughout ${location.county} County. We carry general liability, pollution liability, and workers' compensation coverage.` }],
+    )
+  : [
+      { question: `How much does ${subService.name.toLowerCase()} cost in ${location.name}, GA?`, answer: `Costs vary based on project scope, access, and conditions in ${location.county} County. We provide a detailed written estimate after a free on-site assessment at your ${location.name} property — no obligation.` },
+      { question: `Do I need a permit for ${subService.name.toLowerCase()} in ${location.name}?`, answer: `Yes, ${subService.name.toLowerCase()} in ${location.county} County requires proper permits. Georgia Demolition & Removal manages the entire permitting process for ${location.name} customers.` },
+      { question: `How quickly can you start ${subService.name.toLowerCase()} in ${location.name}?`, answer: `Most ${location.name} projects begin within 1 week of estimate approval. Emergency service is available 24/7 across ${location.county} County.` }
+    ];
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map((faq: {question: string; answer: string}) => ({
+    "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+  }))
+});
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  breadcrumbs={breadcrumbs}
+  schemaOverride={faqSchema}
+>
+  <Header slot="header" />
+
+  <!-- Breadcrumb -->
+  <nav class="bg-neutral-100 border-b border-neutral-200 pt-[72px]">
+    <div class="max-w-7xl mx-auto px-6 py-3">
+      <ol class="flex items-center gap-2 text-xs flex-wrap flex-nowrap overflow-x-auto font-body text-neutral-500">
+        <li><a href="/" class="hover:text-primary-600 transition-colors whitespace-nowrap">Home</a></li>
+        <li class="text-neutral-300 shrink-0">/</li>
+        <li><a href="/locations/" class="hover:text-primary-600 transition-colors whitespace-nowrap">Areas</a></li>
+        <li class="text-neutral-300 shrink-0">/</li>
+        <li><a href={`/locations/${location.slug}/`} class="hover:text-primary-600 transition-colors whitespace-nowrap">{location.name}</a></li>
+        <li class="text-neutral-300 shrink-0">/</li>
+        <li><a href={`/locations/${location.slug}/${category.slug}/`} class="hover:text-primary-600 transition-colors whitespace-nowrap">{category.name}</a></li>
+        <li class="text-neutral-300 shrink-0">/</li>
+        <li class="text-neutral-700 font-medium whitespace-nowrap">{subService.name}</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="relative text-white py-14" style={`background:linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.62)), url('/images/hero-areas.webp') center/cover no-repeat`}>
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-4 font-heading bg-primary-600 text-white">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          {location.name}, {location.county} County, GA
+        </div>
+        <h1 class="font-bold text-white mb-4 font-heading" style="font-size:clamp(1.8rem,4vw,2.8rem); line-height:1.15">
+          {subService.name} in {location.name}, <span class="text-primary-400">Georgia</span>
+        </h1>
+        <p class="text-lg mb-8 font-body text-white/80 max-w-lg">
+          Licensed and insured {subService.name.toLowerCase()} serving {location.name} and all of {location.county} County. Professional demolition crews with free on-site estimates.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/contact/" class="bg-primary-600 hover:bg-primary-700 text-white font-bold px-7 py-3.5 rounded-lg transition-all hover:-translate-y-0.5 shadow-lg font-heading">
+            Get Free Estimate in {location.name}
+          </a>
+          <a href={`tel:${site.phoneRaw}`} class="border-2 border-white text-white font-bold px-7 py-3.5 rounded-lg transition-all hover:-translate-y-0.5 font-heading hover:bg-white hover:text-neutral-900 flex items-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.13 11.8 19.79 19.79 0 0 1 1.06 3.18 2 2 0 0 1 3.03 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+            {site.phone}
+          </a>
+        </div>
+        <div class="flex flex-wrap gap-6 mt-8 pt-6 border-t border-white/18">
+          {["Licensed & Insured", "Free Estimates", "All 159 GA Counties", "Same-Week Response"].map(badge => (
+            <div class="flex items-center gap-2 text-sm font-body text-white/70">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              {badge}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+        <!-- Main Column -->
+        <div class="lg:col-span-2 space-y-12">
+
+          <!-- Intro -->
+          <div>
+            <h2 class="font-bold mb-4 font-heading text-neutral-900" style="font-size:1.8rem">
+              {subService.name} Services in {location.name}, {location.county} County
+            </h2>
+            <p class="leading-relaxed text-lg font-body text-neutral-600">{subService.longContent.intro}</p>
+            <p class="leading-relaxed mt-4 font-body text-neutral-500">
+              In {location.name}, {subService.name.toLowerCase()} projects must account for {location.county} County's specific regulations, {location.soilType || 'local soil conditions'}, and building department requirements. {location.testimonial ? `Our ${location.name} customers consistently report that our knowledge of ${location.county} County's permit process and inspection requirements makes their projects run smoothly.` : `Our team brings extensive ${location.county} County experience to every ${subService.name.toLowerCase()} project in ${location.name}.`}
+            </p>
+          </div>
+
+          <!-- Local Insight -->
+          <div class="rounded-xl p-6 bg-primary-50 border border-primary-200">
+            <div class="flex items-start gap-3 mb-3">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-1"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <h3 class="font-bold font-heading text-primary-800" style="font-size:1.2rem">About {subService.name} in {location.name}</h3>
+            </div>
+            <p class="leading-relaxed font-body text-primary-900">{location.localInsight}</p>
+            {location.testimonial && (
+              <div class="mt-4 p-4 bg-white rounded-lg border border-primary-100">
+                <p class="text-sm italic font-body text-neutral-600">"{location.testimonial.quote}"</p>
+                <p class="text-xs mt-1 font-body text-neutral-400">— {location.testimonial.author}, {location.testimonial.service} in {location.name}</p>
+              </div>
+            )}
+          </div>
+
+          <!-- Features -->
+          <div>
+            <h2 class="font-bold mb-6 font-heading text-neutral-900" style="font-size:1.8rem">
+              {subService.name} Services We Offer in {location.name}
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {subService.features.map(feature => (
+                <div class="flex items-start gap-3 p-4 rounded-xl bg-neutral-50 border border-neutral-100">
+                  <div class="w-7 h-7 rounded bg-primary-600 flex items-center justify-center shrink-0 mt-0.5">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>
+                  </div>
+                  <span class="text-sm leading-relaxed font-medium font-body text-neutral-700">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Cost Section -->
+          {contentSections.costFactors.length > 0 && (
+            <div>
+              <h2 class="font-bold mb-2 font-heading text-neutral-900" style="font-size:1.8rem">
+                {subService.name} Costs in {location.name}, GA
+              </h2>
+              <p class="text-lg text-primary-600 font-semibold mb-6 font-heading">{contentSections.typicalCostRange}</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {contentSections.costFactors.slice(0, 4).map(f => (
+                  <div class="bg-neutral-50 rounded-xl p-5 border border-neutral-100">
+                    <p class="font-semibold text-sm mb-1.5 font-heading text-neutral-900">{f.factor}</p>
+                    <p class="text-sm leading-relaxed font-body text-neutral-500">{f.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Timeline -->
+          {contentSections.timelinePhases.length > 0 && (
+            <div>
+              <h2 class="font-bold mb-6 font-heading text-neutral-900" style="font-size:1.8rem">
+                Timeline for {subService.name} in {location.name}
+              </h2>
+              <div class="space-y-4">
+                {contentSections.timelinePhases.map((phase, i) => (
+                  <div class="flex items-start gap-5 p-5 bg-neutral-50 rounded-xl border border-neutral-100">
+                    <div class="w-12 h-12 rounded-full bg-primary-50 flex items-center justify-center text-primary-600 font-black font-heading shrink-0">{i + 1}</div>
+                    <div>
+                      <div class="flex items-center gap-3 mb-1">
+                        <p class="font-bold font-heading text-neutral-900">{phase.phase}</p>
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-primary-50 text-primary-700 font-heading">{phase.duration}</span>
+                      </div>
+                      <p class="text-sm leading-relaxed font-body text-neutral-600">{phase.detail}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Safety -->
+          {contentSections.safetyProtocols.length > 0 && (
+            <div>
+              <h2 class="font-bold mb-4 font-heading text-neutral-900" style="font-size:1.8rem">
+                Safety &amp; Compliance in {location.name}
+              </h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {contentSections.safetyProtocols.slice(0, 4).map(protocol => (
+                  <div class="flex items-start gap-3 p-4 bg-green-50 rounded-xl border border-green-100">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5"><path d="m20 6-11 11-5-5"/></svg>
+                    <span class="text-sm leading-relaxed font-body text-neutral-700">{protocol}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Why Choose Us -->
+          <div>
+            <h2 class="font-bold mb-6 font-heading text-neutral-900" style="font-size:1.8rem">
+              Why {location.name} Property Owners Choose Us
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {contentSections.whyChooseUs.map(u => (
+                <div class="bg-neutral-50 rounded-xl p-6 border border-neutral-100">
+                  <h3 class="font-bold text-sm mb-2 font-heading text-neutral-900">{u.title}</h3>
+                  <p class="text-sm leading-relaxed font-body text-neutral-500">{u.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- FAQ -->
+          <div>
+            <h2 class="font-bold mb-6 font-heading text-neutral-900" style="font-size:1.8rem">
+              {subService.name} in {location.name} — Frequently Asked Questions
+            </h2>
+            <div class="space-y-4">
+              {faqItems.map((faq: {question: string; answer: string}) => (
+                <details class="rounded-xl bg-neutral-50 border border-neutral-100 p-6">
+                  <summary class="font-semibold cursor-pointer font-heading text-neutral-900">{faq.question}</summary>
+                  <p class="mt-3 font-body text-neutral-600 leading-relaxed">{faq.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <div class="sticky top-28">
+            <ContactForm
+              title={`Free Estimate — ${location.name}`}
+              subtitle={`${subService.name} specialists in ${location.county} County. We respond within 1 business day.`}
+              compact={true}
+            />
+          </div>
+
+          {/* Quick Info */}
+          <div class="grid grid-cols-1 gap-3">
+            {[
+              { icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>', title: 'Fully Insured', desc: 'GL + Workers Comp' },
+              { icon: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>', title: 'Fast Response', desc: '24/7 emergency crews' },
+              { icon: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>', title: `${location.county} County`, desc: 'Local experts' }
+            ].map(card => (
+              <div class="bg-white p-4 rounded-xl flex items-center gap-4 border border-neutral-100 shadow-sm">
+                <div class="w-10 h-10 rounded-lg bg-primary-50 flex items-center justify-center shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={card.icon}></svg>
+                </div>
+                <div>
+                  <p class="font-bold text-sm font-heading text-neutral-900">{card.title}</p>
+                  <p class="text-xs font-body text-neutral-500">{card.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Cross-Links: Related services in city */}
+          <div class="bg-white rounded-xl p-6 border border-neutral-100">
+            <h3 class="font-semibold mb-4 text-sm font-heading text-neutral-900">More services in {location.name}</h3>
+            <ul class="space-y-2">
+              {siblingSubServices.slice(0, 6).map(s => (
+                <li>
+                  <a href={`/locations/${location.slug}/${category.slug}/${s.slug}/`} class="flex items-center gap-2 text-sm transition-colors hover:text-primary-600 font-body text-neutral-500">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><polyline points="9 18 15 12 9 6"/></svg>
+                    {s.name} in {location.name}
+                  </a>
+                </li>
+              ))}
+              <li class="pt-2 border-t border-neutral-100">
+                <a href={`/locations/${location.slug}/${category.slug}/`} class="flex items-center gap-2 text-sm font-semibold transition-colors hover:text-primary-700 font-heading text-primary-600">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                  All {category.name} in {location.name}
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Cross-Links: Other categories in city */}
+          <div class="bg-white rounded-xl p-6 border border-neutral-100">
+            <h3 class="font-semibold mb-4 text-sm font-heading text-neutral-900">Other services in {location.name}</h3>
+            <ul class="space-y-2">
+              {otherCategories.map(ms => (
+                <li>
+                  <a href={`/locations/${location.slug}/${ms.slug}/`} class="flex items-center gap-2 text-sm transition-colors hover:text-primary-600 font-body text-neutral-500">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><polyline points="9 18 15 12 9 6"/></svg>
+                    {ms.name} in {location.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Back to city */}
+          <a href={`/locations/${location.slug}/`} class="flex items-center gap-2 text-sm font-semibold transition-colors hover:underline font-heading text-primary-600">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
+            All {location.name} services
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection heading={`Ready for ${subService.name} in ${location.name}?`} />
+  <Footer slot="footer" />
+</BaseLayout>

@@ -151,9 +151,8 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
     )}
   </head>
   <body class="min-h-screen flex flex-col">
-    <a href="#main-content" class="skip-link">Skip to main content</a>
     <slot name="header" />
-    <main id="main-content" class="flex-grow">
+    <main class="flex-grow">
       <slot />
     </main>
     <slot name="footer" />

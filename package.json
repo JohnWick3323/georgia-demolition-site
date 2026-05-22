@@ -21,8 +21,7 @@
     "astro": "astro",
     "build": "astro check && astro build",
     "dev": "astro dev",
-    "preview": "astro preview",
-    "test": "vitest run"
+    "preview": "astro preview"
   },
   "type": "module",
   "version": "0.0.1",

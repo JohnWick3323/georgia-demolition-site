@@ -339,27 +339,6 @@ const serviceSchema = JSON.stringify({
             ))}
           </div>
 
-          <!-- Available in cities -->
-          <div class="rounded-xl p-6 bg-white border border-neutral-100">
-            <h3 class="font-semibold mb-4 text-sm font-heading text-neutral-900">Available in these Georgia cities</h3>
-            <ul class="space-y-1.5">
-              {["Atlanta","Savannah","Augusta","Columbus","Macon","Athens","Marietta","Alpharetta","Sandy Springs","Roswell","Valdosta","Warner Robins"].map(cityName => {
-                const citySlug = cityName.toLowerCase().replace(/ /g, '-');
-                return (
-                  <li>
-                    <a href={`/locations/${citySlug}/${service.slug}/`} class="flex items-center gap-2 text-xs transition-colors hover:text-primary-600 font-body text-neutral-500">
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                      {service.name} in {cityName}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-            <a href="/locations/" class="block text-center mt-3 text-xs font-semibold font-heading text-primary-600 hover:text-primary-700">
-              All 159 Georgia counties →
-            </a>
-          </div>
-
           <!-- Other services -->
           <div class="rounded-xl p-6 bg-white border border-neutral-100">
             <h3 class="font-semibold mb-4 text-sm font-heading text-neutral-900">Also in {category.name}</h3>

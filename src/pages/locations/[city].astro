@@ -205,23 +205,23 @@ const pageSchema = {
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {mainServices.map(cat => (
-                <div class="p-5 rounded-xl transition-all bg-white border border-neutral-100">
+                <div class="p-5 rounded-xl transition-all" style="border:1px solid #E5E7EB; background:white">
                   <div class="flex items-center justify-between mb-3">
-                    <h3 class="font-semibold text-sm font-heading text-neutral-900">{cat.name}</h3>
-                    <a href={`/locations/${location.slug}/${cat.slug}/`} class="text-xs font-semibold font-heading text-primary-600 transition-colors hover:underline">
-                      {location.name} →
+                    <h3 class="font-semibold text-sm font-heading" style="color:#1A1A1A">{cat.name}</h3>
+                    <a href={`/locations/${location.slug}/${cat.slug}/`} class="text-xs font-semibold font-heading transition-colors hover:underline" style="color:#C41C1C">
+                      View all →
                     </a>
                   </div>
                   <ul class="space-y-1.5">
                     {cat.subServices.slice(0, 5).map(sub => (
                       <li>
-                        <a href={`/locations/${location.slug}/${sub.slug}/`} class="text-xs font-body text-neutral-500 hover:text-primary-600 transition-colors">
+                        <a href={`/locations/${location.slug}/${cat.slug}/${sub.slug}/`} class="text-xs font-body hover:text-primary-600 transition-colors" style="color:#6B7280">
                           → {sub.name}
                         </a>
                       </li>
                     ))}
                     {cat.subServices.length > 5 && (
-                      <li class="text-xs font-body text-neutral-400">+{cat.subServices.length - 5} more services</li>
+                      <li class="text-xs font-body" style="color:#9CA3AF">+{cat.subServices.length - 5} more services</li>
                     )}
                   </ul>
                 </div>
@@ -418,8 +418,7 @@ const pageSchema = {
     </div>
   </section>
 
-  <!-- Combo Links (only for top cities that have combo pages) -->
-  {hasComboPages && (
+  <!-- Combo Links (all cities now have sub-service combo pages) -->
     <section class="py-12" style="background:#F5F3EF">
       <div class="max-w-7xl mx-auto px-6">
         <h2 class="font-bold mb-6 font-heading" style="font-size:1.5rem; color:#1A1A1A">
@@ -435,7 +434,6 @@ const pageSchema = {
         </div>
       </div>
     </section>
-  )}
 
   <!-- GHL Contact Form -->
   <section class="py-20" style="background:#F5F3EF">

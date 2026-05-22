@@ -186,4 +186,4 @@ export const residentialService: MainService = {
         "Georgia has specific programs and incentives for abandoned trailer removal in certain counties under blight elimination initiatives. Some Georgia counties participate in the Georgia Land Bank Authority programs that can provide financial assistance for removing blighted structures including trailers on tax-delinquent properties. Counties like Lowndes, Ware, and Coffee have active code enforcement programs targeting abandoned trailers, and we work regularly with code enforcement officers across south Georgia to assist with required removals."
       ),
     ]
-  }
+  },

@@ -6,67 +6,76 @@ import { locations } from '../data/locations';
 const topCities = locations.slice(0, 10);
 ---
 
-<footer class="text-white pt-16 pb-8" style="background:#1A0505">
+<footer style="background:#1A0505; color:white; padding-top:4rem; padding-bottom:2rem">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12" style="border-bottom:1px solid rgba(255,255,255,0.1)">
 
       <!-- Column 1: Brand -->
       <div class="space-y-5">
         <a href="/" class="inline-block transition-transform hover:scale-105">
           <img src="/images/logo.webp" alt={site.name} class="h-10 w-auto" />
         </a>
-        <p class="text-sm leading-relaxed font-body" style="color:rgba(255,255,255,0.55)">
+        <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,0.55); font-family:'Inter',sans-serif">
           Georgia's most trusted demolition and removal specialists. Licensed, insured, and serving all 159 Georgia counties. Free on-site estimates.
         </p>
         <div class="space-y-2.5">
-          <a href={`tel:${site.phone}`} class="flex items-center gap-2 text-sm footer-link font-body">
+          <a href={`tel:${site.phone}`} class="flex items-center gap-2 text-sm transition-colors" style="color:rgba(255,255,255,0.6); font-family:'Inter',sans-serif" onmouseover="this.style.color='#FCA5A5'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.13 11.8 19.79 19.79 0 0 1 1.06 3.18 2 2 0 0 1 3.03 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
             {site.phone}
           </a>
-          <a href={`mailto:${site.email}`} class="flex items-center gap-2 text-sm footer-link font-body">
+          <a href={`mailto:${site.email}`} class="flex items-center gap-2 text-sm transition-colors" style="color:rgba(255,255,255,0.6); font-family:'Inter',sans-serif" onmouseover="this.style.color='#FCA5A5'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
             {site.email}
           </a>
-          <div class="flex items-center gap-2 text-sm font-body" style="color:rgba(255,255,255,0.5)">
+          <div class="flex items-center gap-2 text-sm" style="color:rgba(255,255,255,0.5); font-family:'Inter',sans-serif">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
             {site.address.city}, {site.address.state} — Statewide
           </div>
         </div>
+
       </div>
 
       <!-- Column 2: Services -->
       <div>
-        <h3 class="footer-heading font-semibold text-sm mb-5 uppercase tracking-wider">Our Services</h3>
+        <h3 class="font-semibold text-sm mb-5 uppercase tracking-wider" style="font-family:'Outfit',sans-serif; color:#EF4444">Our Services</h3>
         <ul class="space-y-2.5">
           {mainServices.map(service => (
             <li>
-              <a href={`/services/${service.slug}/`} class="text-sm footer-link font-body">{service.name}</a>
+              <a href={`/services/${service.slug}/`} class="text-sm transition-colors" style="color:rgba(255,255,255,0.6); font-family:'Inter',sans-serif" onmouseover="this.style.color='#FCA5A5'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">
+                {service.name}
+              </a>
             </li>
           ))}
           <li>
-            <a href="/services/" class="text-sm font-semibold font-heading" style="color:#EF4444">View All Services →</a>
+            <a href="/services/" class="text-sm font-semibold transition-colors" style="color:#EF4444; font-family:'Outfit',sans-serif" onmouseover="this.style.color='#FCA5A5'" onmouseout="this.style.color='#EF4444'">
+              View All Services →
+            </a>
           </li>
         </ul>
       </div>
 
       <!-- Column 3: Service Areas -->
       <div>
-        <h3 class="footer-heading font-semibold text-sm mb-5 uppercase tracking-wider">Service Areas</h3>
+        <h3 class="font-semibold text-sm mb-5 uppercase tracking-wider" style="font-family:'Outfit',sans-serif; color:#EF4444">Service Areas</h3>
         <ul class="space-y-2.5">
           {topCities.map(loc => (
             <li>
-              <a href={`/locations/${loc.slug}/`} class="text-sm footer-link font-body">{loc.name}, GA</a>
+              <a href={`/locations/${loc.slug}/`} class="text-sm transition-colors" style="color:rgba(255,255,255,0.6); font-family:'Inter',sans-serif" onmouseover="this.style.color='#FCA5A5'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">
+                {loc.name}, GA
+              </a>
             </li>
           ))}
           <li>
-            <a href="/locations/" class="text-sm font-semibold font-heading" style="color:#EF4444">All 159 Counties →</a>
+            <a href="/locations/" class="text-sm font-semibold transition-colors" style="color:#EF4444; font-family:'Outfit',sans-serif" onmouseover="this.style.color='#FCA5A5'" onmouseout="this.style.color='#EF4444'">
+              All 159 Counties →
+            </a>
           </li>
         </ul>
       </div>
 
       <!-- Column 4: Quick Links + Trust Badge -->
       <div>
-        <h3 class="footer-heading font-semibold text-sm mb-5 uppercase tracking-wider">Quick Links</h3>
+        <h3 class="font-semibold text-sm mb-5 uppercase tracking-wider" style="font-family:'Outfit',sans-serif; color:#EF4444">Quick Links</h3>
         <ul class="space-y-2.5 mb-8">
           {[
             { href: '/about/', label: 'About Us' },
@@ -76,16 +85,18 @@ const topCities = locations.slice(0, 10);
             { href: '/terms-and-conditions/', label: 'Terms & Conditions' },
           ].map(link => (
             <li>
-              <a href={link.href} class="text-sm footer-link font-body">{link.label}</a>
+              <a href={link.href} class="text-sm transition-colors" style="color:rgba(255,255,255,0.6); font-family:'Inter',sans-serif" onmouseover="this.style.color='#FCA5A5'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">
+                {link.label}
+              </a>
             </li>
           ))}
         </ul>
-        <div class="trust-badge rounded-xl p-4 space-y-2">
-          <div class="flex items-center gap-2 text-xs font-semibold text-white font-heading">
+        <div class="rounded-xl p-4 space-y-2" style="background:rgba(255,255,255,0.06)">
+          <div class="flex items-center gap-2 text-xs font-semibold text-white" style="font-family:'Outfit',sans-serif">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             Fully Licensed & Insured
           </div>
-          <div class="text-xs font-body" style="color:rgba(255,255,255,0.5)">Georgia demolition contractors · All 159 counties</div>
+          <div class="text-xs" style="color:rgba(255,255,255,0.5); font-family:'Inter',sans-serif">Georgia demolition contractors · All 159 counties</div>
         </div>
       </div>
 
@@ -93,15 +104,15 @@ const topCities = locations.slice(0, 10);
 
     <!-- Bottom bar -->
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-8">
-      <p class="footer-bottom-text text-xs text-center md:text-left font-body">
+      <p class="text-xs text-center md:text-left" style="color:rgba(255,255,255,0.4); font-family:'Inter',sans-serif">
         © {new Date().getFullYear()} {site.legalName}. All rights reserved.
       </p>
       <div class="flex items-center gap-4">
-        <a href="/privacy-policy/" class="footer-bottom-link text-xs font-body">Privacy Policy</a>
-        <span class="footer-divider">·</span>
-        <a href="/terms-and-conditions/" class="footer-bottom-link text-xs font-body">Terms</a>
-        <span class="footer-divider">·</span>
-        <a href="/sitemap-index.xml" class="footer-bottom-link text-xs font-body">Sitemap</a>
+        <a href="/privacy-policy/" class="text-xs transition-colors" style="color:rgba(255,255,255,0.4); font-family:'Inter',sans-serif" onmouseover="this.style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,0.2)">·</span>
+        <a href="/terms-and-conditions/" class="text-xs transition-colors" style="color:rgba(255,255,255,0.4); font-family:'Inter',sans-serif" onmouseover="this.style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Terms</a>
+        <span style="color:rgba(255,255,255,0.2)">·</span>
+        <a href="/sitemap-index.xml" class="text-xs transition-colors" style="color:rgba(255,255,255,0.4); font-family:'Inter',sans-serif" onmouseover="this.style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Sitemap</a>
       </div>
     </div>
   </div>

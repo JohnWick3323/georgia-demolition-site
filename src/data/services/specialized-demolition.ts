@@ -2,6 +2,7 @@ import type { MainService } from "./types";
 import { sub } from "./helpers";
 
 export const specializedDemolitionService: MainService = {
+  {
     slug: "specialized-demolition",
     name: "Specialized Demolition",
     description: "Advanced specialized demolition services for unique Georgia projects. Asbestos abatement, hydro demolition, concrete recycling, and silo removal.",

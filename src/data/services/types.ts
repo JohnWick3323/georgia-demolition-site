@@ -26,15 +26,3 @@ export interface MainService {
   image?: string;
   subServices: SubService[];
 }
-
-export interface ServiceContentSections {
-  costFactors: { factor: string; detail: string }[];
-  typicalCostRange: string;
-  timelinePhases: { phase: string; duration: string; detail: string }[];
-  equipment: { category: string; items: string[] }[];
-  safetyProtocols: string[];
-  wastePlan: string[];
-  prepChecklist: string[];
-  diyRisks: string[];
-  whyChooseUs: { title: string; desc: string }[];
-}
