@@ -34,19 +34,25 @@ const breadcrumbs = [
   { name: service.name, url: `/services/${service.slug}/` }
 ];
 
-// Service schema
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "name": service.name,
   "description": service.description,
   "provider": { "@id": `${site.url}/#organization` },
-  "areaServed": { "@type": "State", "name": "Georgia" }
+  "areaServed": { "@type": "State", "name": "Georgia" },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": `${service.name} Sub-Services`,
+    "itemListElement": service.subServices.map(sub => ({
+      "@type": "Offer", "itemOffered": { "@type": "Service", "name": sub.name, "description": sub.description }
+    }))
+  }
 };
 ---
 
 <BaseLayout
-  title={`${service.name} in Georgia | ${site.name}`}
+  title={`${service.name} in Georgia | Licensed Demo Company`}
   description={service.metaDescription}
   image={service.image}
   breadcrumbs={breadcrumbs}
@@ -54,37 +60,28 @@ const serviceSchema = {
 >
   <Header slot="header" />
 
-  <!-- Hero with real image -->
-  <section class="relative text-white" role="img" aria-label={`${service.name} services in Georgia`} style={`background:linear-gradient(rgba(0,0,0,0.70),rgba(0,0,0,0.60)), url('${service.image || "/images/hero-services.webp"}') center/cover no-repeat; padding-top:128px; padding-bottom:80px`}>
+  <!-- Hero -->
+  <section class="relative text-white" aria-label={`${service.name} services in Georgia`} style={`background:linear-gradient(rgba(0,0,0,0.70),rgba(0,0,0,0.60)), url('${service.image || "/images/hero-services.webp"}') center/cover no-repeat; padding-top:128px; padding-bottom:80px`}>
     <div class="max-w-7xl mx-auto px-6">
-      <!-- Breadcrumb -->
       <nav class="mb-6">
-        <ol class="flex items-center gap-2 text-xs flex-wrap" style="color:rgba(255,255,255,0.65)">
+        <ol class="flex items-center gap-2 text-xs flex-wrap font-body" style="color:rgba(255,255,255,0.65)">
           <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
-          <li style="color:rgba(255,255,255,0.4)">/</li>
+          <li class="text-white/40">/</li>
           <li><a href="/services/" class="hover:text-white transition-colors">Services</a></li>
-          <li style="color:rgba(255,255,255,0.4)">/</li>
-          <li style="color:rgba(255,255,255,0.85)">{service.name}</li>
+          <li class="text-white/40">/</li>
+          <li class="text-white font-medium">{service.name}</li>
         </ol>
       </nav>
-
       <div class="max-w-3xl">
-        <div class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-4 font-heading" style="background:#C41C1C; color:white">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-          Georgia Demolition Services
-        </div>
-        <h1 class="font-bold text-white mb-5 font-heading" style="font-size:clamp(2.2rem,5vw,3.5rem); line-height:1.15">
+        <h1 class="font-bold text-white mb-4 font-heading" style="font-size:clamp(2.2rem,5vw,3.5rem); line-height:1.15">
           {service.heroHeading}
         </h1>
-        <p class="text-lg mb-8 font-body" style="color:rgba(255,255,255,0.82); max-width:600px; line-height:1.7">
-          {service.description}
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="/contact/" class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-lg font-semibold font-heading transition-all shadow-lg hover:-translate-y-0.5">
-            Free estimate
+        <p class="text-lg mb-8 font-body text-white/80">{service.description}</p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/contact/" class="bg-primary-600 hover:bg-primary-700 text-white font-bold px-8 py-3.5 rounded-lg transition-all hover:-translate-y-0.5 shadow-lg font-heading">
+            Get Free Estimate
           </a>
-          <a href={`tel:${site.phone}`} class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold font-heading flex items-center gap-2 transition-all hover:bg-white hover:text-neutral-900">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href={`tel:${site.phoneRaw}`} class="border-2 border-white text-white font-bold px-8 py-3.5 rounded-lg transition-all hover:-translate-y-0.5 font-heading hover:bg-white hover:text-neutral-900">
             {site.phone}
           </a>
         </div>
@@ -92,119 +89,152 @@ const serviceSchema = {
     </div>
   </section>
 
-  <!-- Category Overview with Image -->
+  <!-- Intro + Sub-Services Section -->
   <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-        <div>
-          <h2 class="font-bold mb-5 font-heading" style="font-size:2rem; color:#1A1A1A">
-            Professional {service.name} Services
-          </h2>
-          <p class="text-lg leading-relaxed font-body mb-6" style="color:#4B5563">
-            {service.description}
-          </p>
-          <div class="flex flex-wrap gap-3">
-            <a href="/contact/" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-semibold text-sm font-heading transition-all shadow-md hover:-translate-y-0.5">
-              Get Free Estimate
+      <!-- Service Introduction -->
+      <div class="max-w-3xl mb-14">
+        <h2 class="font-bold mb-4 font-heading text-neutral-900" style="font-size:1.8rem">
+          Professional {service.name} in Georgia
+        </h2>
+        <p class="leading-relaxed text-lg font-body text-neutral-600">{service.description}</p>
+        <p class="leading-relaxed mt-4 font-body text-neutral-500">
+          Georgia Demolition &amp; Removal brings extensive experience in {service.name.toLowerCase()} to every project across all 159 Georgia counties. Our licensed crews are equipped with state-of-the-art machinery and trained in safety-first demolition practices. Whether your project is in metro Atlanta, coastal Savannah, the Blue Ridge Mountains, or anywhere in rural Georgia, we provide the same professional, reliable service.
+        </p>
+      </div>
+
+      <!-- Sub-Services Grid -->
+      <div>
+        <h2 class="font-bold mb-8 font-heading text-neutral-900" style="font-size:1.8rem">
+          Our {service.name} Services
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {service.subServices.map(sub => (
+            <a href={`/services/${service.slug}/${sub.slug}/`} class="group bg-white rounded-xl p-6 border border-neutral-100 shadow-card transition-all hover:-translate-y-1 hover:border-primary-200">
+              <h3 class="font-semibold mb-2.5 font-heading text-neutral-900 group-hover:text-primary-700 transition-colors">{sub.name}</h3>
+              <p class="text-sm leading-relaxed mb-4 font-body text-neutral-500">{sub.description.length > 100 ? sub.description.slice(0, 100) + '…' : sub.description}</p>
+              <span class="text-sm font-semibold flex items-center gap-1.5 font-heading text-primary-600">
+                Learn more
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
             </a>
-            <a href={`tel:${site.phone}`} class="border-2 text-sm px-6 py-3 rounded-lg font-semibold font-heading flex items-center gap-2 transition-all hover:-translate-y-0.5" style="border-color:#C41C1C; color:#C41C1C">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              {site.phone}
-            </a>
-          </div>
-        </div>
-        <div class="rounded-xl overflow-hidden" style="box-shadow:0 4px 20px rgba(0,0,0,0.1)">
-          <img src={contentImage} alt={`${service.name} services in Georgia - professional demolition work`} class="w-full h-auto object-cover" style="max-height:380px" loading="lazy" width="800" height="380" />
+          ))}
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Sub-services Grid -->
-  <section class="py-20" style="background:#F9FAFB">
+  <!-- Content Image + Benefits -->
+  <section class="py-16 bg-neutral-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="font-bold mb-6 font-heading text-neutral-900" style="font-size:2rem">
+            Why Georgia Property Owners <span class="text-primary-600">Choose Our {service.name}</span>
+          </h2>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-primary-50 flex items-center justify-center shrink-0 mt-0.5">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold font-heading text-neutral-900">Licensed &amp; Fully Insured</p>
+                <p class="text-sm font-body text-neutral-500">Complete general liability, pollution liability, and workers' compensation coverage on every Georgia project.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-primary-50 flex items-center justify-center shrink-0 mt-0.5">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold font-heading text-neutral-900">Free On-Site Estimates</p>
+                <p class="text-sm font-body text-neutral-500">No-obligation estimates at your Georgia property within 1–2 business days. Transparent pricing with no hidden fees.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-primary-50 flex items-center justify-center shrink-0 mt-0.5">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold font-heading text-neutral-900">Statewide Georgia Coverage</p>
+                <p class="text-sm font-body text-neutral-500">Equipment strategically positioned across all 159 Georgia counties for fast mobilization anywhere in the state.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-primary-50 flex items-center justify-center shrink-0 mt-0.5">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold font-heading text-neutral-900">Permit &amp; Regulatory Management</p>
+                <p class="text-sm font-body text-neutral-500">We handle all county permits, Georgia EPD notifications, asbestos compliance, and utility disconnections.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-xl overflow-hidden shadow-card">
+          <img src={contentImage} alt={`Professional ${service.name.toLowerCase()} services across Georgia counties`} class="w-full h-auto object-cover" style="max-height:380px" loading="lazy" width="800" height="380" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Overview -->
+  <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-12">
-        <div class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-1.5 rounded-full mb-4 font-heading" style="background:#FEF2F2; color:#C41C1C">
-          {service.subServices.length} specialized services
-        </div>
-        <h2 class="font-bold mb-4 font-heading" style="font-size:2.2rem; color:#1A1A1A">
-          {service.name} <span style="color:#C41C1C">services we offer</span>
+        <h2 class="font-bold mb-4 font-heading text-neutral-900" style="font-size:2.5rem">
+          How Our <span class="text-primary-600">{service.name}</span> Process Works
         </h2>
-        <p class="text-lg font-body" style="color:#6B7280; max-width:600px; margin:0 auto">Complete range of {service.name.toLowerCase()} services across all 159 Georgia counties</p>
+        <p class="text-lg max-w-2xl mx-auto font-body text-neutral-500">A structured approach to every Georgia project — from initial assessment to final site cleanup.</p>
       </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {service.subServices.map(sub => (
-          <a href={`/services/${service.slug}/${sub.slug}/`} class="group bg-white rounded-xl p-6 transition-all hover:-translate-y-1 hover:shadow-red" style="box-shadow:0 2px 12px rgba(0,0,0,0.07); border:1px solid #F3F4F6">
-            <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-4" style="background:#FEF2F2">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2H2v2z"/><path d="M20 15V9a8 8 0 1 0-16 0v6"/><path d="M4 15h16"/></svg>
-            </div>
-            <h3 class="font-semibold mb-3 transition-colors group-hover:text-primary-700 font-heading" style="font-size:1.05rem; color:#1A1A1A">
-              {sub.name}
-            </h3>
-            <p class="text-sm leading-relaxed mb-4 font-body" style="color:#6B7280">
-              {sub.description.length > 110 ? sub.description.slice(0, 110) + '…' : sub.description}
-            </p>
-            <span class="text-sm font-semibold flex items-center gap-1.5 font-heading" style="color:#C41C1C">
-              Learn more
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </span>
-          </a>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {[
+          { step: "1", title: "Free Assessment", desc: "We visit your Georgia property, evaluate the scope, and provide a detailed written estimate — no obligation." },
+          { step: "2", title: "Permits & Prep", desc: "We handle all county permits, Georgia EPD filings, utility disconnections, and site preparation." },
+          { step: "3", title: "Safe Execution", desc: "Our licensed crew executes the demolition systematically using the right equipment with full safety protocols." },
+          { step: "4", title: "Cleanup & Restore", desc: "All debris removed, materials recycled, site graded and prepared for your next project." }
+        ].map(item => (
+          <div class="bg-neutral-50 rounded-xl p-7 text-center shadow-card">
+            <div class="w-14 h-14 rounded-full bg-primary-600 flex items-center justify-center text-white font-black text-xl mx-auto mb-4 font-heading">{item.step}</div>
+            <h3 class="font-bold mb-2 font-heading text-neutral-900">{item.title}</h3>
+            <p class="text-sm leading-relaxed font-body text-neutral-500">{item.desc}</p>
+          </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Why choose for this category -->
-  <section class="py-20" style="background:#F5F3EF">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="bg-white rounded-2xl p-10" style="box-shadow:0 2px 16px rgba(0,0,0,0.07)">
-        <h2 class="font-bold mb-8 font-heading" style="font-size:2rem; color:#1A1A1A">
-          Why choose us for <span style="color:#C41C1C">{service.name.toLowerCase()}?</span>
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {[
-            `Licensed and insured for all ${service.name.toLowerCase()} work in Georgia`,
-            "Serving all 159 Georgia counties with fast crew mobilization",
-            "Pre-demolition hazardous material surveys and abatement coordination",
-            "Complete permit handling with all Georgia county building departments",
-            "Georgia EPD compliant waste disposal and documentation",
-            "Free on-site estimates with detailed scope breakdown"
-          ].map(item => (
-            <div class="flex items-start gap-3">
-              <div class="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background:#C41C1C">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>
-              </div>
-              <span class="text-sm leading-relaxed font-body" style="color:#4B5563">{item}</span>
-            </div>
-          ))}
-        </div>
-        <div class="mt-8 pt-8" style="border-top:1px solid #E5E7EB">
-          <a href="/contact/" class="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-lg font-semibold font-heading transition-all shadow-red">
-            Get a free estimate for {service.name.toLowerCase()}
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-        </div>
+  <!-- Georgia Coverage Callout -->
+  <section class="py-16 bg-primary-50">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-6"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <h2 class="font-bold mb-4 font-heading text-neutral-900" style="font-size:2rem">
+        {service.name} Across All 159 <span class="text-primary-600">Georgia Counties</span>
+      </h2>
+      <p class="text-lg mb-8 font-body text-neutral-600">
+        From downtown Atlanta demolition projects to rural Georgia farm demolitions — our {service.name.toLowerCase()} services are available statewide. We understand Georgia's diverse regulatory environment, soil conditions, and community needs.
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mb-8">
+        {["Atlanta","Savannah","Augusta","Columbus","Macon","Athens","Marietta","Alpharetta","Sandy Springs","Roswell","Valdosta","Warner Robins"].map(cityName => {
+          const citySlug = cityName.toLowerCase().replace(/ /g, '-');
+          return (
+            <a href={`/locations/${citySlug}/${service.slug}/`} class="bg-white rounded-lg p-3 text-sm font-semibold font-heading text-neutral-700 hover:text-primary-600 hover:bg-primary-50 transition-all border border-neutral-100">
+              {service.name} in {cityName}
+            </a>
+          );
+        })}
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact/" class="bg-primary-600 hover:bg-primary-700 text-white font-bold px-8 py-4 rounded-lg text-lg transition-all hover:-translate-y-0.5 shadow-lg font-heading">
+          Get Free Estimate
+        </a>
+        <a href="/locations/" class="border-2 border-primary-600 text-primary-600 font-bold px-8 py-4 rounded-lg text-lg transition-all hover:-translate-y-0.5 font-heading hover:bg-primary-600 hover:text-white">
+          View Service Areas
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- GHL Contact Form -->
-  <section class="py-20" style="background:#F5F3EF">
-    <div class="max-w-3xl mx-auto px-6">
-      <div class="text-center mb-10">
-        <h2 class="font-bold mb-3 font-heading" style="font-size:2rem;color:#1A1A1A">
-          Get a Free <span style="color:#C41C1C">{service.name}</span> Estimate
-        </h2>
-        <p class="font-body" style="color:#6B7280">Serving all 159 Georgia counties. We respond within 1 business day.</p>
-      </div>
-      <ContactForm
-        title={`Free ${service.name} Estimate`}
-        subtitle="Tell us about your project and we'll get back to you within 1 business day."
-      />
-    </div>
-  </section>
-
-  <CTASection />
+  <CTASection heading={`Ready to Start Your ${service.name} Project in Georgia?`} />
   <Footer slot="footer" />
 </BaseLayout>

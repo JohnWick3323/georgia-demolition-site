@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ContactForm from '../components/ContactForm.astro';
+import { Image } from 'astro:assets';
 import { site } from '../data/site';
 
 const breadcrumbs = [
@@ -20,15 +21,15 @@ const breadcrumbSchema = {
 ---
 
 <BaseLayout
-  title="Get a Free Demolition Estimate | Contact Us Today"
-  description="Request your free demolition estimate from Georgia's licensed contractors. Call (843) 241-0787 or submit our form. Fast response, all 159 counties served."
+  title="Free Demolition Estimate Georgia | Contact Us"
+  description="Get a free demolition estimate from Georgia's licensed contractors. Call (843) 241-0787 or use our online form — fast response, all 159 counties served."
   breadcrumbs={breadcrumbs}
 >
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <Header slot="header" />
 
   <!-- Hero -->
-  <section class="relative text-white pt-32 pb-16" role="img" aria-label="Contact Georgia Demolition and Removal for a free estimate" style="background:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('/images/hero-contact.webp') center/cover no-repeat; background-color:#1a0a0a">
+  <section class="relative text-white pt-32 pb-16" aria-label="Contact Georgia Demolition and Removal for a free estimate" style="background:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('/images/hero-contact.webp') center/cover no-repeat; background-color:#1a0a0a">
     <div class="container mx-auto px-4 max-w-7xl text-center">
       <nav class="flex justify-center mb-6">
         <ol class="flex items-center gap-2 text-xs" style="color:rgba(255,255,255,0.65)">
@@ -60,7 +61,7 @@ const breadcrumbSchema = {
         <!-- Contact Info -->
         <div class="space-y-8">
           <div>
-            <h2 class="text-3xl font-bold uppercase tracking-wide mb-6">Contact Information</h2>
+            <h2 class="text-3xl font-bold tracking-tight mb-6">Contact Information</h2>
             <div class="space-y-4">
               <div class="flex items-start gap-4">
                 <div class="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center shrink-0">
@@ -95,7 +96,7 @@ const breadcrumbSchema = {
           </div>
 
           <div class="rounded-xl overflow-hidden mb-6" style="box-shadow:0 2px 12px rgba(0,0,0,0.08)">
-            <img src="/images/content/safety-equipment.webp" alt="Professional demolition safety equipment and crew" class="w-full h-auto object-cover" style="max-height:240px" loading="lazy" width="600" height="240" />
+            <Image src="/images/content/safety-equipment.webp" alt="OSHA-compliant demolition safety helmets, gloves, and high-visibility vests for Georgia job sites" width={600} height={240} class="w-full h-auto object-cover" style="max-height:240px" loading="lazy" />
           </div>
 
           <div class="bg-neutral-50 rounded-xl p-6 border border-neutral-200">
@@ -134,7 +135,7 @@ const breadcrumbSchema = {
           loading="lazy"
           allowfullscreen
           referrerpolicy="no-referrer-when-downgrade"
-          src={`https://www.google.com/maps/embed/v1/place?key=${site.googleMapsEmbedKey}&q=Georgia,USA&zoom=7`}
+          src={site.googleMapsEmbedKey ? `https://www.google.com/maps/embed/v1/place?key=${site.googleMapsEmbedKey}&q=Georgia,USA&zoom=7` : undefined}
         ></iframe>
       </div>
       <p class="text-sm text-neutral-500 mt-3 font-body">We serve all 159 Georgia counties — from the Blue Ridge Mountains to the Golden Isles coast.</p>

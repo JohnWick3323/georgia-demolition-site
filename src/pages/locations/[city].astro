@@ -4,6 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import CTASection from '../../components/CTASection.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import { Image } from 'astro:assets';
 import { locations, type Location } from '../../data/locations';
 import { mainServices } from '../../data/services';
 import { site } from '../../data/site';
@@ -99,7 +100,7 @@ const pageSchema = {
 ---
 
 <BaseLayout
-  title={`Demolition Services in ${location.name}, GA | ${location.county} County`}
+  title={`${location.name} Georgia Demolition | ${location.county} County`}
   description={location.metaDescription}
   breadcrumbs={breadcrumbs}
   schemaOverride={JSON.stringify(pageSchema)}
@@ -107,7 +108,7 @@ const pageSchema = {
   <Header slot="header" />
 
   <!-- Hero -->
-  <section class="relative text-white" role="img" aria-label={`Demolition services in ${location.name}, ${location.county} County, Georgia`} style="background:linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.65)), url('/images/hero-areas.webp') center/cover no-repeat; padding-top:120px; padding-bottom:80px">
+  <section class="relative text-white" aria-label={`Demolition services in ${location.name}, ${location.county} County, Georgia`} style="background:linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.65)), url('/images/hero-areas.webp') center/cover no-repeat; padding-top:120px; padding-bottom:80px">
     <div class="max-w-7xl mx-auto px-6">
       <!-- Breadcrumb -->
       <nav class="mb-6">
@@ -194,7 +195,7 @@ const pageSchema = {
 
           <!-- Content Image -->
           <div class="rounded-xl overflow-hidden" style="box-shadow:0 2px 12px rgba(0,0,0,0.08)">
-            <img src="/images/content/building-demolition.webp" alt={`Professional demolition services in ${location.name}, Georgia`} class="w-full h-auto object-cover" style="max-height:360px" loading="lazy" width="800" height="360" />
+            <Image src="/images/content/building-demolition.webp" alt={`Licensed demolition contractors operating excavator in ${location.name}, ${location.county} County, Georgia`} width={800} height={360} class="w-full h-auto object-cover" style="max-height:360px" loading="lazy" />
           </div>
 
           <!-- Services Grid with combo links -->
@@ -204,25 +205,23 @@ const pageSchema = {
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {mainServices.map(cat => (
-                <div class="p-5 rounded-xl transition-all" style="border:1px solid #E5E7EB; background:white">
+                <div class="p-5 rounded-xl transition-all bg-white border border-neutral-100">
                   <div class="flex items-center justify-between mb-3">
-                    <h3 class="font-semibold text-sm font-heading" style="color:#1A1A1A">{cat.name}</h3>
-                    {hasComboPages && (
-                      <a href={`/locations/${location.slug}/${cat.slug}/`} class="text-xs font-semibold font-heading transition-colors hover:underline" style="color:#C41C1C">
-                        {location.name} →
-                      </a>
-                    )}
+                    <h3 class="font-semibold text-sm font-heading text-neutral-900">{cat.name}</h3>
+                    <a href={`/locations/${location.slug}/${cat.slug}/`} class="text-xs font-semibold font-heading text-primary-600 transition-colors hover:underline">
+                      {location.name} →
+                    </a>
                   </div>
                   <ul class="space-y-1.5">
-                    {cat.subServices.slice(0, 4).map(sub => (
+                    {cat.subServices.slice(0, 5).map(sub => (
                       <li>
-                        <span class="text-xs font-body" style="color:#6B7280">
+                        <a href={`/locations/${location.slug}/${sub.slug}/`} class="text-xs font-body text-neutral-500 hover:text-primary-600 transition-colors">
                           → {sub.name}
-                        </span>
+                        </a>
                       </li>
                     ))}
-                    {cat.subServices.length > 4 && (
-                      <li class="text-xs font-body" style="color:#9CA3AF">+{cat.subServices.length - 4} more services</li>
+                    {cat.subServices.length > 5 && (
+                      <li class="text-xs font-body text-neutral-400">+{cat.subServices.length - 5} more services</li>
                     )}
                   </ul>
                 </div>
@@ -409,7 +408,7 @@ const pageSchema = {
                 style="border:0"
                 loading="lazy"
                 allowfullscreen
-                src={`https://www.google.com/maps/embed/v1/place?key=${site.googleMapsEmbedKey}&q=${encodeURIComponent(location.name + ', ' + location.county + ' County, Georgia')}&zoom=12`}
+                src={site.googleMapsEmbedKey ? `https://www.google.com/maps/embed/v1/place?key=${site.googleMapsEmbedKey}&q=${encodeURIComponent(location.name + ', ' + location.county + ' County, Georgia')}&zoom=12` : undefined}
                 title={`Map of ${location.name}, GA`}
               ></iframe>
             </div>

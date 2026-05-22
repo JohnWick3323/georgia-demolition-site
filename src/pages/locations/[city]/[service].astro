@@ -10,86 +10,123 @@ import { combinations } from '../../../data/combinations';
 import { site } from '../../../data/site';
 
 export function getStaticPaths() {
-  return locations.flatMap(loc =>
+  const mainServicePaths = locations.flatMap(loc =>
     mainServices.map(ms => ({
       params: { city: loc.slug, service: ms.slug },
-      props: { location: loc, service: ms }
+      props: { location: loc, service: ms, parentService: null, subService: null, isSubServicePage: false }
     }))
   );
+
+  const subServicePaths = locations.flatMap(loc =>
+    mainServices.flatMap(ms =>
+      ms.subServices.map(sub => ({
+        params: { city: loc.slug, service: sub.slug },
+        props: { location: loc, service: ms, parentService: ms, subService: sub, isSubServicePage: true }
+      }))
+    )
+  );
+
+  return [...mainServicePaths, ...subServicePaths];
 }
 
 interface Props {
   location: Location;
   service: typeof mainServices[0];
+  parentService: typeof mainServices[0] | null;
+  subService: typeof mainServices[0]['subServices'][0] | null;
+  isSubServicePage: boolean;
 }
 
-const { location, service } = Astro.props;
+const { location, service, parentService, subService, isSubServicePage } = Astro.props;
 
-// Find combination data if it exists
-const combo = combinations.find(
-  c => c.serviceSlug === service.slug && c.locationSlug === location.slug
-);
+const actualServiceName = isSubServicePage && subService
+  ? subService.name
+  : service.name;
+
+const actualServiceDescription = isSubServicePage && subService
+  ? subService.description
+  : service.description;
+
+const actualServiceSlug = isSubServicePage && subService
+  ? subService.slug
+  : service.slug;
+
+const parentCategorySlug = isSubServicePage && parentService
+  ? parentService.slug
+  : service.slug;
+
+const parentCategoryName = isSubServicePage && parentService
+  ? parentService.name
+  : service.name;
+
+// Find combination data (for main service level only)
+const combo = !isSubServicePage
+  ? combinations.find(c => c.serviceSlug === service.slug && c.locationSlug === location.slug)
+  : null;
 
 // Title under 60 chars
-const titleFull = `${service.name} in ${location.name}, GA | ${site.name}`;
+const titleFull = `${actualServiceName} ${location.name}, GA | Licensed Demo Experts`;
 const title = titleFull.length > 60
-  ? `${service.name} in ${location.name}, GA`
+  ? `${actualServiceName} ${location.name}, GA | Georgia Demo`
   : titleFull;
 
 const description = combo
   ? combo.uniqueIntro.slice(0, 155)
-  : `Licensed ${service.name.toLowerCase()} in ${location.name}, Georgia. ${location.county} County experts for residential, commercial, and industrial projects. Free estimates — call ${site.phone}.`;
+  : `Licensed ${actualServiceName.toLowerCase()} in ${location.name}, Georgia. ${location.county} County experts for residential, commercial, and industrial projects. Free estimates — call ${site.phone}.`;
 
 // Breadcrumbs
-const breadcrumbs = [
-  { name: 'Service Areas', url: '/locations/' },
-  { name: `${location.name}, GA`, url: `/locations/${location.slug}/` },
-  { name: service.name, url: `/locations/${location.slug}/${service.slug}/` }
-];
+const breadcrumbs = isSubServicePage
+  ? [
+      { name: 'Service Areas', url: '/locations/' },
+      { name: `${location.name}, GA`, url: `/locations/${location.slug}/` },
+      { name: parentCategoryName, url: `/locations/${location.slug}/${parentCategorySlug}/` },
+      { name: actualServiceName, url: `/locations/${location.slug}/${actualServiceSlug}/` }
+    ]
+  : [
+      { name: 'Service Areas', url: '/locations/' },
+      { name: `${location.name}, GA`, url: `/locations/${location.slug}/` },
+      { name: service.name, url: `/locations/${location.slug}/${service.slug}/` }
+    ];
 
 // Schema — Service
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": `${service.name} in ${location.name}, GA`,
+  "name": `${actualServiceName} in ${location.name}, GA`,
   "description": description,
-  "url": `${site.url}/locations/${location.slug}/${service.slug}/`,
+  "url": `${site.url}/locations/${location.slug}/${actualServiceSlug}/`,
   "areaServed": {
     "@type": "City",
     "name": location.name,
     "addressRegion": "GA",
-    "containedIn": {
-      "@type": "AdministrativeArea",
-      "name": `${location.county} County`
-    }
+    "containedIn": { "@type": "AdministrativeArea", "name": `${location.county} County` }
   },
-  "provider": {
-    "@type": "LocalBusiness",
-    "@id": `${site.url}/#organization`,
-    "name": site.name,
-    "telephone": site.phone,
-    "email": site.email
-  }
+  "provider": { "@type": "LocalBusiness", "@id": `${site.url}/#organization`, "name": site.name, "telephone": site.phone, "email": site.email }
 };
 
-// FAQ schema
-const faqItems = combo?.uniqueFaqs ?? service.subServices.slice(0, 3).map(sub => ({
-  question: `Do you offer ${sub.name.toLowerCase()} in ${location.name}?`,
-  answer: `Yes. ${site.name} provides ${sub.name.toLowerCase()} services throughout ${location.name} and all of ${location.county} County, Georgia. Contact us for a free estimate.`
-}));
+// FAQ items
+const faqItems = isSubServicePage && subService
+  ? subService.faqs.slice(0, 5).map(faq => ({
+      question: faq.question.replace(/in Georgia/g, `in ${location.name}`),
+      answer: faq.answer.replace(/Georgia/g, `${location.name}, ${location.county} County`).replace(/across Georgia/g, `in ${location.name}`)
+    }))
+  : combo?.uniqueFaqs ?? service.subServices.slice(0, 4).map(sub => ({
+      question: `Do you offer ${sub.name.toLowerCase()} in ${location.name}?`,
+      answer: `Yes. ${site.name} provides ${sub.name.toLowerCase()} services throughout ${location.name} and all of ${location.county} County, Georgia. Contact us for a free estimate.`
+    }));
 
 const faqSchema = faqItems.length > 0 ? {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": faqItems.map(faq => ({
-    "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
-  }))
+  "mainEntity": faqItems.map(faq => ({ "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer } }))
 } : null;
 
-// Other services for this city (sidebar)
-const otherServices = mainServices.filter(ms => ms.slug !== service.slug);
+// Related services for cross-linking
+const otherMainServices = mainServices.filter(ms => ms.slug !== (isSubServicePage ? parentCategorySlug : service.slug));
+const relatedSubServices = isSubServicePage && parentService
+  ? parentService.subServices.filter(s => s.slug !== actualServiceSlug).slice(0, 6)
+  : service.subServices.slice(0, 6);
+const otherServiceCombos = otherMainServices.slice(0, 5);
 ---
 
 <BaseLayout
@@ -103,78 +140,53 @@ const otherServices = mainServices.filter(ms => ms.slug !== service.slug);
   <Header slot="header" />
 
   <!-- HERO -->
-  <section
-    class="relative pt-24 pb-16"
-    role="img"
-    aria-label={`${service.name} in ${location.name}, Georgia`}
-    style={`background:linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.55)),url('${service.image || "/images/hero-services.webp"}') center/cover no-repeat; background-color:#1a0a0a`}
-  >
+  <section class="relative pt-24 pb-16" aria-label={`${actualServiceName} in ${location.name}, Georgia`} style={`background:linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.55)),url('${service.image || "/images/hero-areas.webp"}') center/cover no-repeat; background-color:#1a0a0a`}>
     <div class="max-w-7xl mx-auto px-6">
-      <!-- Breadcrumb -->
       <nav class="mb-6" aria-label="Breadcrumb">
-        <ol class="flex items-center gap-2 text-xs flex-wrap" style="color:rgba(255,255,255,0.65)">
+        <ol class="flex items-center gap-2 text-xs flex-wrap font-body" style="color:rgba(255,255,255,0.65)">
           <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
-          <li style="color:rgba(255,255,255,0.35)">/</li>
+          <li class="text-white/35">/</li>
           <li><a href="/locations/" class="hover:text-white transition-colors">Service Areas</a></li>
-          <li style="color:rgba(255,255,255,0.35)">/</li>
+          <li class="text-white/35">/</li>
           <li><a href={`/locations/${location.slug}/`} class="hover:text-white transition-colors">{location.name}</a></li>
-          <li style="color:rgba(255,255,255,0.35)">/</li>
-          <li style="color:rgba(255,255,255,0.9)">{service.name}</li>
+          {isSubServicePage && (
+            <>
+              <li class="text-white/35">/</li>
+              <li><a href={`/locations/${location.slug}/${parentCategorySlug}/`} class="hover:text-white transition-colors">{parentCategoryName}</a></li>
+            </>
+          )}
+          <li class="text-white/35">/</li>
+          <li class="text-white/90 font-medium">{actualServiceName}</li>
         </ol>
       </nav>
 
       <div class="max-w-3xl">
-        <!-- Location badge -->
-        <div
-          class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-4"
-          style="background:#C41C1C; color:white; font-family:'Outfit',sans-serif"
-        >
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-            <circle cx="12" cy="10" r="3"/>
-          </svg>
+        <div class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-4 font-heading bg-primary-600 text-white">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           {location.name}, {location.county} County, GA
         </div>
 
-        <h1
-          class="font-bold text-white mb-5"
-          style="font-family:'Outfit',sans-serif; font-size:clamp(2rem,5vw,3.25rem); line-height:1.15"
-        >
-          {service.name} in {location.name},&nbsp;<span style="color:#F87171">Georgia</span>
+        <h1 class="font-bold text-white mb-5 font-heading" style="font-size:clamp(2rem,5vw,3.25rem); line-height:1.15">
+          {actualServiceName} in {location.name},&nbsp;<span class="text-primary-400">Georgia</span>
         </h1>
 
-        <p class="text-lg mb-8" style="color:rgba(255,255,255,0.82); max-width:580px; line-height:1.7; font-family:'Inter',sans-serif">
+        <p class="text-lg mb-8 font-body text-white/80" style="max-width:580px; line-height:1.7">
           {combo
             ? combo.uniqueIntro
-            : `Licensed and insured ${service.name.toLowerCase()} serving ${location.name} and all of ${location.county} County. Free on-site estimates — call today.`}
+            : `Licensed and insured ${actualServiceName.toLowerCase()} serving ${location.name} and all of ${location.county} County. Free on-site estimates — call today.`}
         </p>
 
         <div class="flex flex-wrap gap-4">
-          <a
-            href="/contact/"
-            class="text-white px-7 py-3.5 rounded-lg font-semibold transition-all shadow-lg hover:-translate-y-0.5"
-            style="background:#C41C1C; font-family:'Outfit',sans-serif"
-          >
-            Get a Free Estimate
-          </a>
-          <a
-            href={`tel:${site.phoneRaw}`}
-            class="border-2 border-white text-white px-7 py-3.5 rounded-lg font-semibold flex items-center gap-2 transition-all hover:bg-white"
-            style="font-family:'Outfit',sans-serif"
-            onmouseover="this.style.color='#1A1A1A'"
-            onmouseout="this.style.color='white'"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.13 11.8 19.79 19.79 0 0 1 1.06 3.18 2 2 0 0 1 3.03 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/>
-            </svg>
+          <a href="/contact/" class="bg-primary-600 hover:bg-primary-700 text-white px-7 py-3.5 rounded-lg font-semibold transition-all shadow-lg hover:-translate-y-0.5 font-heading">Get a Free Estimate</a>
+          <a href={`tel:${site.phoneRaw}`} class="border-2 border-white text-white px-7 py-3.5 rounded-lg font-semibold flex items-center gap-2 transition-all hover:bg-white hover:text-neutral-900 font-heading">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.13 11.8 19.79 19.79 0 0 1 1.06 3.18 2 2 0 0 1 3.03 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
             {site.phone}
           </a>
         </div>
 
-        <!-- Trust badges -->
-        <div class="flex flex-wrap gap-6 mt-10 pt-8" style="border-top:1px solid rgba(255,255,255,0.18)">
+        <div class="flex flex-wrap gap-6 mt-10 pt-8 border-t border-white/18">
           {["Licensed & Insured", "Free Estimates", "All 159 GA Counties", "Same-Week Response"].map(badge => (
-            <div class="flex items-center gap-2 text-sm" style="color:rgba(255,255,255,0.75); font-family:'Inter',sans-serif">
+            <div class="flex items-center gap-2 text-sm font-body text-white/75">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
               {badge}
             </div>
@@ -188,16 +200,14 @@ const otherServices = mainServices.filter(ms => ms.slug !== service.slug);
   {combo && combo.localProblems.length > 0 && (
     <section class="py-16 bg-white">
       <div class="max-w-7xl mx-auto px-6">
-        <h2 class="font-bold mb-8" style="font-size:1.75rem; color:#1A1A1A; font-family:'Outfit',sans-serif">
-          Common {service.name.toLowerCase()} challenges in {location.name}
-        </h2>
+        <h2 class="font-bold mb-8 font-heading text-neutral-900" style="font-size:1.75rem">Common {service.name.toLowerCase()} challenges in {location.name}</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {combo.localProblems.map(problem => (
-            <div class="flex items-start gap-3 p-5 rounded-xl" style="background:#F5F3EF">
-              <div class="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background:#FEE2E2">
+            <div class="flex items-start gap-3 p-5 rounded-xl bg-neutral-50">
+              <div class="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-primary-100">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
               </div>
-              <p style="color:#374151; font-size:0.9rem; line-height:1.6; font-family:'Inter',sans-serif">{problem}</p>
+              <p class="font-body text-neutral-700" style="font-size:0.9rem; line-height:1.6">{problem}</p>
             </div>
           ))}
         </div>
@@ -205,132 +215,168 @@ const otherServices = mainServices.filter(ms => ms.slug !== service.slug);
     </section>
   )}
 
-  <!-- SUB-SERVICES GRID -->
-  <section class="py-16" style="background:#F5F3EF">
+  <!-- Main Content: Content + Sidebar -->
+  <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-6">
-      <h2 class="font-bold mb-3" style="font-size:1.75rem; color:#1A1A1A; font-family:'Outfit',sans-serif">
-        Our {service.name.toLowerCase()} services in {location.name}
-      </h2>
-      <p class="mb-8" style="color:#6B7280; font-family:'Inter',sans-serif; max-width:640px">
-        Every project in {location.name} is handled by licensed, insured crews familiar with {location.county} County regulations and permit requirements.
-      </p>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {service.subServices.map(sub => (
-          <a
-            href={`/services/${service.slug}/`}
-            class="bg-white rounded-xl p-6 transition-all hover:-translate-y-1 group"
-            style="box-shadow:0 1px 4px rgba(0,0,0,0.07)"
-          >
-            <h3
-              class="font-semibold mb-2 group-hover:text-red-700 transition-colors"
-              style="color:#1A1A1A; font-family:'Outfit',sans-serif"
-            >
-              {sub.name}
-            </h3>
-            <p style="color:#6B7280; font-size:0.875rem; line-height:1.6; font-family:'Inter',sans-serif">
-              {sub.description.slice(0, 110)}…
-            </p>
-            <span
-              class="mt-4 flex items-center gap-1 text-sm font-semibold"
-              style="color:#C41C1C; font-family:'Outfit',sans-serif"
-            >
-              Learn more
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div class="lg:col-span-2 space-y-10">
 
-  <!-- OTHER SERVICES IN THIS CITY (sidebar-style row) -->
-  <section class="py-14 bg-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="font-bold mb-6" style="font-size:1.4rem; color:#1A1A1A; font-family:'Outfit',sans-serif">
-        More demolition services in {location.name}
-      </h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {otherServices.map(ms => (
-          <a
-            href={`/locations/${location.slug}/${ms.slug}/`}
-            class="rounded-xl p-4 text-sm font-semibold transition-all hover:-translate-y-0.5"
-            style="background:#F5F3EF; color:#1A1A1A; font-family:'Outfit',sans-serif; box-shadow:0 1px 3px rgba(0,0,0,0.06)"
-          >
-            {ms.name}
-            <span class="block mt-1 text-xs font-normal" style="color:#6B7280; font-family:'Inter',sans-serif">
-              {location.name}, GA
-            </span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
+          <!-- Content / Service Detail -->
+          <div>
+            <h2 class="font-bold mb-4 font-heading text-neutral-900" style="font-size:1.8rem">
+              {isSubServicePage ? 'About' : 'Our'} {actualServiceName} in {location.name}
+            </h2>
+            {isSubServicePage && subService ? (
+              <>
+                <p class="leading-relaxed text-lg mb-4 font-body text-neutral-600">{subService.longContent.intro.replace(/Georgia/g, `${location.name}, ${location.county} County`).replace(/across Georgia/g, `in ${location.name}`)}</p>
+                <p class="leading-relaxed font-body text-neutral-600">{subService.longContent.methodology.replace(/Georgia/g, `${location.name}, ${location.county} County`).replace(/across Georgia/g, `in ${location.name}`)}</p>
+              </>
+            ) : (
+              <>
+                <p class="leading-relaxed text-lg mb-4 font-body text-neutral-600">
+                  Georgia Demolition & Removal provides complete {service.name.toLowerCase()} services in {location.name} and throughout {location.county} County. Our licensed, insured crews are familiar with local regulations, permit requirements, and site conditions.
+                </p>
+                <p class="leading-relaxed font-body text-neutral-600">
+                  Whether you need residential structure teardowns, commercial property demolition, or specialized removal services, our team is equipped and ready in {location.name}. We handle every permit, utility disconnection, and regulatory filing so you don't have to.
+                </p>
+              </>
+            )}
+          </div>
 
-  <!-- FAQ -->
-  {faqItems.length > 0 && (
-    <section class="py-16" style="background:#F5F3EF">
-      <div class="max-w-4xl mx-auto px-6">
-        <h2 class="font-bold mb-8" style="font-size:1.75rem; color:#1A1A1A; font-family:'Outfit',sans-serif">
-          {service.name} in {location.name} — frequently asked questions
-        </h2>
-        <div class="space-y-4">
-          {faqItems.map(faq => (
-            <details class="rounded-xl bg-white border border-neutral-100 p-6">
-              <summary class="font-semibold cursor-pointer" style="color:#1A1A1A; font-family:'Outfit',sans-serif">
-                {faq.question}
-              </summary>
-              <p class="mt-3" style="color:#6B7280; line-height:1.7; font-family:'Inter',sans-serif">
-                {faq.answer}
-              </p>
-            </details>
-          ))}
+          {location.soilType && (
+            <div class="p-5 rounded-xl flex gap-3 bg-neutral-50 border border-neutral-100">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+              <p class="text-sm font-body text-neutral-700"><strong class="font-heading">Local soil conditions for {location.name}:</strong> {location.soilType}. Our crews adjust equipment and compaction methods accordingly.</p>
+            </div>
+          )}
+
+          <!-- Sub-services / Related services in this city -->
+          <div>
+            <h2 class="font-bold mb-6 font-heading text-neutral-900" style="font-size:1.75rem">
+              {isSubServicePage && parentService
+                ? `More ${parentService.name.toLowerCase()} in ${location.name}`
+                : `Our ${service.name.toLowerCase()} services in ${location.name}`}
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {relatedSubServices.map(s => (
+                <a href={`/locations/${location.slug}/${s.slug}/`} class="bg-neutral-50 rounded-xl p-5 transition-all hover:-translate-y-0.5 group border border-neutral-100">
+                  <h3 class="font-semibold mb-2 font-heading text-neutral-900 group-hover:text-primary-700 transition-colors">{s.name}</h3>
+                  <p class="text-sm font-body text-neutral-500 mb-3">{s.description ? s.description.slice(0, 100) + '…' : 'Licensed, insured service in ' + location.name + ', GA.'}</p>
+                  <span class="text-sm font-semibold flex items-center gap-1 font-heading text-primary-600">
+                    {location.name} details →
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Other service categories in this city */}
+          <div>
+            <h2 class="font-bold mb-6 font-heading text-neutral-900" style="font-size:1.75rem">Other demolition services in {location.name}</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {otherServiceCombos.map(ms => (
+                <a href={`/locations/${location.slug}/${ms.slug}/`} class="bg-neutral-50 rounded-xl p-5 transition-all hover:-translate-y-0.5 group border border-neutral-100">
+                  <h3 class="font-semibold mb-2 font-heading text-neutral-900 group-hover:text-primary-700 transition-colors">{ms.name} in {location.name}, GA</h3>
+                  <p class="text-sm font-body text-neutral-500 mb-3">{ms.description.slice(0, 100)}…</p>
+                  <span class="text-sm font-semibold flex items-center gap-1 font-heading text-primary-600">
+                    Learn more →
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {location.hoaNotes && (
+            <div class="p-5 rounded-xl flex gap-3 bg-primary-50 border border-primary-200">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+              <p class="text-sm font-body text-primary-800"><strong class="font-heading">HOA note for {location.name}:</strong> {location.hoaNotes}</p>
+            </div>
+          )}
+
+          <!-- FAQ -->
+          {faqItems.length > 0 && (
+            <div>
+              <h2 class="font-bold mb-6 font-heading text-neutral-900" style="font-size:1.5rem">{actualServiceName} in {location.name} — FAQ</h2>
+              <div class="space-y-4">
+                {faqItems.map(faq => (
+                  <details class="rounded-xl bg-white border border-neutral-100 p-5 group">
+                    <summary class="font-semibold cursor-pointer font-heading text-neutral-900 flex items-center justify-between">
+                      {faq.question}
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 ml-2 transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+                    </summary>
+                    <p class="mt-3 font-body text-neutral-600 leading-relaxed">{faq.answer}</p>
+                  </details>
+                ))}
+              </div>
+              {combo?.localTip && (
+                <div class="mt-6 p-5 rounded-xl flex gap-3 bg-primary-50 border border-primary-200">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                  <p class="text-sm font-body text-primary-800"><strong class="font-heading">Local tip:</strong> {combo.localTip}</p>
+                </div>
+              )}
+            </div>
+          )}
+
         </div>
 
-        {combo?.localTip && (
-          <div class="mt-8 p-5 rounded-xl flex gap-4" style="background:#FEF2F2">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5">
-              <circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/>
-            </svg>
-            <p class="text-sm" style="color:#7A1010; font-family:'Inter',sans-serif">
-              <strong style="font-family:'Outfit',sans-serif">Local tip:</strong> {combo.localTip}
-            </p>
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <div class="sticky top-28">
+            <ContactForm title={`Free ${actualServiceName} Estimate — ${location.name}, GA`} subtitle={`Serving ${location.county} County and all 159 Georgia counties. We respond within 1 business day.`} compact={true} />
           </div>
-        )}
+
+          <div class="grid grid-cols-1 gap-3">
+            {[
+              { icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>', title: 'Fully Insured', desc: 'GL + Workers Comp' },
+              { icon: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>', title: 'Fast Response', desc: '24/7 emergencies' },
+              { icon: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>', title: '159 Counties', desc: 'Statewide GA coverage' }
+            ].map(card => (
+              <div class="bg-white p-4 rounded-xl flex items-center gap-4 border border-neutral-100 shadow-sm">
+                <div class="w-10 h-10 rounded-lg bg-primary-50 flex items-center justify-center shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={card.icon}></svg>
+                </div>
+                <div><p class="font-bold text-sm font-heading text-neutral-900">{card.title}</p><p class="text-xs font-body text-neutral-500">{card.desc}</p></div>
+              </div>
+            ))}
+          </div>
+
+          <div class="rounded-xl p-6 bg-neutral-50 border border-neutral-100">
+            <h3 class="font-semibold mb-4 text-sm font-heading text-neutral-900">Why {location.name} chooses us</h3>
+            <ul class="space-y-3">
+              {[`Licensed in ${location.county} County`, "Fully insured", "Free estimates", "Georgia EPD compliant", "Permits handled"].map(item => (
+                <li class="flex items-center gap-2 text-sm font-body text-neutral-600">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><path d="m20 6-11 11-5-5"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
-    </section>
-  )}
+    </div>
+  </section>
 
   <!-- BACK TO CITY -->
   <div class="py-8 bg-white">
     <div class="max-w-7xl mx-auto px-6">
-      <a
-        href={`/locations/${location.slug}/`}
-        class="inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:underline"
-        style="color:#C41C1C; font-family:'Outfit',sans-serif"
-      >
+      <a href={`/locations/${location.slug}/`} class="inline-flex items-center gap-2 text-sm font-semibold font-heading text-primary-600 transition-colors hover:underline">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
         Back to {location.name} service area overview
       </a>
     </div>
   </div>
 
-  <!-- GHL Contact Form -->
-  <section class="py-20" style="background:#F5F3EF">
+  <!-- Bottom CTA -->
+  <section class="py-20 bg-neutral-50">
     <div class="max-w-3xl mx-auto px-6">
       <div class="text-center mb-10">
-        <h2 class="font-bold mb-3 font-heading" style="font-size:2rem;color:#1A1A1A">
-          Free <span style="color:#C41C1C">{service.name}</span> Estimate in {location.name}
-        </h2>
-        <p class="font-body" style="color:#6B7280">Serving {location.county} County and all of Georgia. We respond within 1 business day.</p>
+        <h2 class="font-bold mb-3 font-heading text-neutral-900" style="font-size:2rem">Free <span class="text-primary-600">{actualServiceName}</span> Estimate in {location.name}</h2>
+        <p class="font-body text-neutral-500">Serving {location.county} County and all of Georgia. We respond within 1 business day.</p>
       </div>
-      <ContactForm
-        title={`Free ${service.name} Estimate — ${location.name}, GA`}
-        subtitle={`Serving ${location.county} County and all 159 Georgia counties. We respond within 1 business day.`}
-      />
+      <ContactForm title={`Free ${actualServiceName} Estimate — ${location.name}, GA`} subtitle={`Serving ${location.county} County and all 159 Georgia counties. We respond within 1 business day.`} />
     </div>
   </section>
 
   <CTASection />
-
   <Footer slot="footer" />
 </BaseLayout>

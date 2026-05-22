@@ -10,7 +10,7 @@
     "motion": "^12.38.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-    "resend": "^4.0.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "4.1.4"
   },
   "engines": {
@@ -19,10 +19,14 @@
   "name": "astro-site",
   "scripts": {
     "astro": "astro",
-    "build": "astro build",
+    "build": "astro check && astro build",
     "dev": "astro dev",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "test": "vitest run"
   },
   "type": "module",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "devDependencies": {
+    "vitest": "^4.1.6"
+  }
 }

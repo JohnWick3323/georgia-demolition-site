@@ -8,6 +8,9 @@ https://www.georgiademolitionandremoval.com/* https://georgiademolitionandremova
 /contact /contact/ 301
 /faqs /faqs/ 301
 
+# Blog removed — redirect to home
+/blog/*  /  301
+
 # Sub-service pages → parent category (MUST be before the old :city rule below)
 /services/residential-demolition/:subservice/  /services/residential-demolition/  301
 /services/commercial-demolition/:subservice/   /services/commercial-demolition/   301

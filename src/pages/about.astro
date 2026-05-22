@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CTASection from '../components/CTASection.astro';
+import { Image } from 'astro:assets';
 import { site } from '../data/site';
 
 const breadcrumbs = [
@@ -20,15 +21,15 @@ const breadcrumbSchema = {
 ---
 
 <BaseLayout
-  title="About Us | Georgia Demolition & Removal"
-  description="Meet Georgia's trusted demolition experts. Fully licensed, insured, and serving all 159 counties with safe residential, commercial, and industrial demolition."
+  title="Licensed Georgia Demolition Company | About Our Team"
+  description="Meet Georgia's trusted demolition experts. Fully licensed, insured, serving all 159 counties since 2010 with safe residential, commercial, and industrial demolition."
   breadcrumbs={breadcrumbs}
 >
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <Header slot="header" />
 
   <!-- Hero -->
-  <section class="relative text-white pt-32 pb-16" role="img" aria-label="About Georgia Demolition and Removal, licensed contractors" style="background:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('/images/about-hero.webp') center/cover no-repeat; background-color:#1a0a0a">
+  <section class="relative text-white pt-32 pb-16" aria-label="About Georgia Demolition and Removal, licensed contractors" style="background:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('/images/about-hero.webp') center/cover no-repeat; background-color:#1a0a0a">
     <div class="container mx-auto px-4 max-w-7xl text-center">
       <nav class="flex justify-center mb-6">
         <ol class="flex items-center gap-2 text-xs" style="color:rgba(255,255,255,0.65)">
@@ -49,9 +50,9 @@ const breadcrumbSchema = {
     <div class="container mx-auto px-4 max-w-5xl">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 class="text-3xl font-bold uppercase tracking-wide mb-6">Our Story</h2>
-          <div class="rounded-xl overflow-hidden mb-6 lg:hidden" style="box-shadow:0 2px 12px rgba(0,0,0,0.08)">
-            <img src="/images/content/demolition-team.webp" alt="Georgia Demolition & Removal professional demolition crew" class="w-full h-auto object-cover" loading="lazy" width="600" height="400" />
+          <h2 class="text-3xl font-bold tracking-tight mb-6">Our Story</h2>
+          <div class="rounded-xl overflow-hidden mb-6 lg:hidden shadow-card">
+            <Image src="/images/content/demolition-team.webp" alt="Licensed Georgia demolition crew operating excavator during residential structure teardown" width={600} height={400} class="w-full h-auto object-cover" loading="lazy" />
           </div>
           <p class="text-neutral-700 leading-relaxed mb-4" style="text-transform:none;font-family:var(--font-body);">
             Georgia Demolition & Removal was founded with a single mission: to provide Georgia property owners, developers, and contractors with professional, reliable, and fully compliant demolition services across the entire state. We recognized that Georgia's rapid growth — from the booming suburbs of metro Atlanta to the revitalizing downtowns of Augusta and Savannah — created a significant need for a demolition partner that truly understands Georgia's diverse regulatory environment, soil conditions, and community needs.
@@ -64,8 +65,8 @@ const breadcrumbSchema = {
           </p>
         </div>
         <div class="space-y-4">
-          <div class="hidden lg:block rounded-xl overflow-hidden mb-4" style="box-shadow:0 2px 12px rgba(0,0,0,0.08)">
-            <img src="/images/content/demolition-team.webp" alt="Georgia Demolition & Removal professional demolition crew at work" class="w-full h-auto object-cover" loading="lazy" width="600" height="400" />
+          <div class="hidden lg:block rounded-xl overflow-hidden mb-4 shadow-card">
+            <Image src="/images/content/demolition-team.webp" alt="Georgia demolition experts in safety gear operating heavy machinery on commercial site" width={600} height={400} class="w-full h-auto object-cover" loading="lazy" />
           </div>
           {[
             { num: "500+", label: "Demolition Projects Completed" },
@@ -141,3 +142,4 @@ const breadcrumbSchema = {
   <CTASection />
   <Footer slot="footer" />
 </BaseLayout>
+ut>

@@ -18,33 +18,53 @@ const {
   {(title || subtitle) && (
     <div class="px-6 pt-6 pb-2 text-center">
       {title && (
-        <h3 class="font-bold mb-1" style={`font-family:'Outfit',sans-serif; font-size:1.25rem; color:${isDark ? 'white' : '#1A1A1A'}; text-align:center`}>
+        <h3 class={`font-bold mb-1 font-heading text-xl ${isDark ? 'form-heading form-heading-dark' : 'form-heading form-heading-light'}`}>
           {title}
         </h3>
       )}
       {subtitle && (
-        <p class="text-sm mb-2" style={`font-family:'Inter',sans-serif; color:${isDark ? 'rgba(255,255,255,0.6)' : '#6B7280'}; text-align:center`}>
+        <p class={`text-sm mb-2 font-body ${isDark ? 'form-subtext-dark' : 'form-subtext-light'}`}>
           {subtitle}
         </p>
       )}
     </div>
   )}
-  <iframe
-    src="https://link.westlanddre.com/widget/form/XoJVeWMaNl1Ss98RouWi"
-    style={`width:100%;height:${compact ? '600px' : '831px'};border:none;`}
-    id="inline-XoJVeWMaNl1Ss98RouWi"
-    data-layout="{'id':'INLINE'}"
-    data-trigger-type="alwaysShow"
-    data-trigger-value=""
-    data-activation-type="alwaysActivated"
-    data-activation-value=""
-    data-deactivation-type="neverDeactivate"
-    data-deactivation-value=""
-    data-form-name="Georgia Demolition Form"
-    data-height="831"
-    data-layout-iframe-id="inline-XoJVeWMaNl1Ss98RouWi"
-    data-form-id="XoJVeWMaNl1Ss98RouWi"
-    title="Georgia Demolition Form"
-  ></iframe>
+  <div class="relative" style={`min-height:${compact ? '600px' : '831px'}`}>
+    <!-- Skeleton loading state -->
+    <div id="form-skeleton" class="absolute inset-0 flex flex-col items-center justify-center bg-neutral-50 rounded-b-2xl z-10">
+      <div class="space-y-4 w-full max-w-md px-6">
+        <div class="h-5 bg-neutral-200 rounded animate-pulse w-2/3 mx-auto"></div>
+        <div class="h-4 bg-neutral-200 rounded animate-pulse w-1/2 mx-auto"></div>
+        <div class="space-y-3 mt-6">
+          <div class="h-12 bg-neutral-200 rounded animate-pulse"></div>
+          <div class="h-12 bg-neutral-200 rounded animate-pulse"></div>
+          <div class="h-12 bg-neutral-200 rounded animate-pulse"></div>
+          <div class="h-12 bg-neutral-200 rounded animate-pulse"></div>
+          <div class="h-16 bg-neutral-200 rounded animate-pulse"></div>
+          <div class="h-12 bg-primary-600 rounded animate-pulse"></div>
+        </div>
+        <p class="text-xs text-neutral-400 text-center pt-2 font-body">Loading contact form…</p>
+      </div>
+    </div>
+    <iframe
+      src="https://link.westlanddre.com/widget/form/XoJVeWMaNl1Ss98RouWi"
+      style={`width:100%;height:${compact ? '600px' : '831px'};border:none;`}
+      id="inline-XoJVeWMaNl1Ss98RouWi"
+      data-layout="{'id':'INLINE'}"
+      data-trigger-type="alwaysShow"
+      data-trigger-value=""
+      data-activation-type="alwaysActivated"
+      data-activation-value=""
+      data-deactivation-type="neverDeactivate"
+      data-deactivation-value=""
+      data-form-name="Georgia Demolition Form"
+      data-height="831"
+      data-layout-iframe-id="inline-XoJVeWMaNl1Ss98RouWi"
+      data-form-id="XoJVeWMaNl1Ss98RouWi"
+      title="Georgia Demolition Form"
+      loading="lazy"
+      onload="document.getElementById('form-skeleton')?.classList.add('hidden')"
+    ></iframe>
+  </div>
 </div>
-<script src="https://link.westlanddre.com/js/form_embed.js"></script>
+<script src="https://link.westlanddre.com/js/form_embed.js" defer></script>

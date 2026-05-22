@@ -24,8 +24,7 @@ export const site = {
   googleVerification: '',
   bingVerification: '',
 
-  googleMapsEmbedKey: 'AIzaSyAIWoZdoDfMNVAmW4uJ1q-tcT9f1Ec9_8k',
-  resendApiKey: 're_placeholder',
+  googleMapsEmbedKey: import.meta.env.PUBLIC_GOOGLE_MAPS_EMBED_KEY || '',
   aggregateRating: {
     ratingValue: '4.9',
     reviewCount: '127',

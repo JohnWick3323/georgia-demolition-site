@@ -11,15 +11,15 @@ const {
 } = Astro.props;
 ---
 
-<section class="py-16 text-white text-center" style="background:#C41C1C">
+<section class="py-16 text-white text-center bg-primary-600">
   <div class="max-w-4xl mx-auto px-6">
-    <h2 class="font-bold text-white mb-4" style="font-family:'Outfit',sans-serif; font-size:2.2rem; line-height:1.2">{heading}</h2>
-    <p class="text-lg mb-8 max-w-2xl mx-auto" style="color:rgba(255,255,255,0.85); font-family:'Inter',sans-serif">{subtext}</p>
+    <h2 class="font-bold text-white mb-4 font-heading cta-heading">{heading}</h2>
+    <p class="text-lg mb-8 max-w-2xl mx-auto font-body cta-subtext">{subtext}</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="/contact/" class="bg-white font-bold px-8 py-4 rounded-lg text-lg transition-all hover:bg-neutral-100 hover:-translate-y-0.5 shadow-lg" style="color:#C41C1C; font-family:'Outfit',sans-serif">
+      <a href="/contact/" class="font-bold px-8 py-4 rounded-lg text-lg transition-all hover:-translate-y-0.5 shadow-lg font-heading cta-btn-primary">
         Get Free Estimate
       </a>
-      <a href={`tel:${site.phoneRaw}`} class="border-2 border-white text-white font-bold px-8 py-4 rounded-lg text-lg transition-all hover:-translate-y-0.5" style="font-family:'Outfit',sans-serif">
+      <a href={`tel:${site.phoneRaw}`} class="font-bold px-8 py-4 rounded-lg text-lg transition-all hover:-translate-y-0.5 font-heading cta-btn-outline">
         {site.phone}
       </a>
     </div>

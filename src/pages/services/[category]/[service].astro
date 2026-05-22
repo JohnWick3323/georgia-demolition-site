@@ -6,6 +6,7 @@ import CTASection from '../../../components/CTASection.astro';
 import ContactForm from '../../../components/ContactForm.astro';
 import FAQAccordion from '../../../components/FAQAccordion.tsx';
 import { mainServices, type SubService, type MainService } from '../../../data/services';
+import { getContentForService, type ServiceContentSections } from '../../../data/services/common-content';
 import { site } from '../../../data/site';
 
 export function getStaticPaths() {
@@ -23,6 +24,8 @@ interface Props {
 }
 
 const { service, category } = Astro.props;
+
+const contentSections: ServiceContentSections = getContentForService(service.slug);
 
 const categoryImages: Record<string, string> = {
   'residential-demolition': '/images/services/residential-demolition-work.webp',
@@ -43,9 +46,7 @@ const faqSchema = service.faqs && service.faqs.length > 0 ? JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": service.faqs.map((faq: {question: string; answer: string}) => ({
-    "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+    "@type": "Question", "name": faq.question, "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
   }))
 }) : null;
 
@@ -60,7 +61,7 @@ const serviceSchema = JSON.stringify({
 ---
 
 <BaseLayout
-  title={`${service.name} in Georgia | ${site.name}`.length > 60 ? `${service.name} in Georgia` : `${service.name} in Georgia | ${site.name}`}
+  title={`${service.name} in Georgia | Licensed Contractors`}
   description={service.metaDescription}
   breadcrumbs={breadcrumbs}
   schemaOverride={faqSchema ?? serviceSchema}
@@ -68,36 +69,32 @@ const serviceSchema = JSON.stringify({
   <Header slot="header" />
 
   <!-- Breadcrumb -->
-  <nav style="background:#F9FAFB; border-bottom:1px solid #E5E7EB; padding-top:72px">
+  <nav class="bg-neutral-100 border-b border-neutral-200 pt-[72px]">
     <div class="max-w-7xl mx-auto px-6 py-3">
-      <ol class="flex items-center gap-2 text-xs flex-wrap" style="color:#6B7280; font-family:'Inter',sans-serif">
-        <li><a href="/" class="hover:text-red-600 transition-colors">Home</a></li>
-        <li style="color:#D1D5DB">/</li>
-        <li><a href="/services/" class="hover:text-red-600 transition-colors">Services</a></li>
-        <li style="color:#D1D5DB">/</li>
-        <li><a href={`/services/${category.slug}/`} class="hover:text-red-600 transition-colors">{category.name}</a></li>
-        <li style="color:#D1D5DB">/</li>
-        <li style="color:#374151; font-weight:500">{service.name}</li>
+      <ol class="flex items-center gap-2 text-xs flex-wrap font-body text-neutral-500">
+        <li><a href="/" class="hover:text-primary-600 transition-colors">Home</a></li>
+        <li class="text-neutral-300">/</li>
+        <li><a href="/services/" class="hover:text-primary-600 transition-colors">Services</a></li>
+        <li class="text-neutral-300">/</li>
+        <li><a href={`/services/${category.slug}/`} class="hover:text-primary-600 transition-colors">{category.name}</a></li>
+        <li class="text-neutral-300">/</li>
+        <li class="text-neutral-700 font-medium">{service.name}</li>
       </ol>
     </div>
   </nav>
 
   <!-- Hero -->
-  <section class="relative text-white py-16" role="img" aria-label={`${service.name} demolition service in Georgia`} style={`background:linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.65)), url('${category.image || "/images/hero-services.webp"}') center/cover no-repeat`}>
+  <section class="relative text-white py-16" aria-label={`${service.name} demolition service in Georgia`} style={`background:linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.65)), url('${category.image || "/images/hero-services.webp"}') center/cover no-repeat`}>
     <div class="max-w-7xl mx-auto px-6">
       <div class="max-w-3xl">
-        <div class="text-sm font-semibold mb-3" style="color:#FCA5A5; font-family:'Outfit',sans-serif">{category.name}</div>
-        <h1 class="font-bold text-white mb-6" style="font-family:'Outfit',sans-serif; font-size:clamp(2rem,4.5vw,3rem); line-height:1.15">
-          {service.heroHeading}
-        </h1>
-        <p class="text-lg mb-8" style="color:rgba(255,255,255,0.8); font-family:'Inter',sans-serif">
-          {service.description}
-        </p>
+        <div class="text-sm font-semibold mb-3 font-heading text-primary-300">{category.name}</div>
+        <h1 class="font-bold text-white mb-6 font-heading" style="font-size:clamp(2rem,4.5vw,3rem); line-height:1.15">{service.heroHeading}</h1>
+        <p class="text-lg mb-8 font-body text-white/80">{service.description}</p>
         <div class="flex flex-col sm:flex-row gap-4">
-          <a href="/contact/" class="font-bold px-8 py-3.5 rounded-lg transition-all hover:-translate-y-0.5 shadow-lg" style="background:#C41C1C; color:white; font-family:'Outfit',sans-serif">
+          <a href="/contact/" class="bg-primary-600 hover:bg-primary-700 text-white font-bold px-8 py-3.5 rounded-lg transition-all hover:-translate-y-0.5 shadow-lg font-heading">
             Get Free Estimate
           </a>
-          <a href={`tel:${site.phoneRaw}`} class="border-2 border-white text-white font-bold px-8 py-3.5 rounded-lg transition-all hover:-translate-y-0.5" style="font-family:'Outfit',sans-serif">
+          <a href={`tel:${site.phoneRaw}`} class="border-2 border-white text-white font-bold px-8 py-3.5 rounded-lg transition-all hover:-translate-y-0.5 font-heading hover:bg-white hover:text-neutral-900">
             {site.phone}
           </a>
         </div>
@@ -109,103 +106,211 @@ const serviceSchema = JSON.stringify({
   <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        <!-- Main -->
-        <div class="lg:col-span-2 space-y-10">
-          <!-- Intro -->
+        <!-- Main Content (2/3 width) -->
+        <div class="lg:col-span-2 space-y-12">
+
+          <!-- About / Intro -->
           <div>
-            <h2 class="font-bold mb-4" style="font-family:'Outfit',sans-serif; font-size:1.8rem; color:#1A1A1A">
-              About Our {service.name} Service
-            </h2>
-            <p class="leading-relaxed text-lg" style="color:#4B5563; font-family:'Inter',sans-serif">{service.longContent.intro}</p>
+            <h2 class="font-bold mb-4 font-heading text-neutral-900" style="font-size:1.8rem">About Our {service.name} Service</h2>
+            <p class="leading-relaxed text-lg font-body text-neutral-600">{service.longContent.intro}</p>
           </div>
+
+          <!-- Typical Costs -->
+          {contentSections.costFactors.length > 0 && (
+            <div>
+              <h2 class="font-bold mb-2 font-heading text-neutral-900" style="font-size:1.8rem">{service.name} Costs in Georgia</h2>
+              <p class="text-lg text-primary-600 font-semibold mb-6 font-heading">{contentSections.typicalCostRange}</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                {contentSections.costFactors.map(f => (
+                  <div class="bg-neutral-50 rounded-xl p-5 border border-neutral-100">
+                    <p class="font-semibold text-sm mb-1.5 font-heading text-neutral-900">{f.factor}</p>
+                    <p class="text-sm leading-relaxed font-body text-neutral-500">{f.detail}</p>
+                  </div>
+                ))}
+              </div>
+              <p class="text-sm font-body text-neutral-500">Costs vary based on project specifics. We provide a detailed written estimate after a free on-site assessment at your Georgia property — no obligation.</p>
+            </div>
+          )}
 
           <!-- Features -->
           <div>
-            <h2 class="font-bold mb-6" style="font-family:'Outfit',sans-serif; font-size:1.8rem; color:#1A1A1A">
-              Key Features &amp; Benefits
-            </h2>
+            <h2 class="font-bold mb-6 font-heading text-neutral-900" style="font-size:1.8rem">Key Features &amp; Benefits</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {service.features.map(feature => (
-                <div class="flex items-start gap-3 p-4 rounded-xl" style="background:#F9FAFB; border:1px solid #E5E7EB">
-                  <div class="w-7 h-7 rounded flex items-center justify-center shrink-0 mt-0.5" style="background:#C41C1C">
+                <div class="flex items-start gap-3 p-4 rounded-xl bg-neutral-50 border border-neutral-100">
+                  <div class="w-7 h-7 rounded bg-primary-600 flex items-center justify-center shrink-0 mt-0.5">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>
                   </div>
-                  <span class="text-sm leading-relaxed font-medium" style="color:#374151; font-family:'Inter',sans-serif">{feature}</span>
+                  <span class="text-sm leading-relaxed font-medium font-body text-neutral-700">{feature}</span>
                 </div>
               ))}
             </div>
           </div>
 
           <!-- Content Image -->
-          <div class="rounded-xl overflow-hidden" style="box-shadow:0 2px 12px rgba(0,0,0,0.08)">
-            <img src={contentImage} alt={`${service.name} service in Georgia - professional demolition crew`} class="w-full h-auto object-cover" style="max-height:400px" loading="lazy" width="800" height="400" />
+          <div class="rounded-xl overflow-hidden shadow-card">
+            <img src={contentImage} alt={`${service.name} demolition services by licensed Georgia contractors`} class="w-full h-auto object-cover" style="max-height:400px" loading="lazy" width="800" height="400" />
           </div>
 
           <!-- Methodology -->
           <div>
-            <h2 class="font-bold mb-4" style="font-family:'Outfit',sans-serif; font-size:1.8rem; color:#1A1A1A">
-              Our Approach &amp; Methodology
-            </h2>
-            <p class="leading-relaxed" style="color:#4B5563; font-family:'Inter',sans-serif">{service.longContent.methodology}</p>
+            <h2 class="font-bold mb-4 font-heading text-neutral-900" style="font-size:1.8rem">Our Approach &amp; Methodology</h2>
+            <p class="leading-relaxed font-body text-neutral-600">{service.longContent.methodology}</p>
           </div>
 
-          <!-- Process -->
+          <!-- Project Timeline -->
+          {contentSections.timelinePhases.length > 0 && (
+            <div>
+              <h2 class="font-bold mb-6 font-heading text-neutral-900" style="font-size:1.8rem">Typical Project Timeline</h2>
+              <div class="space-y-5">
+                {contentSections.timelinePhases.map((phase, i) => (
+                  <div class="flex items-start gap-5 p-5 bg-neutral-50 rounded-xl border border-neutral-100">
+                    <div class="w-14 h-14 rounded-full bg-primary-50 flex items-center justify-center text-primary-600 font-black font-heading shrink-0" style="font-size:1.2rem">{i + 1}</div>
+                    <div>
+                      <div class="flex items-center gap-3 mb-1.5">
+                        <p class="font-bold font-heading text-neutral-900">{phase.phase}</p>
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-primary-50 text-primary-700 font-heading">{phase.duration}</span>
+                      </div>
+                      <p class="text-sm leading-relaxed font-body text-neutral-600">{phase.detail}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Process Steps -->
           <div>
-            <h2 class="font-bold mb-6" style="font-family:'Outfit',sans-serif; font-size:1.8rem; color:#1A1A1A">
-              Our Process
-            </h2>
+            <h2 class="font-bold mb-6 font-heading text-neutral-900" style="font-size:1.8rem">Our Process</h2>
             <div class="space-y-4">
               {service.process.map((step, i) => (
                 <div class="flex items-start gap-4">
-                  <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-base shrink-0" style="background:#C41C1C; font-family:'Outfit',sans-serif">
-                    {i + 1}
-                  </div>
-                  <div class="pt-2">
-                    <p class="leading-relaxed" style="color:#4B5563; font-family:'Inter',sans-serif">{step}</p>
-                  </div>
+                  <div class="w-10 h-10 rounded-full bg-primary-600 flex items-center justify-center text-white font-bold text-base shrink-0 font-heading">{i + 1}</div>
+                  <div class="pt-2"><p class="leading-relaxed font-body text-neutral-600">{step}</p></div>
                 </div>
               ))}
             </div>
           </div>
 
+          <!-- Equipment -->
+          {contentSections.equipment.length > 0 && (
+            <div>
+              <h2 class="font-bold mb-6 font-heading text-neutral-900" style="font-size:1.8rem">Equipment We Use</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {contentSections.equipment.map(eq => (
+                  <div class="bg-neutral-50 rounded-xl p-5 border border-neutral-100">
+                    <h3 class="font-bold text-sm mb-3 font-heading text-neutral-900">{eq.category}</h3>
+                    <ul class="space-y-2">
+                      {eq.items.map(item => (
+                        <li class="flex items-start gap-2 text-sm font-body text-neutral-600">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5"><path d="m9 18 6-6-6-6"/></svg>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Safety -->
+          {contentSections.safetyProtocols.length > 0 && (
+            <div>
+              <h2 class="font-bold mb-4 font-heading text-neutral-900" style="font-size:1.8rem">Safety Measures &amp; Compliance</h2>
+              <p class="text-sm leading-relaxed mb-5 font-body text-neutral-500">Safety is our top priority on every Georgia demolition project. Here are our key safety protocols for {service.name.toLowerCase()}:</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {contentSections.safetyProtocols.map(protocol => (
+                  <div class="flex items-start gap-3 p-4 bg-green-50 rounded-xl border border-green-100">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5"><path d="m20 6-11 11-5-5"/></svg>
+                    <span class="text-sm leading-relaxed font-body text-neutral-700">{protocol}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Waste & Environmental -->
+          {contentSections.wastePlan.length > 0 && (
+            <div>
+              <h2 class="font-bold mb-4 font-heading text-neutral-900" style="font-size:1.8rem">Waste Disposal &amp; Environmental Responsibility</h2>
+              <p class="text-sm leading-relaxed mb-5 font-body text-neutral-500">We are committed to eco-friendly demolition practices across Georgia. Our waste management plan for {service.name.toLowerCase()} includes:</p>
+              <div class="space-y-3">
+                {contentSections.wastePlan.map(item => (
+                  <div class="flex items-start gap-3 p-4 bg-neutral-50 rounded-xl border border-neutral-100">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.6"/></svg>
+                    <span class="text-sm leading-relaxed font-body text-neutral-600">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Preparation Checklist -->
+          {contentSections.prepChecklist.length > 0 && (
+            <div>
+              <h2 class="font-bold mb-4 font-heading text-neutral-900" style="font-size:1.8rem">How to Prepare for {service.name}</h2>
+              <p class="text-sm leading-relaxed mb-5 font-body text-neutral-500">Take these steps before our Georgia crew arrives to ensure a smooth, efficient project:</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {contentSections.prepChecklist.map(item => (
+                  <div class="flex items-start gap-3 p-3">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5"><path d="m20 6-11 11-5-5"/></svg>
+                    <span class="text-sm leading-relaxed font-body text-neutral-600">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- DIY Risks -->
+          {contentSections.diyRisks.length > 0 && (
+            <div>
+              <h2 class="font-bold mb-4 font-heading text-neutral-900" style="font-size:1.8rem">Why DIY {service.name} Is Risky</h2>
+              <p class="text-sm leading-relaxed mb-5 font-body text-neutral-500">While some Georgia homeowners consider DIY approaches, the risks are significant:</p>
+              <div class="grid grid-cols-1 gap-3">
+                {contentSections.diyRisks.map(risk => (
+                  <div class="flex items-start gap-3 p-4 bg-red-50 rounded-xl border border-red-100">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                    <span class="text-sm leading-relaxed font-body text-neutral-700">{risk}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           <!-- Local Advice -->
-          <div class="rounded-xl p-6" style="background:#FEF2F2; border:1px solid #FECACA">
+          <div class="rounded-xl p-6 bg-primary-50 border border-primary-200">
             <div class="flex items-start gap-3 mb-3">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-1"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <h2 class="font-bold" style="font-family:'Outfit',sans-serif; font-size:1.3rem; color:#7A1010">
-                Georgia-Specific Information
-              </h2>
+              <h2 class="font-bold font-heading text-primary-800" style="font-size:1.3rem">Georgia-Specific Information</h2>
             </div>
-            <p class="leading-relaxed" style="color:#560A0A; font-family:'Inter',sans-serif">{service.longContent.localAdvice}</p>
+            <p class="leading-relaxed font-body text-primary-900">{service.longContent.localAdvice}</p>
           </div>
+
+          <!-- Why Choose Us -->
+          {contentSections.whyChooseUs.length > 0 && (
+            <div>
+              <h2 class="font-bold mb-6 font-heading text-neutral-900" style="font-size:1.8rem">Why Choose Georgia Demolition &amp; Removal</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {contentSections.whyChooseUs.map(u => (
+                  <div class="bg-neutral-50 rounded-xl p-6 border border-neutral-100">
+                    <h3 class="font-bold text-sm mb-2 font-heading text-neutral-900">{u.title}</h3>
+                    <p class="text-sm leading-relaxed font-body text-neutral-500">{u.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <!-- FAQs -->
           <div>
-            <h2 class="font-bold mb-6" style="font-family:'Outfit',sans-serif; font-size:1.8rem; color:#1A1A1A">
-              Frequently Asked Questions
-            </h2>
+            <h2 class="font-bold mb-6 font-heading text-neutral-900" style="font-size:1.8rem">Frequently Asked Questions</h2>
             <FAQAccordion faqs={service.faqs} client:load />
           </div>
         </div>
 
         <!-- Sidebar -->
         <div class="space-y-6">
-          <!-- CTA Card -->
-          <div class="rounded-xl p-6 text-white" style="background:#C41C1C">
-            <h3 class="font-bold mb-3" style="font-family:'Outfit',sans-serif; font-size:1.1rem">Get a Free Estimate</h3>
-            <p class="text-sm mb-4" style="color:rgba(255,255,255,0.85); font-family:'Inter',sans-serif">
-              Licensed &amp; insured. Serving all 159 Georgia counties. Call or request online.
-            </p>
-            <div class="space-y-3">
-              <a href="/contact/" class="block bg-white font-bold py-3 rounded-lg text-center text-sm transition-colors hover:bg-neutral-100" style="color:#C41C1C; font-family:'Outfit',sans-serif">
-                Request Quote
-              </a>
-              <a href={`tel:${site.phoneRaw}`} class="block text-white font-bold py-3 rounded-lg text-center text-sm transition-colors border border-white/30 hover:bg-white/10" style="font-family:'Outfit',sans-serif">
-                {site.phone}
-              </a>
-            </div>
-          </div>
-
           <!-- Sticky Sidebar Contact Form -->
           <div class="sticky top-28">
             <ContactForm
@@ -215,60 +320,56 @@ const serviceSchema = JSON.stringify({
             />
           </div>
 
-          <!-- Other services in category -->
-          <div class="rounded-xl p-6" style="border:1px solid #E5E7EB; background:white">
-            <h3 class="font-semibold mb-4 text-sm" style="font-family:'Outfit',sans-serif; color:#1A1A1A">Also in {category.name}</h3>
+          <!-- Quick Info Cards -->
+          <div class="grid grid-cols-1 gap-3">
+            {[
+              { icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>', title: 'Fully Insured', desc: 'GL + Workers Comp coverage' },
+              { icon: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>', title: 'Fast Response', desc: 'Emergency crews 24/7' },
+              { icon: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>', title: '159 Counties', desc: 'Statewide GA coverage' }
+            ].map(card => (
+              <div class="bg-white p-4 rounded-xl flex items-center gap-4 border border-neutral-100 shadow-sm">
+                <div class="w-10 h-10 rounded-lg bg-primary-50 flex items-center justify-center shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={card.icon}></svg>
+                </div>
+                <div>
+                  <p class="font-bold text-sm font-heading text-neutral-900">{card.title}</p>
+                  <p class="text-xs font-body text-neutral-500">{card.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Available in cities -->
+          <div class="rounded-xl p-6 bg-white border border-neutral-100">
+            <h3 class="font-semibold mb-4 text-sm font-heading text-neutral-900">Available in these Georgia cities</h3>
+            <ul class="space-y-1.5">
+              {["Atlanta","Savannah","Augusta","Columbus","Macon","Athens","Marietta","Alpharetta","Sandy Springs","Roswell","Valdosta","Warner Robins"].map(cityName => {
+                const citySlug = cityName.toLowerCase().replace(/ /g, '-');
+                return (
+                  <li>
+                    <a href={`/locations/${citySlug}/${service.slug}/`} class="flex items-center gap-2 text-xs transition-colors hover:text-primary-600 font-body text-neutral-500">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      {service.name} in {cityName}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+            <a href="/locations/" class="block text-center mt-3 text-xs font-semibold font-heading text-primary-600 hover:text-primary-700">
+              All 159 Georgia counties →
+            </a>
+          </div>
+
+          <!-- Other services -->
+          <div class="rounded-xl p-6 bg-white border border-neutral-100">
+            <h3 class="font-semibold mb-4 text-sm font-heading text-neutral-900">Also in {category.name}</h3>
             <ul class="space-y-2">
               {category.subServices.filter(s => s.slug !== service.slug).slice(0, 8).map(s => (
                 <li>
-                  <a href={`/services/${category.slug}/${s.slug}/`} class="flex items-center gap-2 text-sm transition-colors hover:text-red-600" style="color:#6B7280; font-family:'Inter',sans-serif">
+                  <a href={`/services/${category.slug}/${s.slug}/`} class="flex items-center gap-2 text-sm transition-colors hover:text-primary-600 font-body text-neutral-500">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><polyline points="9 18 15 12 9 6"/></svg>
                     {s.name}
                   </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <!-- Quick Info Cards -->
-          <div class="grid grid-cols-1 gap-3">
-            <div class="bg-white p-4 rounded-xl flex items-center gap-4" style="border:1px solid #E5E7EB; box-shadow:0 1px 3px rgba(0,0,0,0.05)">
-              <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background:#FEF2F2">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </div>
-              <div>
-                <p class="font-bold text-sm" style="color:#1A1A1A; font-family:'Outfit',sans-serif">Fully Insured</p>
-                <p class="text-xs" style="color:#6B7280; font-family:'Inter',sans-serif">GL + Workers Comp coverage</p>
-              </div>
-            </div>
-            <div class="bg-white p-4 rounded-xl flex items-center gap-4" style="border:1px solid #E5E7EB; box-shadow:0 1px 3px rgba(0,0,0,0.05)">
-              <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background:#FEF2F2">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              </div>
-              <div>
-                <p class="font-bold text-sm" style="color:#1A1A1A; font-family:'Outfit',sans-serif">Fast Response</p>
-                <p class="text-xs" style="color:#6B7280; font-family:'Inter',sans-serif">Emergency crews available 24/7</p>
-              </div>
-            </div>
-            <div class="bg-white p-4 rounded-xl flex items-center gap-4" style="border:1px solid #E5E7EB; box-shadow:0 1px 3px rgba(0,0,0,0.05)">
-              <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background:#FEF2F2">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              </div>
-              <div>
-                <p class="font-bold text-sm" style="color:#1A1A1A; font-family:'Outfit',sans-serif">159 Counties</p>
-                <p class="text-xs" style="color:#6B7280; font-family:'Inter',sans-serif">Statewide Georgia coverage</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Why Us -->
-          <div class="rounded-xl p-6" style="background:#F9F9F9; border:1px solid #E5E7EB">
-            <h3 class="font-semibold mb-4 text-sm" style="font-family:'Outfit',sans-serif; color:#1A1A1A">Why Choose Us</h3>
-            <ul class="space-y-3">
-              {["Licensed in all 159 GA counties","Fully insured (GL + Workers Comp)","Free on-site estimates","Georgia EPD compliant","Fast project mobilization","Expert hazmat handling"].map(item => (
-                <li class="flex items-center gap-2 text-sm" style="color:#4B5563; font-family:'Inter',sans-serif">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><path d="m20 6-11 11-5-5"/></svg>
-                  {item}
                 </li>
               ))}
             </ul>
@@ -278,14 +379,14 @@ const serviceSchema = JSON.stringify({
     </div>
   </section>
 
-  <!-- GHL Contact Form -->
-  <section class="py-20" style="background:#F5F3EF">
+  <!-- Bottom Contact Form -->
+  <section class="py-20 bg-neutral-50">
     <div class="max-w-3xl mx-auto px-6">
       <div class="text-center mb-10">
-        <h2 class="font-bold mb-3 font-heading" style="font-size:2rem;color:#1A1A1A">
-          Free <span style="color:#C41C1C">{service.name}</span> Estimate
+        <h2 class="font-bold mb-3 font-heading text-neutral-900" style="font-size:2rem">
+          Free <span class="text-primary-600">{service.name}</span> Estimate
         </h2>
-        <p class="font-body" style="color:#6B7280">Serving all 159 Georgia counties. We respond within 1 business day.</p>
+        <p class="font-body text-neutral-500">Serving all 159 Georgia counties. We respond within 1 business day.</p>
       </div>
       <ContactForm
         title={`Free ${service.name} Estimate`}
