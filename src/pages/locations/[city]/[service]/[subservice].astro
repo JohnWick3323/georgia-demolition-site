@@ -6,11 +6,17 @@ import CTASection from '../../../../components/CTASection.astro';
 import ContactForm from '../../../../components/ContactForm.astro';
 import { mainServices, type SubService, type MainService } from '../../../../data/services';
 import { getContentForService, type ServiceContentSections } from '../../../../data/services/common-content';
+import { buildLocalParagraph, buildAreasServed, buildLocalFaqs } from '../../../../data/services/local-context';
 import { locations, type Location } from '../../../../data/locations';
 import { site } from '../../../../data/site';
 
 export function getStaticPaths() {
-  return locations.flatMap(loc =>
+  // 4-tier pruning: subservice pages ONLY for Tier B (10k-50k) — the sweet spot.
+  // Tier C (2k-10k) gets service pages but no subservice; A/D get main only.
+  const expandableLocations = locations.filter(
+    (loc) => (loc.population ?? 0) >= 10000 && (loc.population ?? 0) < 50000
+  );
+  return expandableLocations.flatMap(loc =>
     mainServices.flatMap(ms =>
       ms.subServices.map(sub => ({
         params: { city: loc.slug, service: ms.slug, subservice: sub.slug },
@@ -36,7 +42,12 @@ const title = titleFull.length > 60
   ? `${subService.name} ${location.name}, GA | Georgia Demo Pros`
   : titleFull;
 
-const description = `Licensed ${subService.name.toLowerCase()} in ${location.name}, Georgia. ${location.county} County — serving ${location.name} and all 159 GA counties with professional demolition. Free estimates.`;
+const description = `Licensed ${subService.name.toLowerCase()} in ${location.name}, Georgia. ${location.county} County — serving ${location.name} and all 576 cities across Georgia with professional demolition. Free estimates.`;
+
+// Unique local paragraph (real per-city data: soil, water, landmarks, county)
+const localParagraph = buildLocalParagraph(location, subService.name);
+const areasServed = buildAreasServed(location);
+const localFaqs = buildLocalFaqs(location, subService.name);
 
 // Breadcrumbs
 const breadcrumbs = [
@@ -68,20 +79,20 @@ const serviceSchema = JSON.stringify({
   "provider": { "@id": `${site.url}/#organization` }
 });
 
-const faqItems = contentSections.costFactors
-  ? [].concat(
-      [{ question: `How much does ${subService.name.toLowerCase()} cost in ${location.name}, GA?`, answer: `${contentSections.typicalCostRange}. Get a free on-site estimate for your specific project in ${location.name}.` }],
-      [{ question: `Do I need a permit for ${subService.name.toLowerCase()} in ${location.county} County?`, answer: `Yes, most ${subService.name.toLowerCase()} projects in ${location.county} County require demolition permits from the county building department. Georgia Demolition & Removal handles the entire permit process — from application to final inspection — for all ${location.name} projects.` }],
-      [{ question: `How long does ${subService.name.toLowerCase()} take in ${location.name}?`, answer: `Typical ${subService.name.toLowerCase()} in ${location.name} is completed within the timeline phases outlined for our Georgia operations. Specific timing depends on project scope, access, and ${location.county} County inspection schedules. We provide a detailed timeline during your free on-site estimate.` }],
-      [{ question: `Which areas do you serve for ${subService.name.toLowerCase()} near ${location.name}?`, answer: `We serve ${subService.name.toLowerCase()} in ${location.name} and all surrounding ${location.county} County communities. We also serve all 159 Georgia counties — from Chattahoochee to Camden, from the Blue Ridge Mountains to the Golden Isles.` }],
-      [{ question: `Is your ${subService.name.toLowerCase()} work in ${location.name} environmentally friendly?`, answer: `Yes. We use dust suppression systems, recycle concrete at Georgia-certified facilities, sort metals for scrap recycling, and follow Georgia EPD waste management regulations for all ${location.name} projects.` }],
-      [{ question: `Are you licensed for ${subService.name.toLowerCase()} in ${location.name}?`, answer: `Yes, Georgia Demolition & Removal is fully licensed and insured for ${subService.name.toLowerCase()} in ${location.name} and throughout ${location.county} County. We carry general liability, pollution liability, and workers' compensation coverage.` }],
-    )
-  : [
-      { question: `How much does ${subService.name.toLowerCase()} cost in ${location.name}, GA?`, answer: `Costs vary based on project scope, access, and conditions in ${location.county} County. We provide a detailed written estimate after a free on-site assessment at your ${location.name} property — no obligation.` },
-      { question: `Do I need a permit for ${subService.name.toLowerCase()} in ${location.name}?`, answer: `Yes, ${subService.name.toLowerCase()} in ${location.county} County requires proper permits. Georgia Demolition & Removal manages the entire permitting process for ${location.name} customers.` },
-      { question: `How quickly can you start ${subService.name.toLowerCase()} in ${location.name}?`, answer: `Most ${location.name} projects begin within 1 week of estimate approval. Emergency service is available 24/7 across ${location.county} County.` }
-    ];
+const generatedFaqs: { question: string; answer: string }[] = [
+  { question: `How much does ${subService.name.toLowerCase()} cost in ${location.name}, GA?`, answer: `${contentSections.typicalCostRange}. Get a free on-site estimate for your specific project in ${location.name}.` },
+  { question: `Do I need a permit for ${subService.name.toLowerCase()} in ${location.county} County?`, answer: `Yes, most ${subService.name.toLowerCase()} projects in ${location.county} County require demolition permits from the county building department. Georgia Demolition & Removal handles the entire permit process — from application to final inspection — for all ${location.name} projects.` },
+  { question: `How long does ${subService.name.toLowerCase()} take in ${location.name}?`, answer: `Typical ${subService.name.toLowerCase()} in ${location.name} is completed within the timeline phases outlined for our Georgia operations. Specific timing depends on project scope, access, and ${location.county} County inspection schedules. We provide a detailed timeline during your free on-site estimate.` },
+  { question: `Which areas do you serve for ${subService.name.toLowerCase()} near ${location.name}?`, answer: `We serve ${subService.name.toLowerCase()} in ${location.name} and all surrounding ${location.county} County communities. We also serve 576 cities across Georgia — from Chattahoochee to Camden, from the Blue Ridge Mountains to the Golden Isles.` },
+  { question: `Is your ${subService.name.toLowerCase()} work in ${location.name} environmentally friendly?`, answer: `Yes. We use dust suppression systems, recycle concrete at Georgia-certified facilities, sort metals for scrap recycling, and follow Georgia EPD waste management regulations for all ${location.name} projects.` },
+  { question: `Are you licensed for ${subService.name.toLowerCase()} in ${location.name}?`, answer: `Yes, Georgia Demolition & Removal is fully licensed and insured for demolition work in ${location.name} and throughout Georgia. We carry general liability, pollution liability, and workers compensation insurance on every project.` },
+  { question: `How do I get started with ${subService.name.toLowerCase()} in ${location.name}?`, answer: `Contact Georgia Demolition & Removal for a free on-site estimate in ${location.name}. We assess your project, handle all permits, and schedule your demolition at a time that works for you.` }
+];
+
+const faqItems: { question: string; answer: string }[] = [
+  ...(contentSections.costFactors ? generatedFaqs : (subService.faqs ?? [])),
+  ...localFaqs,
+];
 
 const faqSchema = JSON.stringify({
   "@context": "https://schema.org",
@@ -141,7 +152,7 @@ const faqSchema = JSON.stringify({
           </a>
         </div>
         <div class="flex flex-wrap gap-6 mt-8 pt-6 border-t border-white/18">
-          {["Licensed & Insured", "Free Estimates", "All 159 GA Counties", "Same-Week Response"].map(badge => (
+          {["Licensed & Insured", "Free Estimates", "All 576 cities across Georgia", "Same-Week Response"].map(badge => (
             <div class="flex items-center gap-2 text-sm font-body text-white/70">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
               {badge}
@@ -166,9 +177,12 @@ const faqSchema = JSON.stringify({
               {subService.name} Services in {location.name}, {location.county} County
             </h2>
             <p class="leading-relaxed text-lg font-body text-neutral-600">{subService.longContent.intro}</p>
-            <p class="leading-relaxed mt-4 font-body text-neutral-500">
-              In {location.name}, {subService.name.toLowerCase()} projects must account for {location.county} County's specific regulations, {location.soilType || 'local soil conditions'}, and building department requirements. {location.testimonial ? `Our ${location.name} customers consistently report that our knowledge of ${location.county} County's permit process and inspection requirements makes their projects run smoothly.` : `Our team brings extensive ${location.county} County experience to every ${subService.name.toLowerCase()} project in ${location.name}.`}
-            </p>
+            <p class="leading-relaxed mt-4 font-body text-neutral-500">{localParagraph}</p>
+            {location.testimonial && (
+              <p class="leading-relaxed mt-4 font-body text-neutral-500">
+                Our {location.name} customers consistently report that our knowledge of {location.county} County's permit process and inspection requirements makes their {subService.name.toLowerCase()} projects run smoothly.
+              </p>
+            )}
           </div>
 
           <!-- Local Insight -->
@@ -201,6 +215,15 @@ const faqSchema = JSON.stringify({
                 </div>
               ))}
             </div>
+          </div>
+
+          <!-- Areas Served (real landmarks + neighborhoods) -->
+          <div class="rounded-xl p-6 bg-neutral-50 border border-neutral-100">
+            <div class="flex items-start gap-3 mb-2">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <h3 class="font-bold font-heading text-neutral-900" style="font-size:1.2rem">Areas We Serve in {location.name}</h3>
+            </div>
+            <p class="leading-relaxed font-body text-neutral-600">{areasServed}</p>
           </div>
 
           <!-- Cost Section -->

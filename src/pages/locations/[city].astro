@@ -32,6 +32,16 @@ const nearbyCities = locations
 const topCitySlugs = ["atlanta","savannah","augusta","columbus","macon","athens","marietta","sandy-springs","alpharetta","warner-robins","valdosta","gainesville","dalton","rome","cumming"];
 const hasComboPages = topCitySlugs.includes(location.slug);
 
+// 4-tier pruning by population:
+//   A (>=50k):   main page only — MONEY PAGES get deep inline content
+//   B (10k-50k): full — service + subservice pages
+//   C (2k-10k):  service pages only (no subservice)
+//   D (<2k/CDP): main page only
+const pop = location.population ?? 0;
+const isTierA = pop >= 50000;
+const hasServicePages = pop >= 2000 && pop < 50000;      // Tiers B + C get service pages
+const hasSubservicePages = pop >= 10000 && pop < 50000;  // Only Tier B gets subservice pages
+
 // Breadcrumbs
 const breadcrumbs = [
   { name: "Service Areas", url: "/locations/" },
@@ -198,7 +208,32 @@ const pageSchema = {
             <Image src="/images/content/building-demolition.webp" alt={`Licensed demolition contractors operating excavator in ${location.name}, ${location.county} County, Georgia`} width={800} height={360} class="w-full h-auto object-cover" style="max-height:360px" loading="lazy" />
           </div>
 
-          <!-- Services Grid with combo links -->
+          <!-- Services Grid: Tier A (deep inline) vs Tier B/C (combo links) -->
+          {isTierA && (
+          <div>
+            <h2 class="font-bold mb-6 font-heading" style="font-size:1.8rem; color:#1A1A1A">
+              Demolition services in {location.name}
+            </h2>
+            <div class="space-y-5">
+              {mainServices.map(cat => (
+                <div class="p-5 rounded-xl" style="border:1px solid #E5E7EB; background:white">
+                  <h3 class="font-semibold mb-2 font-heading" style="color:#1A1A1A; font-size:1.05rem">{cat.name}</h3>
+                  <p class="text-sm leading-relaxed font-body mb-3" style="color:#6B7280">{cat.description}</p>
+                  <div class="flex flex-wrap gap-2">
+                    {cat.subServices.slice(0, 8).map(sub => (
+                      <span class="px-2.5 py-1 text-xs rounded-full font-body" style="background:#F5F3EF; color:#4B5563">{sub.name}</span>
+                    ))}
+                    {cat.subServices.length > 8 && (
+                      <span class="px-2.5 py-1 text-xs rounded-full font-body" style="background:#FEF2F2; color:#C41C1C">+{cat.subServices.length - 8} more</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          )}
+
+          {hasServicePages && !isTierA && (
           <div>
             <h2 class="font-bold mb-6 font-heading" style="font-size:1.8rem; color:#1A1A1A">
               Services we offer in {location.name}
@@ -213,14 +248,14 @@ const pageSchema = {
                     </a>
                   </div>
                   <ul class="space-y-1.5">
-                    {cat.subServices.slice(0, 5).map(sub => (
+                    {hasSubservicePages && cat.subServices.slice(0, 5).map(sub => (
                       <li>
                         <a href={`/locations/${location.slug}/${cat.slug}/${sub.slug}/`} class="text-xs font-body hover:text-primary-600 transition-colors" style="color:#6B7280">
                           → {sub.name}
                         </a>
                       </li>
                     ))}
-                    {cat.subServices.length > 5 && (
+                    {hasSubservicePages && cat.subServices.length > 5 && (
                       <li class="text-xs font-body" style="color:#9CA3AF">+{cat.subServices.length - 5} more services</li>
                     )}
                   </ul>
@@ -228,6 +263,7 @@ const pageSchema = {
               ))}
             </div>
           </div>
+          )}
 
           <!-- Testimonial -->
           {location.testimonial && (
@@ -244,6 +280,34 @@ const pageSchema = {
                 </div>
               </div>
             </div>
+          )}
+
+          <!-- Tier A: Deep cost guide + process (money pages) -->
+          {isTierA && (
+          <div>
+            <h2 class="font-bold mb-4 font-heading" style="font-size:1.8rem; color:#1A1A1A">
+              Demolition costs in {location.name}, GA
+            </h2>
+            <p class="text-sm leading-relaxed mb-5 font-body" style="color:#6B7280">
+              Demolition pricing in {location.name} varies by structure type, size, and site access. These are rough planning estimates — every project is quoted after a free on-site assessment, so you always know your exact cost before work begins.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { label: 'Residential teardown', range: '$5,000 – $25,000' },
+                { label: 'Commercial demolition', range: '$15,000 – $150,000+' },
+                { label: 'Pool removal', range: '$3,500 – $15,000' },
+                { label: 'Garage / outbuilding', range: '$2,500 – $10,000' },
+                { label: 'Interior gut / selective', range: '$4,000 – $20,000' },
+                { label: 'Site clearing & grading', range: '$1,500 – $8,000' },
+              ].map(item => (
+                <div class="p-4 rounded-xl flex items-center justify-between" style="background:#F9FAFB; border:1px solid #E5E7EB">
+                  <span class="text-sm font-medium font-body" style="color:#374151">{item.label}</span>
+                  <span class="text-sm font-bold font-heading" style="color:#C41C1C">{item.range}</span>
+                </div>
+              ))}
+            </div>
+            <p class="text-xs mt-3 font-body" style="color:#9CA3AF">* Rough estimates only. Final pricing depends on scope, access, hazardous materials, and {location.county} County permit fees.</p>
+          </div>
           )}
 
           <!-- Landmarks -->
@@ -394,7 +458,7 @@ const pageSchema = {
                 ))}
               </ul>
               <a href="/locations/" class="block text-center mt-4 text-xs font-semibold font-heading transition-colors hover:text-primary-700" style="color:#C41C1C">
-                All 159 Georgia counties →
+                576 cities across Georgia →
               </a>
             </div>
           )}
@@ -418,7 +482,8 @@ const pageSchema = {
     </div>
   </section>
 
-  <!-- Combo Links (all cities now have sub-service combo pages) -->
+  <!-- Combo Links (only for cities with service pages) -->
+  {hasServicePages && (
     <section class="py-12" style="background:#F5F3EF">
       <div class="max-w-7xl mx-auto px-6">
         <h2 class="font-bold mb-6 font-heading" style="font-size:1.5rem; color:#1A1A1A">
@@ -434,6 +499,7 @@ const pageSchema = {
         </div>
       </div>
     </section>
+  )}
 
   <!-- GHL Contact Form -->
   <section class="py-20" style="background:#F5F3EF">
@@ -446,7 +512,7 @@ const pageSchema = {
       </div>
       <ContactForm
         title={`Free Estimate — ${location.name}, GA`}
-        subtitle={`Serving ${location.county} County and all 159 Georgia counties. We respond within 1 business day.`}
+        subtitle={`Serving ${location.county} County and 576 cities across Georgia. We respond within 1 business day.`}
       />
     </div>
   </section>

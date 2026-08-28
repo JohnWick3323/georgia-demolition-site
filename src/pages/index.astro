@@ -20,7 +20,7 @@ const serviceIcons: Record<string, string> = {
 };
 
 const homepageFaqs = [
-  { question: "Do you serve all 159 Georgia counties?", answer: "Yes. Georgia Demolition & Removal provides demolition and removal services across all 159 Georgia counties, from Rabun County in the northeast mountains to Camden County on the Florida border. We have equipment strategically positioned across the state for fast mobilization." },
+  { question: "Do you serve 576 cities across Georgia?", answer: "Yes. Georgia Demolition & Removal provides demolition and removal services across 576 cities across Georgia, from Rabun County in the northeast mountains to Camden County on the Florida border. We have equipment strategically positioned across the state for fast mobilization." },
   { question: "Are you licensed and insured for demolition work in Georgia?", answer: "Yes. We are fully licensed and insured for demolition work in Georgia, carrying general liability insurance, pollution liability coverage, and workers compensation insurance. We maintain all required Georgia state licenses for demolition contracting." },
   { question: "How much does demolition cost in Georgia?", answer: "Demolition costs in Georgia vary widely depending on the structure type, size, construction materials, hazardous materials present, and site conditions. Residential structure demolitions typically range from $5,000 to $25,000. We provide free on-site estimates for all projects." },
   { question: "Do I need a permit for demolition in Georgia?", answer: "Most demolition projects in Georgia require permits from the county building department. We handle the permit process for you, including required notifications to Georgia EPD for asbestos, utility disconnections, and any other regulatory requirements." },
@@ -62,7 +62,7 @@ const faqSchema = {
 
 <BaseLayout
   title="Georgia Demolition & Removal | Licensed Demo Contractors"
-  description="Licensed, insured demolition contractors serving all 159 Georgia counties since 2010. Residential, commercial & industrial demolition with free estimates."
+  description="Licensed, insured demolition contractors serving 576 cities across Georgia since 2010. Residential, commercial & industrial demolition with free estimates."
 >
   <script type="application/ld+json" set:html={JSON.stringify(homeBreadcrumbs)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
@@ -70,18 +70,17 @@ const faqSchema = {
 
   <!-- SECTION 1 — HERO -->
   <section class="relative min-h-screen flex items-center" aria-label="Georgia Demolition and Removal — safe, fast, and reliable demolition across Georgia" style="background: linear-gradient(to right, rgba(0,0,0,0.84) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.25) 100%), url('/images/hero-home.webp') center/cover no-repeat; background-color:#1a0a0a;">
-    <div class="absolute top-24 left-6 md:left-16 text-white text-xs font-semibold px-4 py-2 rounded-full flex items-center gap-2" style="background:rgba(122,16,16,0.92); backdrop-filter:blur(8px); font-family:'Outfit',sans-serif">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-      FULLY LICENSED &amp; INSURED GEORGIA EXPERTS
-    </div>
-
     <div class="max-w-7xl mx-auto px-6 md:px-16 py-32 w-full">
       <div class="max-w-2xl">
+        <div class="inline-flex text-white text-xs font-semibold px-4 py-2 rounded-full items-center gap-2 mb-6" style="background:rgba(122,16,16,0.92); backdrop-filter:blur(8px); font-family:'Outfit',sans-serif">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          FULLY LICENSED &amp; INSURED GEORGIA EXPERTS
+        </div>
         <h1 class="font-bold text-white leading-tight mb-6" style="font-family:'Outfit',sans-serif; font-size:clamp(2.8rem,6vw,4.5rem); line-height:1.1">
           Expert Demolition & Removal <span style="color:#F87171">Across All of Georgia</span>
         </h1>
         <p class="text-xl mb-10 leading-relaxed max-w-xl" style="color:rgba(255,255,255,0.82); font-family:'Inter',sans-serif">
-          From residential teardowns to commercial demolition, we provide safe, licensed, and efficient services across all 159 Georgia counties.
+          From residential teardowns to commercial demolition, we provide safe, licensed, and efficient services across 576 cities across Georgia.
         </p>
         <div class="flex flex-wrap gap-4">
           <a href="/contact/" class="text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all shadow-xl hover:-translate-y-1" style="background:#C41C1C; font-family:'Outfit',sans-serif">
@@ -94,7 +93,7 @@ const faqSchema = {
         </div>
         <div class="flex flex-wrap gap-8 mt-12 pt-8" style="border-top:1px solid rgba(255,255,255,0.2)">
           <div><div class="font-bold text-2xl" style="color:#F87171; font-family:'Outfit',sans-serif">500+</div><div class="text-sm mt-0.5" style="color:rgba(255,255,255,0.65); font-family:'Inter',sans-serif">Projects Done</div></div>
-          <div><div class="font-bold text-2xl" style="color:#F87171; font-family:'Outfit',sans-serif">159</div><div class="text-sm mt-0.5" style="color:rgba(255,255,255,0.65); font-family:'Inter',sans-serif">GA Counties</div></div>
+          <div><div class="font-bold text-2xl" style="color:#F87171; font-family:'Outfit',sans-serif">576+</div><div class="text-sm mt-0.5" style="color:rgba(255,255,255,0.65); font-family:'Inter',sans-serif">GA Cities</div></div>
           <div><div class="font-bold text-2xl" style="color:#F87171; font-family:'Outfit',sans-serif">24/7</div><div class="text-sm mt-0.5" style="color:rgba(255,255,255,0.65); font-family:'Inter',sans-serif">Emergency</div></div>
           <div><div class="font-bold text-2xl" style="color:#F87171; font-family:'Outfit',sans-serif">100%</div><div class="text-sm mt-0.5" style="color:rgba(255,255,255,0.65); font-family:'Inter',sans-serif">Licensed</div></div>
         </div>
@@ -112,7 +111,7 @@ const faqSchema = {
         </div>
         <div class="flex items-center gap-2">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 3 21 3s-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.1z"/></svg>
-          All 159 GA Counties
+          All 576 cities across Georgia
         </div>
         <div class="flex items-center gap-2">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -142,7 +141,7 @@ const faqSchema = {
           Expert Demolition Solutions <span style="color:#C41C1C">for Georgia</span>
         </h2>
         <p class="text-lg max-w-2xl mx-auto" style="color:#6B7280; font-family:'Inter',sans-serif">
-          Complete demolition and removal services for residential, commercial, and industrial properties throughout all 159 Georgia counties.
+          Complete demolition and removal services for residential, commercial, and industrial properties throughout 576 cities across Georgia.
         </p>
       </div>
 
@@ -194,8 +193,8 @@ const faqSchema = {
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
           { num: "01", title: "Licensed & Insured", desc: "Fully licensed Georgia demolition contractors with complete liability and workers' comp coverage on every job." },
-          { num: "02", title: "Free Estimates", desc: "No-obligation on-site estimates across all 159 Georgia counties. Get your quote within 24 hours." },
-          { num: "03", title: "All 159 Counties", desc: "We mobilize to every corner of Georgia, from Atlanta metro to the coast and mountains." },
+          { num: "02", title: "Free Estimates", desc: "No-obligation on-site estimates across 576 cities across Georgia. Get your quote within 24 hours." },
+          { num: "03", title: "All 576 Cities", desc: "We mobilize to every corner of Georgia, from Atlanta metro to the coast and mountains." },
           { num: "04", title: "Same-Week Start", desc: "Most projects begin within the same week of estimate approval. Emergency demolition available 24/7." }
         ].map(item => (
           <div class="bg-white rounded-xl p-7 relative overflow-hidden transition-all hover:-translate-y-1" style="box-shadow:0 2px 12px rgba(0,0,0,0.06)">
@@ -293,7 +292,7 @@ const faqSchema = {
           Serving All of <span style="color:#C41C1C">Georgia</span>
         </h2>
         <p class="text-lg max-w-xl mx-auto" style="color:#6B7280; font-family:'Inter',sans-serif">
-          From Atlanta to Savannah, Augusta to Columbus — we serve all 159 Georgia counties.
+          From Atlanta to Savannah, Augusta to Columbus — we serve 576 cities across Georgia.
         </p>
       </div>
 
@@ -399,7 +398,7 @@ const faqSchema = {
       </div>
       <div class="text-center">
         <a href="/locations/" class="inline-flex items-center gap-2 font-semibold text-sm px-6 py-3 rounded-lg border-2 transition-all hover:-translate-y-0.5 font-heading" style="border-color:#C41C1C; color:#C41C1C">
-          View all 159 Georgia counties
+          View 576 cities across Georgia
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
       </div>
@@ -413,7 +412,7 @@ const faqSchema = {
         Ready to Start Your Georgia Demolition Project?
       </h2>
       <p class="text-lg mb-10 max-w-2xl mx-auto" style="color:rgba(255,255,255,0.85); font-family:'Inter',sans-serif">
-        Licensed, insured &amp; serving all 159 Georgia counties. Get your free on-site estimate today — no obligation.
+        Licensed, insured &amp; serving 576 cities across Georgia. Get your free on-site estimate today — no obligation.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a href="/contact/" class="bg-white font-bold px-8 py-4 rounded-lg text-lg transition-all hover:bg-neutral-100 hover:-translate-y-0.5 shadow-lg" style="color:#C41C1C; font-family:'Outfit',sans-serif">

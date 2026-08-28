@@ -1,0 +1,638 @@
+==County seat listing==
+
+{|class=wikitable
+|+List of County Seats of Georgia{{cite web |url= http://georgiainfo.galileo.usg.edu/topics/counties/group/all|title= Counties|author= |date= 2016|website= GEORGIAINFO: An Online Georgia Almanac |publisher= Digital Library of Georgia|access-date= 23 August 2016|quote=}}
+!County!!County Seat!!Date!!Notes!!Coordinates
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Appling County, Georgia|Appling]]'''Created 1818
+|Holmesville||1828||Holmesville was known as Appling Court House from 1828 until May 1831.||{{coord|31.704080|N|82.320398|W|scale:500}}
+|-
+|'''[[Baxley, Georgia|Baxley]]'''||1873||Established in 1870 as Station Number 7 of the [[Macon and Brunswick Railroad]].||{{coord|31.778091|N|82.349246|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Atkinson County, Georgia|Atkinson]]'''Created 1917
+|'''[[Pearson, Georgia|Pearson]]'''||1917||Established in 1875 as a depot of the [[Brunswick and Western Railroad]].||{{coord|31.298333|N|82.852778|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Bacon County, Georgia|Bacon]]'''Created 1914
+|'''[[Alma, Georgia|Alma]]'''||1914||Established in 1900 as a depot of the [[Atlantic Coast Line Railroad]].||{{coord|31.541667|N|82.466667|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Baker County, Georgia|Baker]]'''Created 1825
+|Byron||1828||||{{coord|31.611492|N|84.274849|W|scale:500}}
+|-
+|'''[[Newton, Georgia|Newton]]'''||1837||On the banks of the [[Flint River (Georgia)|Flint River]].||{{coord|31.316667|N|84.339444|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Baldwin County, Georgia|Baldwin]]'''Created 1803
+|[[Hillsboro, Georgia|Hillsborough]]||1806||||{{coord|33.179722|N|83.641111|W|scale:500}}
+|-
+|'''[[Milledgeville, Georgia|Milledgeville]]'''||1807||Established 1803 on the [[Oconee River]]. State capital from 1804 to 1868. ||{{coord|33.087778|N|83.233333|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Banks County, Georgia|Banks]]'''Created 1859
+|New Lebanon||1859||Designated the temporary county seat upon establishment of county in February 1859.||
+|-
+|'''[[Homer, Georgia|Homer]]'''||1859||||{{coord|34.333889|N|83.499722|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Barrow County, Georgia|Barrow]]'''Created 1914
+|'''[[Winder, Georgia|Winder]]'''||1914||||{{coord|33.303333|N|83.685833|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Bartow County, Georgia|Bartow]]'''Created 1832
+|[[Cassville, Georgia|Cassville]]||1833||Destroyed by General Sherman's troops in 1864 during the [[American Civil War]].||{{coord|34.243889|N|84.852778|W|scale:500}}
+|-
+|'''[[Cartersville, Georgia|Cartersville]]'''||1867||Voted as new county seat in January 1867. ||{{coord|34.165929|N|84.797749|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Ben Hill County, Georgia|Ben Hill]]'''Created 1906
+|'''[[Fitzgerald, Georgia|Fitzgerald]]'''||1906||Established in 1895 as a colony for Union Veterans||{{coord|31.715556|N|83.256389|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Berrien County, Georgia|Berrien]]'''Created 1856
+|'''[[Nashville, Georgia|Nashville]]'''||1856||||{{coord|31.206944|N|83.246667|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Bibb County, Georgia|Bibb]]'''Created 1822
+|'''[[Macon, Georgia|Macon]]'''||1822||Incorporated in 1823.||{{coord|32.834722|N|83.651667|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Bleckley County, Georgia|Bleckley]]'''Created 1912
+|'''[[Cochran, Georgia|Cochran]]'''||1912||||{{coord|32.386667|N|83.350556|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Brantley County, Georgia|Brantley]]'''Created 1920
+|[[Hoboken, Georgia|Hoboken]]||1920||||{{coord|31.182778|N|82.133889|W|scale:500}}
+|-
+|'''[[Nahunta, Georgia|Nahunta]]'''||1923||Changed after a referendum.||{{coord|31.204444|N|81.982222|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Brooks County, Georgia|Brooks]]'''Created 1858
+|'''[[Quitman, Georgia|Quitman]]'''||1858||||{{coord|30.784722|N|83.560833|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=4|'''[[Bryan County, Georgia|Bryan]]'''Created 1793
+|[[Hardwick, Bryan County, Georgia|Hardwick]]||1793||||
+|-
+|Bryan Courthouse||1797||Also known as Cross Roads. Near modern [[Richmond Hill, Georgia|Richmond Hill]].||{{coord|30.784722|N|81.312399|W|scale:500}}
+|-
+|[[Clyde, Georgia|Clyde]]||1814||Established as Mansford. Renamed as Eden. Renamed Bryan. Later renamed as Clyde||{{coord|32.0110|N|81.4089|W|scale:500}}
+|-
+|'''[[Pembroke, Georgia|Pembroke]]'''||1937||Established in 1892. County seat moved to Pembroke because of the establishment of [[Fort Stewart]]||{{coord|32.135908|N|81.621857|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Bulloch County, Georgia|Bulloch]]'''Created 1796
+|'''[[Statesboro, Georgia|Statesboro]]'''||1803||||{{coord|32.445278|N|81.779167|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Burke County, Georgia|Burke]]'''Created 1777
+|'''[[Waynesboro, Georgia|Waynesboro]]'''||1777||||{{coord|33.090556|N|82.015278|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Butts County, Georgia|Butts]]'''Created 1825
+|'''[[Jackson, Georgia|Jackson]]'''||1826||||{{coord|33.293611|N|83.966709|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=3|'''[[Calhoun County, Georgia|Calhoun]]'''Created 1854
+|[[Morgan, Georgia|Morgan]]||1856||||{{coord|31.538889|N|84.601111|W|scale:500}}
+|-
+|[[Arlington, Georgia|Arlington]]||1923||Changed by referendum following a petition.||{{coord|31.439444|N|84.724722|W|scale:500}}
+|-
+|'''[[Morgan, Georgia|Morgan]]'''||1929||Changed by referendum following a petition.||{{coord|31.538889|N|84.601111|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=4|'''[[Camden County, Georgia|Camden]]'''Created 1777
+|St. Patrick||1787||||
+|-
+|Jefferson||1800||Later known as Jeffersonton.||{{coord|30.967265|N|81.790451|W|scale:500}}
+|-
+|[[St. Marys, Georgia|St. Marys]]||1869||Changed by referendum with the other choice having been Satilla Mills.||{{coord|30.756389|N|81.571389|W|scale:500}}
+|-
+|'''[[Woodbine, Georgia|Woodbine]]'''||1923||Incorporated in 1908.||{{coord|30.963758|N|81.722830|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Campbell County, Georgia|Campbell]]'''Created 1828Merged with [[Fulton County, Georgia|Fulton]] in 1932
+|[[Campbellton, Georgia|Campbellton]]||1829||||{{coord|33.650278|N|84.669444|W|scale:500}}
+|-
+|[[Fairburn, Georgia|Fairburn]]||1871|| Established in 1830. In 1853, the [[Atlanta and West Point Railroad]] passed through the community. Changed by referendum.||{{coord|33.5625|N|84.581389|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Candler County, Georgia|Candler]]'''Created 1914
+|'''[[Metter, Georgia|Metter]]'''||1914||||{{coord|32.396389|N|82.0625|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Carroll County, Georgia|Carroll]]'''Created 1826
+|Old Carrollton||1827||||{{coord|33.6331|N|84.9841|W|scale:500}}
+|-
+|'''[[Carrollton, Georgia|Carrollton]]'''||1829||More centrally located.||{{coord|33.580833|N|85.076667|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Catoosa County, Georgia|Catoosa]]'''Created 1853
+|'''[[Ringgold, Georgia|Ringgold]]'''||1854||||{{coord|34.917222|N|85.115833|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Charlton County, Georgia|Charlton]]'''Created 1854
+|[[Trader's Hill, Georgia|Trader's Hill]]||1855||||{{coord| 30.779759|N|82.030899|W|scale:500}}
+|-
+|'''[[Folkston, Georgia|Folkston]]'''||1901||Established as a stop on Savannah, Florida and Western Railroad in 1880. Changed to county seat after a referendum.||{{coord|30.834444|N|82.004722|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Chatham County, Georgia|Chatham]]'''Created 1777
+|'''[[Savannah, Georgia|Savannah]]'''||1777||''De facto'' county seat from establishment of county system. ''De jure'' county seat on 1784.||{{coord|32.016667|N|81.116667|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Chattahoochee County, Georgia|Chattahoochee]]'''Created 1854
+|'''[[Cusseta, Georgia|Cusseta]]'''||1854||||{{coord|32.305556|N|84.776944|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Chattooga County, Georgia|Chattooga]]'''Created 1838
+|'''[[Summerville, Georgia|Summerville]]'''||1838||||{{coord|32.305556|N|84.776944|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Cherokee County, Georgia|Cherokee]]'''Created 1831
+|'''[[Canton, Georgia|Canton]]'''||1833||||{{coord|34.227222|N|84.494722|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Clarke County, Georgia|Clarke]]'''Created 1801
+|[[Watkinsville, Georgia|Watkinvsille]]||1802||Became county seat of Oconee County in 1875.||{{coord|33.862778|N|83.408056|W|scale:500}}
+|-
+|'''[[Athens, Georgia|Athens]]'''||1871||||{{coord|33.951986|N|83.383333|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Clay County, Georgia|Clay]]'''Created 1854
+|'''[[Fort Gaines, Georgia|Fort Gaines]]'''||1854||||{{coord|31.614167|N|85.048333|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Clayton County, Georgia|Clayton]]'''Created 1858
+|'''[[Jonesboro, Georgia|Jonesboro]]'''||1858||||{{coord|33.524444|N|84.354167|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Clinch County, Georgia|Clinch]]'''Created 1850
+|Magnolia||1850||||{{coord|30.9404|N|82.7820|W|scale:500}}
+|-
+|'''[[Homerville, Georgia|Homerville]]'''||1860||Became Station Number 11 on the [[Atlantic and Gulf Railroad (1856\u201379)|Atlantic and Gulf Railroad]] in 1859.||{{coord|31.036944|N|82.751389|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Cobb County, Georgia|Cobb]]'''Created 1832
+|'''[[Marietta, Georgia|Marietta]]'''||1834||||{{coord|33.953333|N|84.540556|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Coffee County, Georgia|Coffee]]'''Created 1854
+|'''[[Douglas, Georgia|Douglas]]'''||1855||||{{coord|31.5075|N|82.850833|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Colquitt County, Georgia|Colquitt]]'''Created 1854
+|'''[[Moultrie, Georgia|Moultrie]]'''||1859||||{{coord|31.166667|N|83.783333|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=5|'''[[Columbia County, Georgia|Columbia]]'''Created 1790
+|Cobbham||1790||||{{coord|33.5690|N|82.4326|W|scale:500}}
+|-
+|Brownsborough||1790||Competing county seat.||
+|-
+|Kiokee||1790s||||
+|-
+|'''[[Appling, Georgia|Appling]]'''||1792||''De jure'' county seat.||{{coord|33.545833|N|82.315833|W|scale:500}}
+|-
+|'''[[Evans, Georgia|Evans]]'''||1980s||''De facto'' county seat.||{{coord|33.5375|N|82.127778|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Cook County, Georgia|Cook]]'''Created 1918
+|'''[[Adel, Georgia|Adel]]'''||1918||||{{coord|31.138333|N|83.425833|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Coweta County, Georgia|Coweta]]'''Created 1826
+|'''[[Newnan, Georgia|Newnan]]'''||1828||||{{coord|33.376389|N|84.788611|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Crawford County, Georgia|Crawford]]'''Created 1822
+|'''[[Knoxville, Georgia|Knoxville]]'''||1823||||{{coord|31.648333|N|83.382778|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Crisp County, Georgia|Crisp]]'''Created 1905
+|'''[[Cordele, Georgia|Cordele]]'''||1905||||{{coord|31.964167|N|83.777222|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Dade County, Georgia|Dade]]'''Created 1837
+|'''[[Trenton, Georgia|Trenton]]'''||1839||||{{coord|34.875556|N|85.508611|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Dawson County, Georgia|Dawson]]'''Created 1857
+|'''[[Dawsonville, Georgia|Dawsonville]]'''||1857||||{{coord|34.421205|N|84.119080|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Decatur County, Georgia|Decatur]]'''Created 1823
+|'''[[Bainbridge, Georgia|Bainbridge]]'''||1824||||{{coord|30.904722|N|84.571111|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[DeKalb County, Georgia|DeKalb]]'''Created 1822
+|'''[[Decatur, Georgia|Decatur]]'''||1823||||{{coord|33.771389|N|84.297778|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Dodge County, Georgia|Dodge]]'''Created 1870
+|'''[[Eastman, Georgia|Eastman]]'''||1870||||{{coord|32.197778|N|83.179167|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=4|'''[[Dooly County, Georgia|Dooly]]'''Created 1821
+|[[Vienna, Georgia|Berrien]]||1826|| Name changed to Drayton in 1833.||{{coord|32.091408|N|83.796366|W|scale:500}}
+|-
+|Drayton||1836||Same name, but new location near the [[Flint River (Georgia)|Flint River]].||{{coord|32.074500|N|83.955800|W|scale:500}}
+|-
+|Glascock||1839||Authorized but never established.||
+|-
+|'''[[Vienna, Georgia|Vienna]]'''||1841||Located at the same site of Berrien.||{{coord|32.091408|N|83.796366|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Dougherty County, Georgia|Dougherty]]'''Created 1853
+|'''[[Albany, Georgia|Albany]]'''||1853||||{{coord|31.582222|N|84.165556|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Douglas County, Georgia|Douglas]]'''Created 1870
+|'''[[Douglasville, Georgia|Douglasville]]'''||1874||||{{coord|33.749722|N|84.723056|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Early County, Georgia|Early]]'''Created 1818
+|'''[[Blakely, Georgia|Blakely]]'''||1826||||{{coord|31.376667|N|84.933889|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Echols County, Georgia|Echols]]'''Created 1858
+|'''[[Statenville, Georgia|Statenville]]'''||1859||||{{coord|30.703454|N|83.028043|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=4|'''[[Effingham County, Georgia|Effingham]]'''Created 1777
+|Tuckasee King||1784||||{{coord|32.5322|N|81.2767|W|scale:500}}
+|-
+|Elberton||1787||Located on the [[Ogeechee River]] when Effingham included much of modern [[Bulloch County, Georgia|Bulloch]] and [[Bryan County, Georgia|Bryan]] counties.||
+|-
+|[[Ebenezer, Georgia|Ebenezer]]||1797||Temporary count seat.||{{coord|32.376667|N|81.180833|W|scale:500}}
+|-
+|'''[[Springfield, Georgia|Springfield]]'''||1799||||{{coord|32.368333|N|81.310278|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Elbert County, Georgia|Elbert]]'''Created 1790
+|'''[[Elberton, Georgia|Elberton]]'''||1790||||{{coord|34.109722|N|82.865556|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Emanuel County, Georgia|Emanuel]]'''Created 1812
+|'''[[Swainsboro, Georgia|Swainsboro]]'''||1822||||{{coord|32.593611|N|82.332222|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Evans County, Georgia|Evans]]'''Created 1914
+|'''[[Claxton, Georgia|Claxton]]'''||1914||||{{coord|32.160833|N|81.908611|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Fannin County, Georgia|Fannin]]'''Created 1854
+|[[Morganton, Georgia|Morganton]]||1854||||{{coord|34.876667|N|84.245556|W|scale:500}}
+|-
+|'''[[Blue Ridge, Georgia|Blue Ridge]]'''||1895||Established in 1886 along the path of the Marietta and North Georgia Railroad, which had bypassed Morganton. Changed by referendum.||{{coord|34.868333|N|84.321111|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Fayette County, Georgia|Fayette]]'''Created 1821
+|'''[[Fayetteville, Georgia|Fayetteville]]'''||1823||||{{coord|33.447778|N|84.461667|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Floyd County, Georgia|Floyd]]'''Created 1832
+|[[Livingston, Georgia|Livingston]]||1833||||{{coord|34.212778|N|85.348611|W|scale:500}}
+|-
+|'''[[Rome, Georgia|Rome]]'''||1834||||{{coord|34.257101|N|85.164660|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Forsyth County, Georgia|Forsyth]]'''Created 1832
+|'''[[Cumming, Georgia|Cumming]]'''||1834||||{{coord|34.207090|N|84.140098|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Franklin County, Georgia|Franklin]]'''Created 1784
+|||1793||Location unknown, but not Carnesville.||
+|-
+|'''[[Carnesville, Georgia|Carnesville]]'''||1805||||{{coord|34.371389|N|83.233611|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Fulton County, Georgia|Fulton]]'''Created 1853
+|'''[[Atlanta, Georgia|Atlanta]]'''||1853||||{{coord|33.755|N|84.39|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Gilmer County, Georgia|Gilmer]]'''Created 1832
+|'''[[Ellijay, Georgia|Ellijay]]'''||1834||||{{coord|34.694722|N|84.48361|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Glascock County, Georgia|Glascock]]'''Created 1857
+|'''[[Gibson, Georgia|Gibson]]'''||1857||||{{coord|33.232778|N|82.595278|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Glynn County, Georgia|Glynn]]'''Created 1777
+|[[Fort Frederica National Monument|Fort Frederica]]||1777||||{{coord|31.22384|N|81.39324|W|scale:500}}
+|-
+|'''[[Brunswick, Georgia|Brunswick]]'''||1797||Established in 1771. Site of county elections in 1787. Designated county seat in 1797. ||{{coord|31.158889|N|81.489167|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Gordon County, Georgia|Gordon]]'''Created 1850
+|'''[[Calhoun, Georgia|Calhoun]]'''||1851||||{{coord|34.502561|N|84.216667|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Grady County, Georgia|Grady]]'''Created 1905
+|'''[[Cairo, Georgia|Cairo]]'''||1905||||{{coord|30.883333|N|84.951046|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Greene County, Georgia|Greene]]'''Created 1786
+|'''[[Greensboro, Georgia|Greensboro]]'''||1787||Designated permanent county seat in 1802.||{{coord|33.571667|N|83.180833|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Gwinnett County, Georgia|Gwinnett]]'''Created 1818
+|'''[[Lawrenceville, Georgia|Lawrenceville]]'''||1820||||{{coord|33.953056|N|83.9925|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Habersham County, Georgia|Habersham]]'''Created 1818
+|'''[[Clarkesville, Georgia|Clarkesville]]'''||1823|| ||{{coord|34.612961|N|83.524226|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Hall County, Georgia|Hall]]'''Created 1818
+|'''[[Gainesville, Georgia|Gainesville]]'''||1821|| ||{{coord|34.304444|N|83.833889|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Hancock County, Georgia|Hancock]]'''Created 1793
+|'''[[Sparta, Georgia|Sparta]]'''||1797|| ||{{coord|33.283333|N|82.966667|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Haralson County, Georgia|Haralson]]'''Created 1856
+|'''[[Buchanan, Georgia|Buchanan]]'''||1856|| ||{{coord|33.801667|N|85.183611|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Harris County, Georgia|Harris]]'''Created 1827
+|'''[[Hamilton, Georgia|Hamilton]]'''||1828|| ||{{coord|32.764722|N|84.873056|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Hart County, Georgia|Hart]]'''Created 1853
+|'''[[Hartwell, Georgia|Hartwell]]'''||1854|| ||{{coord|34.352778|N|82.931111|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Heard County, Georgia|Heard]]'''Created 1830
+|'''[[Franklin, Georgia|Franklin]]'''||1831|| ||{{coord|33.279722|N|85.098333|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Henry County, Georgia|Henry]]'''Created 1821
+|'''[[McDonough, Georgia|McDonough]]'''||1823|| ||{{coord|33.447181|N|84.146925|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Houston County, Georgia|Houston]]'''Created 1821
+|'''[[Perry, Georgia|Perry]]'''||1823|| ||{{coord|32.458219|N|83.731621|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Irwin County, Georgia|Irwin]]'''Created 1818
+|[[Irwinville, Georgia|Irwinville]]||1831||||{{coord|31.648333|N|83.382778|W|scale:500}}
+|-
+|'''[[Ocilla, Georgia|Ocilla]]'''||1907||Established in 1880. A railroad connected Ocilla to other major cities in the 1890s.||{{coord|31.594219|N|83.250554|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Jackson County, Georgia|Jackson]]'''Created 1796
+|Clarkesboro||1799|| ||
+|-
+|'''[[Jefferson, Georgia|Jefferson]]'''||1800|| ||{{coord|34.126667|N|83.590278|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Jasper County, Georgia|Jasper]]'''Created 1807
+|'''[[Monticello, Georgia|Monticello]]'''||1808|| ||{{coord|33.303333|N|83.685833|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Jeff Davis County, Georgia|Jeff Davis]]'''Created 1905
+|'''[[Hazlehurst, Georgia|Hazlehurst]]'''||1905|| ||{{coord|31.866111|N|82.599444|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Jefferson County, Georgia|Jefferson]]'''Created 1796
+|'''[[Louisville, Georgia|Louisville]]'''||1796||State capital from 1796 to 1806. ||{{coord|33.004167|N|82.404722|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Jenkins County, Georgia|Jenkins]]'''Created 1905
+|'''[[Millen, Georgia|Millen]]'''||1905|| ||{{coord|32.803847|N|81.949109|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Johnson County, Georgia|Johnson]]'''Created 1858
+|'''[[Wrightsville, Georgia|Wrightsville]]'''||1859|| ||{{coord|32.729478|N|82.719613|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Jones County, Georgia|Jones]]'''Created 1807
+|Clinton||1808|| ||{{coord|32.998590|N|83.555316|W|scale:500}}
+|-
+|'''[[Gray, Georgia|Gray]]'''||1905|| Citizens of Clinton refused to have the Macon and Northern Railroad built through their town in the 1890s. Gray grew up along the route the railroad was built.||{{coord|33.0086|N|83.5342|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Lamar County, Georgia|Lamar]]'''Created 1920
+|'''[[Barnesville, Georgia|Barnesville]]'''||1920|| ||{{coord|33.053056|N|84.156111|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Lanier County, Georgia|Lanier]]'''Created 1920
+|'''[[Lakeland, Georgia|Lakeland]]'''||1920|| ||{{coord|31.039167|N|83.070278|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Laurens County, Georgia|Laurens]]'''Created 1807
+|Sumterville||1809|| ||
+|-
+|'''[[Dublin, Georgia|Dublin]]'''||1811|| ||{{coord|32.5375|N|82.918333|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=6|'''[[Lee County, Georgia|Lee]]'''Created 1825
+|[[Ellaville, Georgia|Pond Town]]||1826||Temporary county seat. Later became the county seat of Schley County under the name of Ellaville.||{{coord|32.230740|N|84.308673|W|scale:500}}
+|-
+|Sumterville||182?|| ||
+|-
+|Stark(s)ville||1832||On the banks of [[Muckalee Creek]].||{{coord|31.7712|N|84.1455|W|scale:500}}
+|-
+|Webster||1854|| ||
+|-
+|Stark(s)ville||1856||On the banks of [[Muckalee Creek]].||{{coord|31.7712|N|84.1455|W|scale:500}}
+|-
+|'''[[Leesburg, Georgia|Leesburg]]'''||1872||Established as a station in 1870 on the [[Central of Georgia Railway|Southwestern Railroad]].||{{coord|31.732778|N|84.170833|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=3|'''[[Liberty County, Georgia|Liberty]]'''Created 1825
+|Sunbury||1784|| ||{{coord|31.7675|N|81.2811|W|scale:500}}
+|-
+|[[Riceboro, Georgia|Riceborough]]||1789||Slightly more centrally located and further inland.||{{coord|31.735278|N|81.440278|W|scale:500}}
+|-
+|'''[[Hinesville, Georgia|Hinesville]]'''||1837||Changed by referendum. More centrally located.||{{coord|31.8325|N|81.611667|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Lincoln County, Georgia|Lincoln]]'''Created 1796
+|'''[[Lincolnton, Georgia|Lincolnton]]'''||1798|| ||{{coord|33.794444|N|82.476389|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Long County, Georgia|Long]]'''Created 1920
+|'''[[Ludowici, Georgia|Ludowici]]'''||1920|| ||{{coord|31.710556|N|81.744444|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=4|'''[[Lowndes County, Georgia|Lowndes]]'''Created 1825
+|[[Franklinville, Georgia|Franklinville]]||1828||||{{coord| 30.982840|N|83.277446|W|scale:500}}
+|-
+|Lowndesville||1834||Only established as a county seat by law and never established physically.||{{coord|30.811781|N|83.373111|W|scale:500}}
+|-
+|[[Troupville, Georgia|Troupville]]||1837||Located at the confluence of the [[Withlacoochee River (Suwannee River)|Withlacoochee River]] and the [[Little River (Withlacoochee River)|Little River]].||{{coord|30.852822|N|83.344491|W|scale:500}}
+|-
+|'''[[Valdosta, Georgia|Valdosta]]'''||1860||Established on the route of the [[Atlantic and Gulf Railroad (1856\u201379)|Atlantic and Gulf Railroad]].||{{coord|30.846667|N|83.283056|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Lumpkin County, Georgia|Lumpkin]]'''Created 1832
+|[[Auraria, Georgia|Auraria]]||1832|| ||{{coord|34.4745|N|84.0237|W|scale:500}}
+|-
+|'''[[Dahlonega, Georgia|Dahlonega]]'''||1833|| Site of the [[Georgia Gold Rush]] of 1829.||{{coord|34.533333|N|83.983333|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Macon County, Georgia|Macon]]'''Created 1837
+|Lanier||1838|| ||{{coord|32.352050|N|84.064263|W|scale:500}}
+|-
+|'''[[Oglethorpe, Georgia|Oglethorpe]]'''||1856||The [[Central of Georgia Railway|Southwestern Railroad]] bypassed Lanier in the mid-1850s. Changed by referendum.||{{coord|32.293852|N|84.061011|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Madison County, Georgia|Madison]]'''Created 1811
+|'''[[Danielsville, Georgia|Danielsville]]'''||1812|| ||{{coord|34.124167|N|83.216389|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=3|'''[[Marion County, Georgia|Marion]]'''Created 1827
+|Horry||1828||Renamed Marionville.||
+|-
+|Tazewell||1838|| ||{{coord|32.380462|N|84.440770|W|scale:500}}
+|-
+|'''[[Buena Vista, Georgia|Buena Vista]]'''||1850||More centrally located as the county got smaller. ||{{coord|32.318333|N|84.516111|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[McDuffie County, Georgia|McDuffie]]'''Created 1870
+|'''[[Thomson, Georgia|Thomson]]'''||1870|| ||{{coord|33.467222|N|82.499444|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[McIntosh County, Georgia|McIntosh]]'''Created 1793
+|'''[[Darien, Georgia|Darien]]'''||1793|| ||{{coord|31.371111|N|81.430833|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Meriwether County, Georgia|Meriwether]]'''Created 1827
+|'''[[Greenville, Georgia|Greenville]]'''||1828|| ||{{coord|33.027778|N|84.713611|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Miller County, Georgia|Miller]]'''Created 1856
+|'''[[Colquitt, Georgia|Colquitt]]'''||1856|| ||{{coord|31.173056|N|84.728611|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Milton County, Georgia|Milton]]'''Created 1857Merged with [[Fulton County, Georgia|Fulton]] in 1932
+|[[Alpharetta, Georgia|Alpharetta]]||1858||||{{coord|34.073333|N|84.281111|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Mitchell County, Georgia|Mitchell]]'''Created 1857
+|'''[[Camilla, Georgia|Camilla]]'''||1858|| ||{{coord|31.230278|N|84.209167|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Monroe County, Georgia|Monroe]]'''Created 1821
+|Johnstonville||1821|| ||{{coord|33.089082|N|84.074286|W|scale:500}}
+|-
+|'''[[Forsyth, Georgia|Forsyth]]'''||1823|| ||{{coord|33.034563|N|83.938951|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Montgomery County, Georgia|Montgomery]]'''Created 1793
+|the plantation of Arthur Lott||1797|| ||
+|-
+|'''[[Mount Vernon, Georgia|Mount Vernon]]'''||1813||Significant county line changes after the creation of Emanuel County in 1812 put the old county seat within Emanuel County.||{{coord|32.181389|N|82.593889|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Morgan County, Georgia|Morgan]]'''Created 1807
+|'''[[Madison, Georgia|Madison]]'''||1808|| ||{{coord|33.595640|N|83.468006|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Murray County, Georgia|Murray]]'''Created 1832
+|Spring Place||1834|| ||{{coord|34.758303|N|84.820590|W|scale:500}}
+|-
+|'''[[Chatsworth, Georgia|Chatsworth]]'''||1913||Established on the route of the [[Louisville and Nashville Railroad]] in 1905. Changed by referendum.||{{coord|34.766764|N|84.770066|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Muscogee County, Georgia|Muscogee]]'''Created 1826
+|'''[[Columbus, Georgia|Columbus]]'''||1828|| ||{{coord|32.492222|N|84.940278|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Newton County, Georgia|Newton]]'''Created 1821
+|'''[[Covington, Georgia|Covington]]'''||1822|| ||{{coord|33.596533|N|83.859925|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Oconee County, Georgia|Oconee]]'''Created 1875
+|'''[[Watkinsville, Georgia|Watkinsville]]'''||1875||Formerly the county seat of Clarke County.||{{coord|33.862778|N|83.408056|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Oglethorpe County, Georgia|Oglethorpe]]'''Created 1793
+|[[Philomath, Georgia|Woodstock]]||1790s|| ||{{coord|33.727254|N|82.991239|W|scale:500}}
+|-
+|'''[[Lexington, Georgia|Lexington]]'''||1806|| ||{{coord|33.870278|N|83.110833|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Paulding County, Georgia|Paulding]]'''Created 1832
+|[[Van Wert, Georgia|Van Wert]]||1838|| ||{{coord|33.987222|N|85.043333|W|scale:500}}
+|-
+|'''[[Dallas, Georgia|Dallas]]'''||1852|| Van Wert was in the portion of Paulding County used to create Polk County in 1851.||{{coord|33.918611|N|84.840833|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Peach County, Georgia|Peach]]'''Created 1924
+|'''[[Fort Valley, Georgia|Fort Valley]]'''||1924|| ||{{coord|32.553396|N|83.888105|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Pickens County, Georgia|Pickens]]'''Created 1853
+|'''[[Jasper, Georgia|Jasper]]'''||1857|| ||{{coord|34.469167|N|84.434167|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Pierce County, Georgia|Pierce]]'''Created 1857
+|'''[[Blackshear, Georgia|Blackshear]]'''||1858|| ||{{coord|31.298889|N|82.247778|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Pike County, Georgia|Pike]]'''Created 1822
+|Newnan||1823|| ||
+|-
+|'''[[Zebulon, Georgia|Zebulon]]'''||1825|| ||{{coord|33.098889|N|84.342222|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Polk County, Georgia|Polk]]'''Created 1851
+|'''[[Cedartown, Georgia|Cedartown]]'''||1854|| ||{{coord|34.015278|N|85.253889|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Pulaski County, Georgia|Pulaski]]'''Created 1808
+|[[Hartford, Georgia|Hartford]]||1809|| ||{{coord|32.285833|N|83.449167|W|scale:500}}
+|-
+|'''[[Hawkinsville, Georgia|Hawkinsville]]'''||1836|| ||{{coord|32.283611|N|83.476667|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Putnam County, Georgia|Putnam]]'''Created 1807
+|'''[[Eatonton, Georgia|Eatonton]]'''||1808|| ||{{coord|33.326389|N|83.387778|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Quitman County, Georgia|Quitman]]'''Created 1858
+|'''[[Georgetown, Quitman County, Georgia|Georgetown]]'''||1859|| ||{{coord|31.884737|N|85.108863|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Rabun County, Georgia|Rabun]]'''Created 1819
+|'''[[Clayton, Georgia|Clayton]]'''||1821|| ||{{coord|34.877778|N|83.401667|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Randolph County, Georgia|Randolph]]'''Created 1828
+|[[Lumpkin, Georgia|Lumpkin]]||1830||Three weeks later became county seat of Stewart County.||{{coord|32.049722|N|84.795833|W|scale:500}}
+|-
+|'''[[Cuthbert, Georgia|Cuthbert]]'''||1831|| ||{{coord|31.770833|N|84.793611|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Richmond County, Georgia|Richmond]]'''Created 1777
+|'''[[Augusta, Georgia|Augusta]]'''||1777|| ||{{coord|33.466667|N|81.966667|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Rockdale County, Georgia|Rockdale]]'''Created 1870
+|'''[[Conyers, Georgia|Conyers]]'''||1870|| ||{{coord|33.667579|N|84.017642|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Schley County, Georgia|Schley]]'''Created 1857
+|'''[[Ellaville, Georgia|Ellaville]]'''||1857|| Former county seat of Lee County.||{{coord|32.230740|N|84.308673|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Screven County, Georgia|Screven]]'''Created 1828
+|Jacksonborough||1793|| ||{{coord|32.8227|N|81.6228|W|scale:500}}
+|-
+|'''[[Sylvania, Georgia|Sylvania]]'''||1847|| ||{{coord|32.7507|N|81.6369|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Seminole County, Georgia|Seminole]]'''Created 1920
+|'''[[Donalsonville, Georgia|Donalsonville]]'''||1920|| ||{{coord|31.040833|N|84.878333|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Spalding County, Georgia|Spalding]]'''Created 1851
+|'''[[Griffin, Georgia|Griffin]]'''||1851|| ||{{coord|33.2475|N|84.270833|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Stephens County, Georgia|Stephens]]'''Created 1905
+|'''[[Toccoa, Georgia|Toccoa]]'''||1905|| ||{{coord|34.577213|N|83.333047|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Stewart County, Georgia|Stewart]]'''Created 1830
+|'''[[Lumpkin, Georgia|Lumpkin]]'''||1830||Former county seat of Randolph County.||{{coord|32.049722|N|84.795833|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Sumter County, Georgia|Sumter]]'''Created 1831
+|'''[[Americus, Georgia|Americus]]'''||1832|| ||{{coord|32.075278|N|84.226667|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Talbot County, Georgia|Talbot]]'''Created 1827
+|'''[[Talbotton, Georgia|Talbotton]]'''||1828|| ||{{coord|32.678056|N|84.539722|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Taliaferro County, Georgia|Taliaferro]]'''Created 1825
+|'''[[Crawfordville, Georgia|Crawfordville]]'''||1826|| ||{{coord|33.554722|N|82.898333|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=3|'''[[Tattnall County, Georgia|Tattnall]]'''Created 1801
+|Drake's Ferry||1801|| ||
+|-
+|Ohoopee Mills||1808|| ||
+|-
+|'''[[Reidsville, Georgia|Reidsville]]'''||1832|| ||{{coord|32.083889|N|82.120833|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Taylor County, Georgia|Taylor]]'''Created 1852
+|'''[[Butler, Georgia|Butler]]'''||1853|| ||{{coord|32.557153|N|84.237323|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=3|'''[[Telfair County, Georgia|Telfair]]'''Created 1808
+|[[Jacksonville, Georgia|Jacksonville]]||1810|| ||{{coord|31.813333|N|82.975278|W|scale:500}}
+|-
+|[[McRae, Georgia|McRae]]||1871|| Established in 1871 as Station Number 11 on the [[Macon and Brunswick Railroad]].||{{coord|32.064444|N|82.898333|W|scale:500}}
+|-
+|'''[[McRae\u2013Helena, Georgia|McRae\u2013Helena]]'''||2015||Established in 2015 after the separate cities of McRae and [[Helena, Georgia|Helena]] merged.||{{coord|32.069444|N|82.902778|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Terrell County, Georgia|Terrell]]'''Created 1856
+|'''[[Dawson, Georgia|Dawson]]'''||1856|| ||{{coord|31.773889|N|84.440833|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Thomas County, Georgia|Thomas]]'''Created 1825
+|'''[[Thomasville, Georgia|Thomasville]]'''||1826|| ||{{coord|30.836389|N|83.978333|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Tift County, Georgia|Tift]]'''Created 1905
+|'''[[Tifton, Georgia|Tifton]]'''||1905|| ||{{coord|31.450405|N|83.508839|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Toombs County, Georgia|Toombs]]'''Created 1905
+|'''[[Lyons, Georgia|Lyons]]'''||1905|| ||{{coord|32.204167|N|82.322778|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Towns County, Georgia|Towns]]'''Created 1856
+|'''[[Hiawassee, Georgia|Hiawassee]]'''||1856|| ||{{coord|34.948955|N|83.757534|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Treutlen County, Georgia|Treutlen]]'''Created 1918
+|'''[[Soperton, Georgia|Soperton]]'''||1918|| ||{{coord|32.376111|N|82.592778|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Troup County, Georgia|Troup]]'''Created 1826
+|'''[[LaGrange, Georgia|LaGrange]]'''||1828|| ||{{coord|33.036667|N|85.031944|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Turner County, Georgia|Turner]]'''Created 1905
+|'''[[Ashburn, Georgia|Ashburn]]'''||1905|| ||{{coord|31.704444|N|83.653889|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Twiggs County, Georgia|Twiggs]]'''Created 1809
+|Marion||1810|| ||{{coord|32.6623|N|83.4374|W|scale:500}}
+|-
+|'''[[Jeffersonville, Georgia|Jeffersonville]]'''||1867|| First settled in the 1820s. Changed by a referendum in 1866.||{{coord|32.683889|N|83.339722|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Union County, Georgia|Union]]'''Created 1832
+|'''[[Blairsville, Georgia|Blairsville]]'''||1835|| ||{{coord|34.875556|N|83.956667|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Upson County, Georgia|Upson]]'''Created 1824
+|'''[[Thomaston, Georgia|Thomaston]]'''||1825|| ||{{coord|32.887579|N|84.326736|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Walker County, Georgia|Walker]]'''Created 1833
+|'''[[LaFayette, Georgia|LaFayette]]'''||1835|| ||{{coord|34.709722|N|85.283889|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Walton County, Georgia|Walton]]'''Created 1818
+|'''[[Monroe, Georgia|Monroe]]'''||1821|| ||{{coord|33.793333|N|83.710833|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Ware County, Georgia|Ware]]'''Created 1824
+|[[Waresboro, Georgia|Waresborough]]||1824|| ||{{coord|31.2490|N|82.4744|W|scale:500}}
+|-
+|'''[[Waycross, Georgia|Waycross]]'''||1873|| Established as Station Number 9 of the [[Atlantic and Gulf Railroad (1856\u201379)|Atlantic and Gulf Railroad]] in the 1850s. Additional railroads soon intersected the location as well. Changed by referendum.||{{coord|31.213408|N|82.354049|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Warren County, Georgia|Warren]]'''Created 1793
+|'''[[Warrenton, Georgia|Warrenton]]'''||1797|| ||{{coord|33.4075|N|82.662778|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Washington County, Georgia|Washington]]'''Created 1784
+|[[Warthen, Georgia|Warthen]]||1780s|| ||{{coord|33.102222|N|82.803611|W|scale:500}}
+|-
+|'''[[Sandersville, Georgia|Sandersville]]'''||1796|| ||{{coord|32.981944|N|82.809722|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=5|'''[[Wayne County, Georgia|Wayne]]'''Created 1803
+|Tuckersville||1814||Acting county seat located near the ford of Buffalo Swamp||
+|-
+|[[Waynesville, Georgia|Waynesville]]||1829||First county seat in Wayne County created by the Georgia General Assembly.||{{coord|31.229444|N|81.789167|W|scale:500}}
+|-
+|Tuckersville||1847||Not effective until after 1848||
+|-
+|[[Waynesville, Georgia|Waynesville]]||1856||Selected by popular vote||{{coord|31.229444|N|81.789167|W|scale:500}}
+|-
+|'''[[Jesup, Georgia|Jesup]]'''||1873||Established as a depot at the junction of [[Macon and Brunswick Railroad|Macon and Brunswick]] and [[Atlantic and Gulf Railroad (1856\u201379)|Atlantic and Gulf]] railroads in 1856.||{{coord|31.607136|N|81.885324|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=2|'''[[Webster County, Georgia|Webster]]'''Created 1853
+|McIntosh||185?|| ||
+|-
+|'''[[Preston, Georgia|Preston]]'''||1856|| ||{{coord|31.213408|N|84.538333|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Wheeler County, Georgia|Wheeler]]'''Created 1912
+|'''[[Alamo, Georgia|Alamo]]'''||1912|| ||{{coord|32.148333|N|82.778611|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[White County, Georgia|White]]'''Created 1857
+|'''[[Cleveland, Georgia|Cleveland]]'''||1857|| ||{{coord|34.596389|N|83.763889|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Whitfield County, Georgia|Whitfield]]'''Created 1851
+|'''[[Dalton, Georgia|Dalton]]'''||1851|| ||{{coord|34.771111|N|84.971667|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Wilcox County, Georgia|Wilcox]]'''Created 1857
+|'''[[Abbeville, Georgia|Abbeville]]'''||1858|| ||{{coord|31.991667|N|83.3075|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Wilkes County, Georgia|Wilkes]]'''Created 1777
+|'''[[Washington, Georgia|Washington]]'''||1784|| ||{{coord|33.735278|N|82.741389|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=1|'''[[Wilkinson County, Georgia|Wilkinson]]'''Created 1803
+|'''[[Irwinton, Georgia|Irwinton]]'''||1811|| ||{{coord|32.811944|N|83.176667|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|rowspan=3|'''[[Worth County, Georgia|Worth]]'''Created 1853
+|San Barnard||1853|| ||{{coord|31.5737|N|83.8673|W|scale:500}}
+|-
+|Isabella||1854|| ||{{coord|31.5688|N|83.8540|W|scale:500}}
+|-
+|'''[[Sylvester, Georgia|Sylvester]]'''||1904|| In 1872, the [[Brunswick and Albany Railroad]] bypassed Isabella by nearly 3 miles. Changed by referendum.||{{coord|31.531389|N|83.836111|W|scale:500}}
+|- style="border-top: solid 2px #000"
+|}

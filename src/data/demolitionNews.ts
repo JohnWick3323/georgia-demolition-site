@@ -9,7 +9,7 @@ export interface NewsItem {
 export const demolitionNews: NewsItem[] = [
   {
     title: "Georgia Updates Demolition Permitting Process for 2026",
-    summary: "The Georgia Department of Community Affairs streamlined demolition permit applications statewide, reducing processing times by up to 40% for residential teardowns across all 159 counties.",
+    summary: "The Georgia Department of Community Affairs streamlined demolition permit applications statewide, reducing processing times by up to 40% for residential teardowns across all 576 Cities.",
     date: "2026-04-15",
     category: "Regulations",
     slug: "georgia-demolition-permit-updates-2026"

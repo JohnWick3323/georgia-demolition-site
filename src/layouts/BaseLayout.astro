@@ -25,7 +25,12 @@ const {
 const currentUrl = new URL(Astro.url.pathname.toLowerCase(), site.url).toString();
 const finalCanonical = currentUrl.replace(/\/$/, '') + '/';
 
-const siteTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+const MAX_TITLE = 60;
+const siteTitleRaw = title.includes(site.name) ? title : `${title} | ${site.name}`;
+// Google truncates titles ~60 chars in SERPs; trim gracefully, preserving the leading descriptor.
+const siteTitle = siteTitleRaw.length > MAX_TITLE
+  ? siteTitleRaw.slice(0, MAX_TITLE - 1).replace(/\s+\S*$/, '') + '…'
+  : siteTitleRaw;
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
@@ -46,10 +51,17 @@ const localBusinessSchema = {
   })),
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": site.address.street,
     "addressLocality": site.address.city,
     "addressRegion": site.address.state,
+    "postalCode": site.address.zip,
     "addressCountry": "US",
     "description": "Serving all 159 Georgia counties statewide"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": site.address.geo.lat,
+    "longitude": site.address.geo.lng
   },
   "areaServed": {
     "@type": "State",
@@ -149,8 +161,19 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
     {schemaOverride && (
       <script type="application/ld+json" set:html={schemaOverride} />
     )}
+
+    <!-- Google Tag Manager + GA4 -->
+    {site.gtmId && (
+      <script is:inline set:html={`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${site.gtmId}');`} />
+    )}
+    {site.ga4Id && (
+      <script is:inline set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${site.ga4Id}');`} />
+    )}
   </head>
   <body class="min-h-screen flex flex-col">
+    {site.gtmId && (
+      <noscript set:html={`<iframe src="https://www.googletagmanager.com/ns.html?id=${site.gtmId}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`} />
+    )}
     <slot name="header" />
     <main class="flex-grow">
       <slot />

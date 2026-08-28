@@ -1,0 +1,2581 @@
+{
+ "gd_map": {
+  "Atlanta": 505268,
+  "Augusta": 206069,
+  "Columbus": 203711,
+  "Macon": 156578,
+  "Savannah": 147898,
+  "Athens": 129609,
+  "South Fulton": 110471,
+  "Sandy Springs": 107087,
+  "Roswell": 92621,
+  "Warner Robins": 82990,
+  "Johns Creek": 81988,
+  "Mableton": 77678,
+  "Albany": 67224,
+  "Alpharetta": 66855,
+  "Marietta": 62263,
+  "Stonecrest": 60501,
+  "Brookhaven": 57855,
+  "Smyrna": 56633,
+  "Valdosta": 55252,
+  "Dunwoody": 51758,
+  "Gainesville": 45032,
+  "Newnan": 44235,
+  "Peachtree Corners": 42373,
+  "Milton": 41546,
+  "Peachtree City": 39576,
+  "East Point": 38335,
+  "Rome": 38189,
+  "Douglasville": 37536,
+  "Woodstock": 37381,
+  "Tucker": 37123,
+  "Evans": 36998,
+  "Canton": 35741,
+  "Stockbridge": 35737,
+  "Hinesville": 35679,
+  "Kennesaw": 34605,
+  "Dalton": 34538,
+  "Statesboro": 34149,
+  "Martinez": 33750,
+  "Duluth": 32426,
+  "LaGrange": 32078,
+  "Redan": 31017,
+  "Lawrenceville": 30954,
+  "McDonough": 30947,
+  "Chamblee": 30895,
+  "Pooler": 28466,
+  "Union City": 27728,
+  "Carrollton": 27392,
+  "Sugar Hill": 26128,
+  "Decatur": 24518,
+  "Cartersville": 24074,
+  "Griffin": 23761,
+  "Perry": 23001,
+  "Acworth": 22473,
+  "Suwanee": 22349,
+  "Snellville": 21620,
+  "Candler-McAfee": 20905,
+  "Fayetteville": 19719,
+  "Kingsland": 19627,
+  "Forest Park": 19504,
+  "Winder": 19437,
+  "St. Marys": 19166,
+  "Thomasville": 18666,
+  "Holly Springs": 18627,
+  "Villa Rica": 18551,
+  "Conyers": 18512,
+  "North Decatur": 18442,
+  "Calhoun": 18183,
+  "Richmond Hill": 18181,
+  "Powder Springs": 18009,
+  "Norcross": 18007,
+  "Tifton": 17210,
+  "Grovetown": 17014,
+  "Lithia Springs": 16875,
+  "Fairburn": 16831,
+  "Milledgeville": 16748,
+  "St. Simons": 16228,
+  "Dublin": 16136,
+  "Americus": 15813,
+  "Monroe": 15648,
+  "Loganville": 15527,
+  "Lilburn": 15390,
+  "Brunswick": 15307,
+  "Braselton": 15178,
+  "Jefferson": 14990,
+  "Riverdale": 14792,
+  "Dallas": 14714,
+  "College Park": 14712,
+  "Moultrie": 14588,
+  "Covington": 14584,
+  "Clarkston": 14557,
+  "Bainbridge": 14404,
+  "Vinings": 14390,
+  "Belvedere Park": 14181,
+  "Wilmington Island": 13905,
+  "Waycross": 13756,
+  "Port Wentworth": 12892,
+  "Mountain Park CDP": 12850,
+  "Douglas": 11749,
+  "Lovejoy": 11508,
+  "Rincon": 11332,
+  "Georgetown": 11158,
+  "Doraville": 11134,
+  "Flowery Branch": 10925,
+  "Vidalia": 10752,
+  "Scottdale": 10542,
+  "Locust Grove": 10532,
+  "Garden City": 10426,
+  "Fort Oglethorpe": 10416,
+  "Cedartown": 10227,
+  "Cairo": 10055,
+  "Cordele": 9994,
+  "Jesup": 9942,
+  "Thomaston": 9831,
+  "Skidaway Island": 9315,
+  "Fort Stewart": 9285,
+  "Toccoa": 9238,
+  "Bemiss": 9201,
+  "Irondale": 9185,
+  "Panthersville": 9053,
+  "Fair Oaks": 9014,
+  "Fitzgerald": 8918,
+  "Cusseta-Chattahoochee County": 8887,
+  "Fort Valley": 8858,
+  "Country Club Estates": 8780,
+  "Auburn": 8711,
+  "Hampton": 8687,
+  "Centerville": 8505,
+  "Cumming": 8469,
+  "Austell": 8447,
+  "Druid Hills": 8169,
+  "Dock Junction": 8147,
+  "Commerce": 8013,
+  "Tyrone": 7896,
+  "Swainsboro": 7571,
+  "Bremen": 7488,
+  "Dacula": 7444,
+  "Dahlonega": 7299,
+  "LaFayette": 6967,
+  "Gresham Park": 6935,
+  "Whitemarsh Island": 6886,
+  "Thomson": 6821,
+  "Hapeville": 6630,
+  "Stone Mountain": 6623,
+  "Eatonton": 6515,
+  "Morrow": 6364,
+  "Fairfield Plantation": 6172,
+  "Jonesboro": 6143,
+  "Barnesville": 6121,
+  "McRae-Helena": 6030,
+  "Byron": 5971,
+  "Temple": 5901,
+  "Oakwood": 5862,
+  "Conley": 5822,
+  "Jackson": 5741,
+  "Waynesboro": 5644,
+  "Adel": 5641,
+  "Sandersville": 5601,
+  "Senoia": 5589,
+  "Eastman": 5584,
+  "Sylvester": 5489,
+  "Fairview": 5302,
+  "Blakely": 5238,
+  "Hiram": 5231,
+  "Social Circle": 5217,
+  "Rockmart": 5204,
+  "Glennville": 5179,
+  "Camilla": 5124,
+  "Adairsville": 4999,
+  "Cornelia": 4992,
+  "Montgomery": 4976,
+  "Nashville": 4928,
+  "Chatsworth": 4893,
+  "Baxley": 4888,
+  "Madison": 4864,
+  "Grayson": 4858,
+  "Cochran": 4803,
+  "Palmetto": 4797,
+  "Hawkinsville": 4731,
+  "Lakeview": 4723,
+  "Elberton": 4720,
+  "Buckhead CDP": 4702,
+  "Forsyth": 4642,
+  "Folkston": 4631,
+  "Jasper": 4630,
+  "Chattanooga Valley": 4601,
+  "Heron Bay": 4595,
+  "Hartwell": 4562,
+  "Hoschton": 4534,
+  "Summerville": 4408,
+  "Dawsonville": 4403,
+  "Lindale": 4289,
+  "Dawson": 4247,
+  "Ashburn": 4231,
+  "Euharlee": 4230,
+  "Lyons": 4219,
+  "Hazlehurst": 4092,
+  "Quitman": 4062,
+  "Baldwin": 4000,
+  "Metter": 3989,
+  "Rossville": 3978,
+  "Harlem": 3885,
+  "Walthourville": 3823,
+  "Chattahoochee Hills": 3782,
+  "Echols County consolidated government": 3709,
+  "Washington": 3680,
+  "Manchester": 3631,
+  "Greensboro": 3609,
+  "Lakeview Estates": 3596,
+  "Blackshear": 3578,
+  "Leesburg": 3542,
+  "Cleveland": 3534,
+  "Avondale Estates": 3530,
+  "Gray": 3512,
+  "Wrightsville": 3487,
+  "Hahira": 3451,
+  "Nicholls": 3434,
+  "Pelham": 3433,
+  "Alma": 3426,
+  "West Point": 3403,
+  "Hardwick": 3402,
+  "Experiment": 3387,
+  "Watkinsville": 3350,
+  "Bonanza": 3279,
+  "Grantville": 3251,
+  "Hogansville": 3246,
+  "Hannahs Mill": 3230,
+  "Tallapoosa": 3227,
+  "Reed Creek": 3151,
+  "Putney": 3150,
+  "Tybee Island": 3123,
+  "Ocilla": 3100,
+  "Unadilla": 3064,
+  "Alamo": 3037,
+  "Statham": 3018,
+  "Chickamauga": 3014,
+  "Bloomingdale": 3007,
+  "Cuthbert": 2991,
+  "Springfield": 2974,
+  "Lakeland": 2968,
+  "Montezuma": 2966,
+  "Lula": 2964,
+  "Millen": 2956,
+  "Varnell": 2920,
+  "Lake City": 2909,
+  "Soperton": 2908,
+  "Vienna": 2881,
+  "Ball Ground": 2856,
+  "Donalsonville": 2831,
+  "Abbeville": 2771,
+  "Monticello": 2747,
+  "Guyton": 2740,
+  "Pembroke": 2693,
+  "Lithonia": 2622,
+  "Sylvania": 2618,
+  "Berkeley Lake": 2597,
+  "Reidsville": 2553,
+  "Aragon": 2536,
+  "Thunderbolt": 2533,
+  "Claxton": 2529,
+  "Demorest": 2512,
+  "East Dublin": 2489,
+  "Gordon": 2485,
+  "Mount Zion": 2433,
+  "Homerville": 2432,
+  "Gumlog": 2382,
+  "Webster County unified government": 2381,
+  "Deenwood": 2360,
+  "Nicholson": 2335,
+  "Brooklet": 2288,
+  "Kennesaw State University": 2284,
+  "Lavonia": 2279,
+  "Georgetown-Quitman County": 2264,
+  "Royston": 2258,
+  "Raoul": 2253,
+  "Davisboro": 2231,
+  "Kings Bay Base": 2210,
+  "Wrens": 2187,
+  "Midway": 2185,
+  "Louisville": 2132,
+  "Trenton": 2123,
+  "Sterling": 2091,
+  "Maysville": 2086,
+  "Twin City": 2075,
+  "Indian Springs": 2070,
+  "Sparks": 2056,
+  "Isle of Hope": 2053,
+  "Hamilton": 2043,
+  "Trion": 2033,
+  "Comer": 2029,
+  "Clayton": 2018,
+  "Shannon": 2012,
+  "Bowdon": 2006,
+  "Epworth": 1994,
+  "Clarkesville": 1959,
+  "Henderson": 1952,
+  "Butler": 1935,
+  "Ellijay": 1927,
+  "Pearson": 1919,
+  "Mount Vernon": 1913,
+  "Morgan": 1902,
+  "Colquitt": 1898,
+  "Ludowici": 1897,
+  "Homer": 1892,
+  "Fairplay": 1881,
+  "Sparta": 1830,
+  "Chester": 1808,
+  "Oxford": 1770,
+  "Lincolnton": 1768,
+  "Lookout Mountain": 1721,
+  "Buena Vista": 1717,
+  "Wadley": 1706,
+  "Zebulon": 1698,
+  "Walnut Grove": 1685,
+  "Ellaville": 1668,
+  "Tennille": 1650,
+  "Berry College": 1647,
+  "Moody AFB": 1630,
+  "Mount Airy": 1622,
+  "Richland": 1595,
+  "Emerson": 1573,
+  "Flemington": 1571,
+  "Cataula": 1522,
+  "Boston": 1520,
+  "Porterdale": 1466,
+  "Darien": 1452,
+  "Bogart": 1403,
+  "Woodbine": 1399,
+  "McCaysville": 1392,
+  "Nahunta": 1386,
+  "Flovilla": 1358,
+  "Edison": 1340,
+  "Greenville": 1326,
+  "Blue Ridge": 1323,
+  "Pine Mountain": 1314,
+  "Buchanan": 1306,
+  "Willacoochee": 1301,
+  "Remerton": 1280,
+  "Fairmount": 1279,
+  "Rutledge": 1271,
+  "Roberta": 1257,
+  "Young Harris": 1252,
+  "Fort Gaines": 1248,
+  "Lake Park": 1234,
+  "Dutch Island": 1225,
+  "Omega": 1194,
+  "Robins AFB": 1193,
+  "Rock Spring": 1183,
+  "East Griffin": 1174,
+  "Nelson": 1166,
+  "Enigma": 1140,
+  "Resaca": 1126,
+  "Norman Park": 1116,
+  "Franklin Springs": 1108,
+  "Sycamore": 1096,
+  "Russell": 1089,
+  "Cave Spring": 1080,
+  "Satilla": 1057,
+  "Alto": 1055,
+  "Dexter": 1054,
+  "Marshallville": 1046,
+  "West Brow": 1044,
+  "Arlington": 1014,
+  "Ellerslie": 1011,
+  "Jeffersonville": 1008,
+  "Reynolds": 995,
+  "Sunny Side": 994,
+  "Kingston": 993,
+  "Gibson": 990,
+  "Eulonia": 986,
+  "Milner": 979,
+  "Shellman": 974,
+  "Ivey": 964,
+  "Franklin": 958,
+  "East Newnan": 956,
+  "White": 953,
+  "Danielsville": 952,
+  "Dasher": 944,
+  "Tunnel Hill": 939,
+  "Cohutta": 930,
+  "Meigs": 924,
+  "Coolidge": 923,
+  "Sardis": 912,
+  "Blairsville": 902,
+  "Pavo": 901,
+  "Canon": 879,
+  "Offerman": 873,
+  "Antioch": 870,
+  "Oglethorpe": 869,
+  "Milan": 842,
+  "Hull": 832,
+  "Sunset Village": 825,
+  "Woodbury": 820,
+  "Waleska": 808,
+  "Colbert": 806,
+  "Crooked Creek": 798,
+  "Baconton": 790,
+  "Waco": 779,
+  "Jekyll Island": 769,
+  "Tignall": 763,
+  "Dearing": 760,
+  "Shiloh": 758,
+  "Homeland": 755,
+  "Plains": 750,
+  "Glenwood": 745,
+  "Eton": 735,
+  "Funston": 732,
+  "Stillmore": 715,
+  "Lenox": 713,
+  "Bethlehem": 707,
+  "Mountain Park city": 703,
+  "Appling": 702,
+  "North High Shoals": 698,
+  "Lincoln Park": 688,
+  "Moreland": 685,
+  "Attapulgus": 673,
+  "Talbotton": 665,
+  "Newborn": 653,
+  "Waverly Hall": 650,
+  "Sky Valley": 647,
+  "Portal": 646,
+  "Ephesus": 642,
+  "Warwick": 641,
+  "Molena": 635,
+  "McIntyre": 633,
+  "Graham": 629,
+  "Ochlocknee": 628,
+  "Menlo": 620,
+  "Pineview": 618,
+  "Sautee-Nacoochee": 605,
+  "Brooks": 603,
+  "Adrian": 590,
+  "Good Hope": 582,
+  "Piney Grove": 576,
+  "Byromville": 575,
+  "Argyle": 573,
+  "Cobbtown": 568,
+  "Pinehurst": 557,
+  "Morven": 553,
+  "Arabi": 550,
+  "Crawfordville": 548,
+  "Yonah": 543,
+  "Uvalda": 540,
+  "Berlin": 535,
+  "Irwinton": 534,
+  "Collins": 533,
+  "Ila": 526,
+  "Bowersville": 522,
+  "Fargo": 512,
+  "Leslie": 510,
+  "Arnoldsville": 500,
+  "Hiltonia": 492,
+  "Ailey": 489,
+  "East Ellijay": 488,
+  "Cecil": 486,
+  "Between": 482,
+  "Newton": 479,
+  "Cadwell": 470,
+  "Warm Springs": 463,
+  "Stapleton": 460,
+  "Harrison": 458,
+  "Gillsville": 454,
+  "Odum": 453,
+  "Whigham": 449,
+  "Alapaha": 444,
+  "Sumner": 439,
+  "Concord": 438,
+  "Yatesville": 435,
+  "Bishop": 427,
+  "Bolingbroke": 426,
+  "Newington": 418,
+  "Helen": 415,
+  "Braswell": 400,
+  "Rentz": 395,
+  "New England": 391,
+  "Salem": 385,
+  "Ambrose": 382,
+  "Mansfield": 380,
+  "Midville": 378,
+  "Iron City": 371,
+  "Wildwood": 368,
+  "Tiger": 362,
+  "Camak": 356,
+  "Junction City": 353,
+  "Bluffton": 350,
+  "Shady Dale": 345,
+  "Siloam": 344,
+  "Allentown": 341,
+  "Bronwood": 338,
+  "Taylorsville": 335,
+  "Buckhead town": 331,
+  "Dillard": 326,
+  "Sale City": 318,
+  "Oconee": 315,
+  "Montrose": 311,
+  "Sharpsburg": 309,
+  "Empire": 306,
+  "Mineral Bluff": 294,
+  "Naylor": 293,
+  "Higgston": 292,
+  "Tallulah Falls": 288,
+  "Wenona": 286,
+  "Smithville": 285,
+  "Rebecca": 284,
+  "Rocky Ford": 276,
+  "Talking Rock": 274,
+  "Garfield": 270,
+  "Bostwick": 269,
+  "Axson": 268,
+  "Ellenton": 267,
+  "Avera": 259,
+  "Carlton": 245,
+  "Woolsey": 235,
+  "Andersonville": 231,
+  "Pulaski": 230,
+  "Box Springs": 228,
+  "Scotland": 218,
+  "Oliver": 214,
+  "Summertown": 210,
+  "Brinson": 207,
+  "Calvary": 205,
+  "Haralson": 204,
+  "Bartow": 199,
+  "Du Pont": 197,
+  "Register": 195,
+  "Phillipsburg": 193,
+  "Kite": 188,
+  "Stockton": 185,
+  "Carl": 183,
+  "Vidette": 181,
+  "White Plains": 175,
+  "Rayle": 174,
+  "Climax": 170,
+  "Santa Claus": 169,
+  "Mitchell": 167,
+  "Surrency": 163,
+  "Jakin": 155,
+  "Orchard Hill": 152,
+  "Lilly": 150,
+  "Jersey": 148,
+  "Clyattville": 147,
+  "Alston": 140,
+  "Gough": 139,
+  "Girard": 137,
+  "Vernonburg": 133,
+  "Dewy Rose": 131,
+  "Juliette": 128,
+  "Jacksonville": 121,
+  "Gay": 119,
+  "Danville": 111,
+  "Riddleville": 110,
+  "The Rock": 109,
+  "Waresboro": 108,
+  "Waverly": 106,
+  "Geneva": 101,
+  "De Soto": 99,
+  "Manassas": 92,
+  "Dixie": 86,
+  "Canoochee": 84,
+  "Aldora": 82,
+  "Dixie Union": 81,
+  "Parrott": 79,
+  "Warthen": 78,
+  "Perkins": 69,
+  "Everett": 67,
+  "Millwood": 66,
+  "Seville": 61,
+  "Smarr": 58,
+  "Sharon": 56,
+  "Eagle Grove": 35,
+  "Tazewell": 33,
+  "Godfrey": 27,
+  "Mershon": 26,
+  "Boykin": 25,
+  "Norristown": 21,
+  "Ohoopee": 5
+ },
+ "to_add": [
+  [
+   "South Fulton",
+   110471
+  ],
+  [
+   "Mableton",
+   77678
+  ],
+  [
+   "Stonecrest",
+   60501
+  ],
+  [
+   "Peachtree Corners",
+   42373
+  ],
+  [
+   "Milton",
+   41546
+  ],
+  [
+   "East Point",
+   38335
+  ],
+  [
+   "Tucker",
+   37123
+  ],
+  [
+   "Stockbridge",
+   35737
+  ],
+  [
+   "Duluth",
+   32426
+  ],
+  [
+   "Redan",
+   31017
+  ],
+  [
+   "Lawrenceville",
+   30954
+  ],
+  [
+   "Chamblee",
+   30895
+  ],
+  [
+   "Union City",
+   27728
+  ],
+  [
+   "Sugar Hill",
+   26128
+  ],
+  [
+   "Decatur",
+   24518
+  ],
+  [
+   "Acworth",
+   22473
+  ],
+  [
+   "Suwanee",
+   22349
+  ],
+  [
+   "Snellville",
+   21620
+  ],
+  [
+   "Candler-McAfee",
+   20905
+  ],
+  [
+   "Forest Park",
+   19504
+  ],
+  [
+   "St. Marys",
+   19166
+  ],
+  [
+   "Holly Springs",
+   18627
+  ],
+  [
+   "Villa Rica",
+   18551
+  ],
+  [
+   "North Decatur",
+   18442
+  ],
+  [
+   "Powder Springs",
+   18009
+  ],
+  [
+   "Norcross",
+   18007
+  ],
+  [
+   "Lithia Springs",
+   16875
+  ],
+  [
+   "Fairburn",
+   16831
+  ],
+  [
+   "St. Simons",
+   16228
+  ],
+  [
+   "Lilburn",
+   15390
+  ],
+  [
+   "Braselton",
+   15178
+  ],
+  [
+   "Jefferson",
+   14990
+  ],
+  [
+   "Riverdale",
+   14792
+  ],
+  [
+   "College Park",
+   14712
+  ],
+  [
+   "Clarkston",
+   14557
+  ],
+  [
+   "Vinings",
+   14390
+  ],
+  [
+   "Belvedere Park",
+   14181
+  ],
+  [
+   "Wilmington Island",
+   13905
+  ],
+  [
+   "Port Wentworth",
+   12892
+  ],
+  [
+   "Mountain Park CDP",
+   12850
+  ],
+  [
+   "Lovejoy",
+   11508
+  ],
+  [
+   "Georgetown",
+   11158
+  ],
+  [
+   "Doraville",
+   11134
+  ],
+  [
+   "Flowery Branch",
+   10925
+  ],
+  [
+   "Scottdale",
+   10542
+  ],
+  [
+   "Locust Grove",
+   10532
+  ],
+  [
+   "Garden City",
+   10426
+  ],
+  [
+   "Fort Oglethorpe",
+   10416
+  ],
+  [
+   "Cedartown",
+   10227
+  ],
+  [
+   "Thomaston",
+   9831
+  ],
+  [
+   "Skidaway Island",
+   9315
+  ],
+  [
+   "Fort Stewart",
+   9285
+  ],
+  [
+   "Bemiss",
+   9201
+  ],
+  [
+   "Irondale",
+   9185
+  ],
+  [
+   "Panthersville",
+   9053
+  ],
+  [
+   "Fair Oaks",
+   9014
+  ],
+  [
+   "Cusseta-Chattahoochee County",
+   8887
+  ],
+  [
+   "Country Club Estates",
+   8780
+  ],
+  [
+   "Auburn",
+   8711
+  ],
+  [
+   "Hampton",
+   8687
+  ],
+  [
+   "Centerville",
+   8505
+  ],
+  [
+   "Austell",
+   8447
+  ],
+  [
+   "Druid Hills",
+   8169
+  ],
+  [
+   "Dock Junction",
+   8147
+  ],
+  [
+   "Commerce",
+   8013
+  ],
+  [
+   "Tyrone",
+   7896
+  ],
+  [
+   "Bremen",
+   7488
+  ],
+  [
+   "Dacula",
+   7444
+  ],
+  [
+   "LaFayette",
+   6967
+  ],
+  [
+   "Gresham Park",
+   6935
+  ],
+  [
+   "Whitemarsh Island",
+   6886
+  ],
+  [
+   "Hapeville",
+   6630
+  ],
+  [
+   "Stone Mountain",
+   6623
+  ],
+  [
+   "Eatonton",
+   6515
+  ],
+  [
+   "Morrow",
+   6364
+  ],
+  [
+   "Fairfield Plantation",
+   6172
+  ],
+  [
+   "Jonesboro",
+   6143
+  ],
+  [
+   "Barnesville",
+   6121
+  ],
+  [
+   "McRae-Helena",
+   6030
+  ],
+  [
+   "Byron",
+   5971
+  ],
+  [
+   "Temple",
+   5901
+  ],
+  [
+   "Oakwood",
+   5862
+  ],
+  [
+   "Conley",
+   5822
+  ],
+  [
+   "Jackson",
+   5741
+  ],
+  [
+   "Adel",
+   5641
+  ],
+  [
+   "Sandersville",
+   5601
+  ],
+  [
+   "Senoia",
+   5589
+  ],
+  [
+   "Sylvester",
+   5489
+  ],
+  [
+   "Fairview",
+   5302
+  ],
+  [
+   "Blakely",
+   5238
+  ],
+  [
+   "Hiram",
+   5231
+  ],
+  [
+   "Social Circle",
+   5217
+  ],
+  [
+   "Rockmart",
+   5204
+  ],
+  [
+   "Glennville",
+   5179
+  ],
+  [
+   "Camilla",
+   5124
+  ],
+  [
+   "Adairsville",
+   4999
+  ],
+  [
+   "Montgomery",
+   4976
+  ],
+  [
+   "Nashville",
+   4928
+  ],
+  [
+   "Chatsworth",
+   4893
+  ],
+  [
+   "Baxley",
+   4888
+  ],
+  [
+   "Madison",
+   4864
+  ],
+  [
+   "Grayson",
+   4858
+  ],
+  [
+   "Cochran",
+   4803
+  ],
+  [
+   "Palmetto",
+   4797
+  ],
+  [
+   "Hawkinsville",
+   4731
+  ],
+  [
+   "Lakeview",
+   4723
+  ],
+  [
+   "Elberton",
+   4720
+  ],
+  [
+   "Buckhead CDP",
+   4702
+  ],
+  [
+   "Forsyth",
+   4642
+  ],
+  [
+   "Folkston",
+   4631
+  ],
+  [
+   "Chattanooga Valley",
+   4601
+  ],
+  [
+   "Heron Bay",
+   4595
+  ],
+  [
+   "Hartwell",
+   4562
+  ],
+  [
+   "Hoschton",
+   4534
+  ],
+  [
+   "Summerville",
+   4408
+  ],
+  [
+   "Dawsonville",
+   4403
+  ],
+  [
+   "Lindale",
+   4289
+  ],
+  [
+   "Dawson",
+   4247
+  ],
+  [
+   "Ashburn",
+   4231
+  ],
+  [
+   "Euharlee",
+   4230
+  ],
+  [
+   "Lyons",
+   4219
+  ],
+  [
+   "Hazlehurst",
+   4092
+  ],
+  [
+   "Quitman",
+   4062
+  ],
+  [
+   "Baldwin",
+   4000
+  ],
+  [
+   "Metter",
+   3989
+  ],
+  [
+   "Rossville",
+   3978
+  ],
+  [
+   "Harlem",
+   3885
+  ],
+  [
+   "Walthourville",
+   3823
+  ],
+  [
+   "Chattahoochee Hills",
+   3782
+  ],
+  [
+   "Echols County consolidated government",
+   3709
+  ],
+  [
+   "Washington",
+   3680
+  ],
+  [
+   "Manchester",
+   3631
+  ],
+  [
+   "Greensboro",
+   3609
+  ],
+  [
+   "Lakeview Estates",
+   3596
+  ],
+  [
+   "Blackshear",
+   3578
+  ],
+  [
+   "Leesburg",
+   3542
+  ],
+  [
+   "Cleveland",
+   3534
+  ],
+  [
+   "Avondale Estates",
+   3530
+  ],
+  [
+   "Gray",
+   3512
+  ],
+  [
+   "Wrightsville",
+   3487
+  ],
+  [
+   "Hahira",
+   3451
+  ],
+  [
+   "Nicholls",
+   3434
+  ],
+  [
+   "Pelham",
+   3433
+  ],
+  [
+   "Alma",
+   3426
+  ],
+  [
+   "West Point",
+   3403
+  ],
+  [
+   "Hardwick",
+   3402
+  ],
+  [
+   "Experiment",
+   3387
+  ],
+  [
+   "Watkinsville",
+   3350
+  ],
+  [
+   "Bonanza",
+   3279
+  ],
+  [
+   "Grantville",
+   3251
+  ],
+  [
+   "Hogansville",
+   3246
+  ],
+  [
+   "Hannahs Mill",
+   3230
+  ],
+  [
+   "Tallapoosa",
+   3227
+  ],
+  [
+   "Reed Creek",
+   3151
+  ],
+  [
+   "Putney",
+   3150
+  ],
+  [
+   "Tybee Island",
+   3123
+  ],
+  [
+   "Ocilla",
+   3100
+  ],
+  [
+   "Unadilla",
+   3064
+  ],
+  [
+   "Alamo",
+   3037
+  ],
+  [
+   "Statham",
+   3018
+  ],
+  [
+   "Chickamauga",
+   3014
+  ],
+  [
+   "Bloomingdale",
+   3007
+  ],
+  [
+   "Cuthbert",
+   2991
+  ],
+  [
+   "Springfield",
+   2974
+  ],
+  [
+   "Lakeland",
+   2968
+  ],
+  [
+   "Montezuma",
+   2966
+  ],
+  [
+   "Lula",
+   2964
+  ],
+  [
+   "Millen",
+   2956
+  ],
+  [
+   "Varnell",
+   2920
+  ],
+  [
+   "Lake City",
+   2909
+  ],
+  [
+   "Soperton",
+   2908
+  ],
+  [
+   "Vienna",
+   2881
+  ],
+  [
+   "Ball Ground",
+   2856
+  ],
+  [
+   "Donalsonville",
+   2831
+  ],
+  [
+   "Abbeville",
+   2771
+  ],
+  [
+   "Monticello",
+   2747
+  ],
+  [
+   "Guyton",
+   2740
+  ],
+  [
+   "Pembroke",
+   2693
+  ],
+  [
+   "Lithonia",
+   2622
+  ],
+  [
+   "Sylvania",
+   2618
+  ],
+  [
+   "Berkeley Lake",
+   2597
+  ],
+  [
+   "Reidsville",
+   2553
+  ],
+  [
+   "Aragon",
+   2536
+  ],
+  [
+   "Thunderbolt",
+   2533
+  ],
+  [
+   "Claxton",
+   2529
+  ],
+  [
+   "Demorest",
+   2512
+  ],
+  [
+   "East Dublin",
+   2489
+  ],
+  [
+   "Gordon",
+   2485
+  ],
+  [
+   "Mount Zion",
+   2433
+  ],
+  [
+   "Gumlog",
+   2382
+  ],
+  [
+   "Webster County unified government",
+   2381
+  ],
+  [
+   "Deenwood",
+   2360
+  ],
+  [
+   "Nicholson",
+   2335
+  ],
+  [
+   "Brooklet",
+   2288
+  ],
+  [
+   "Kennesaw State University",
+   2284
+  ],
+  [
+   "Lavonia",
+   2279
+  ],
+  [
+   "Georgetown-Quitman County",
+   2264
+  ],
+  [
+   "Royston",
+   2258
+  ],
+  [
+   "Raoul",
+   2253
+  ],
+  [
+   "Davisboro",
+   2231
+  ],
+  [
+   "Kings Bay Base",
+   2210
+  ],
+  [
+   "Wrens",
+   2187
+  ],
+  [
+   "Midway",
+   2185
+  ],
+  [
+   "Louisville",
+   2132
+  ],
+  [
+   "Trenton",
+   2123
+  ],
+  [
+   "Sterling",
+   2091
+  ],
+  [
+   "Maysville",
+   2086
+  ],
+  [
+   "Twin City",
+   2075
+  ],
+  [
+   "Indian Springs",
+   2070
+  ],
+  [
+   "Sparks",
+   2056
+  ],
+  [
+   "Isle of Hope",
+   2053
+  ],
+  [
+   "Hamilton",
+   2043
+  ],
+  [
+   "Trion",
+   2033
+  ],
+  [
+   "Comer",
+   2029
+  ],
+  [
+   "Clayton",
+   2018
+  ],
+  [
+   "Shannon",
+   2012
+  ],
+  [
+   "Bowdon",
+   2006
+  ],
+  [
+   "Epworth",
+   1994
+  ],
+  [
+   "Clarkesville",
+   1959
+  ],
+  [
+   "Henderson",
+   1952
+  ],
+  [
+   "Butler",
+   1935
+  ],
+  [
+   "Ellijay",
+   1927
+  ],
+  [
+   "Pearson",
+   1919
+  ],
+  [
+   "Mount Vernon",
+   1913
+  ],
+  [
+   "Morgan",
+   1902
+  ],
+  [
+   "Colquitt",
+   1898
+  ],
+  [
+   "Ludowici",
+   1897
+  ],
+  [
+   "Homer",
+   1892
+  ],
+  [
+   "Fairplay",
+   1881
+  ],
+  [
+   "Sparta",
+   1830
+  ],
+  [
+   "Chester",
+   1808
+  ],
+  [
+   "Oxford",
+   1770
+  ],
+  [
+   "Lincolnton",
+   1768
+  ],
+  [
+   "Lookout Mountain",
+   1721
+  ],
+  [
+   "Buena Vista",
+   1717
+  ],
+  [
+   "Wadley",
+   1706
+  ],
+  [
+   "Zebulon",
+   1698
+  ],
+  [
+   "Walnut Grove",
+   1685
+  ],
+  [
+   "Ellaville",
+   1668
+  ],
+  [
+   "Tennille",
+   1650
+  ],
+  [
+   "Berry College",
+   1647
+  ],
+  [
+   "Moody AFB",
+   1630
+  ],
+  [
+   "Mount Airy",
+   1622
+  ],
+  [
+   "Richland",
+   1595
+  ],
+  [
+   "Emerson",
+   1573
+  ],
+  [
+   "Flemington",
+   1571
+  ],
+  [
+   "Cataula",
+   1522
+  ],
+  [
+   "Boston",
+   1520
+  ],
+  [
+   "Porterdale",
+   1466
+  ],
+  [
+   "Darien",
+   1452
+  ],
+  [
+   "Bogart",
+   1403
+  ],
+  [
+   "Woodbine",
+   1399
+  ],
+  [
+   "McCaysville",
+   1392
+  ],
+  [
+   "Nahunta",
+   1386
+  ],
+  [
+   "Flovilla",
+   1358
+  ],
+  [
+   "Edison",
+   1340
+  ],
+  [
+   "Greenville",
+   1326
+  ],
+  [
+   "Blue Ridge",
+   1323
+  ],
+  [
+   "Pine Mountain",
+   1314
+  ],
+  [
+   "Buchanan",
+   1306
+  ],
+  [
+   "Willacoochee",
+   1301
+  ],
+  [
+   "Remerton",
+   1280
+  ],
+  [
+   "Fairmount",
+   1279
+  ],
+  [
+   "Rutledge",
+   1271
+  ],
+  [
+   "Roberta",
+   1257
+  ],
+  [
+   "Young Harris",
+   1252
+  ],
+  [
+   "Fort Gaines",
+   1248
+  ],
+  [
+   "Lake Park",
+   1234
+  ],
+  [
+   "Dutch Island",
+   1225
+  ],
+  [
+   "Omega",
+   1194
+  ],
+  [
+   "Robins AFB",
+   1193
+  ],
+  [
+   "Rock Spring",
+   1183
+  ],
+  [
+   "East Griffin",
+   1174
+  ],
+  [
+   "Nelson",
+   1166
+  ],
+  [
+   "Enigma",
+   1140
+  ],
+  [
+   "Resaca",
+   1126
+  ],
+  [
+   "Norman Park",
+   1116
+  ],
+  [
+   "Franklin Springs",
+   1108
+  ],
+  [
+   "Sycamore",
+   1096
+  ],
+  [
+   "Russell",
+   1089
+  ],
+  [
+   "Cave Spring",
+   1080
+  ],
+  [
+   "Satilla",
+   1057
+  ],
+  [
+   "Alto",
+   1055
+  ],
+  [
+   "Dexter",
+   1054
+  ],
+  [
+   "Marshallville",
+   1046
+  ],
+  [
+   "West Brow",
+   1044
+  ],
+  [
+   "Arlington",
+   1014
+  ],
+  [
+   "Ellerslie",
+   1011
+  ],
+  [
+   "Jeffersonville",
+   1008
+  ],
+  [
+   "Reynolds",
+   995
+  ],
+  [
+   "Sunny Side",
+   994
+  ],
+  [
+   "Kingston",
+   993
+  ],
+  [
+   "Gibson",
+   990
+  ],
+  [
+   "Eulonia",
+   986
+  ],
+  [
+   "Milner",
+   979
+  ],
+  [
+   "Shellman",
+   974
+  ],
+  [
+   "Ivey",
+   964
+  ],
+  [
+   "Franklin",
+   958
+  ],
+  [
+   "East Newnan",
+   956
+  ],
+  [
+   "White",
+   953
+  ],
+  [
+   "Danielsville",
+   952
+  ],
+  [
+   "Dasher",
+   944
+  ],
+  [
+   "Tunnel Hill",
+   939
+  ],
+  [
+   "Cohutta",
+   930
+  ],
+  [
+   "Meigs",
+   924
+  ],
+  [
+   "Coolidge",
+   923
+  ],
+  [
+   "Sardis",
+   912
+  ],
+  [
+   "Blairsville",
+   902
+  ],
+  [
+   "Pavo",
+   901
+  ],
+  [
+   "Canon",
+   879
+  ],
+  [
+   "Offerman",
+   873
+  ],
+  [
+   "Antioch",
+   870
+  ],
+  [
+   "Oglethorpe",
+   869
+  ],
+  [
+   "Milan",
+   842
+  ],
+  [
+   "Hull",
+   832
+  ],
+  [
+   "Sunset Village",
+   825
+  ],
+  [
+   "Woodbury",
+   820
+  ],
+  [
+   "Waleska",
+   808
+  ],
+  [
+   "Colbert",
+   806
+  ],
+  [
+   "Crooked Creek",
+   798
+  ],
+  [
+   "Baconton",
+   790
+  ],
+  [
+   "Waco",
+   779
+  ],
+  [
+   "Jekyll Island",
+   769
+  ],
+  [
+   "Tignall",
+   763
+  ],
+  [
+   "Dearing",
+   760
+  ],
+  [
+   "Shiloh",
+   758
+  ],
+  [
+   "Homeland",
+   755
+  ],
+  [
+   "Plains",
+   750
+  ],
+  [
+   "Glenwood",
+   745
+  ],
+  [
+   "Eton",
+   735
+  ],
+  [
+   "Funston",
+   732
+  ],
+  [
+   "Stillmore",
+   715
+  ],
+  [
+   "Lenox",
+   713
+  ],
+  [
+   "Bethlehem",
+   707
+  ],
+  [
+   "Mountain Park city",
+   703
+  ],
+  [
+   "Appling",
+   702
+  ],
+  [
+   "North High Shoals",
+   698
+  ],
+  [
+   "Lincoln Park",
+   688
+  ],
+  [
+   "Moreland",
+   685
+  ],
+  [
+   "Attapulgus",
+   673
+  ],
+  [
+   "Talbotton",
+   665
+  ],
+  [
+   "Newborn",
+   653
+  ],
+  [
+   "Waverly Hall",
+   650
+  ],
+  [
+   "Sky Valley",
+   647
+  ],
+  [
+   "Portal",
+   646
+  ],
+  [
+   "Ephesus",
+   642
+  ],
+  [
+   "Warwick",
+   641
+  ],
+  [
+   "Molena",
+   635
+  ],
+  [
+   "McIntyre",
+   633
+  ],
+  [
+   "Graham",
+   629
+  ],
+  [
+   "Ochlocknee",
+   628
+  ],
+  [
+   "Menlo",
+   620
+  ],
+  [
+   "Pineview",
+   618
+  ],
+  [
+   "Sautee-Nacoochee",
+   605
+  ],
+  [
+   "Brooks",
+   603
+  ],
+  [
+   "Adrian",
+   590
+  ],
+  [
+   "Good Hope",
+   582
+  ],
+  [
+   "Piney Grove",
+   576
+  ],
+  [
+   "Byromville",
+   575
+  ],
+  [
+   "Argyle",
+   573
+  ],
+  [
+   "Cobbtown",
+   568
+  ],
+  [
+   "Pinehurst",
+   557
+  ],
+  [
+   "Morven",
+   553
+  ],
+  [
+   "Arabi",
+   550
+  ],
+  [
+   "Crawfordville",
+   548
+  ],
+  [
+   "Yonah",
+   543
+  ],
+  [
+   "Uvalda",
+   540
+  ],
+  [
+   "Berlin",
+   535
+  ],
+  [
+   "Irwinton",
+   534
+  ],
+  [
+   "Collins",
+   533
+  ],
+  [
+   "Ila",
+   526
+  ],
+  [
+   "Bowersville",
+   522
+  ],
+  [
+   "Fargo",
+   512
+  ],
+  [
+   "Leslie",
+   510
+  ],
+  [
+   "Arnoldsville",
+   500
+  ],
+  [
+   "Hiltonia",
+   492
+  ],
+  [
+   "Ailey",
+   489
+  ],
+  [
+   "East Ellijay",
+   488
+  ],
+  [
+   "Cecil",
+   486
+  ],
+  [
+   "Between",
+   482
+  ],
+  [
+   "Newton",
+   479
+  ],
+  [
+   "Cadwell",
+   470
+  ],
+  [
+   "Warm Springs",
+   463
+  ],
+  [
+   "Stapleton",
+   460
+  ],
+  [
+   "Harrison",
+   458
+  ],
+  [
+   "Gillsville",
+   454
+  ],
+  [
+   "Odum",
+   453
+  ],
+  [
+   "Whigham",
+   449
+  ],
+  [
+   "Alapaha",
+   444
+  ],
+  [
+   "Sumner",
+   439
+  ],
+  [
+   "Concord",
+   438
+  ],
+  [
+   "Yatesville",
+   435
+  ],
+  [
+   "Bishop",
+   427
+  ],
+  [
+   "Bolingbroke",
+   426
+  ],
+  [
+   "Newington",
+   418
+  ],
+  [
+   "Helen",
+   415
+  ],
+  [
+   "Braswell",
+   400
+  ],
+  [
+   "Rentz",
+   395
+  ],
+  [
+   "New England",
+   391
+  ],
+  [
+   "Salem",
+   385
+  ],
+  [
+   "Ambrose",
+   382
+  ],
+  [
+   "Mansfield",
+   380
+  ],
+  [
+   "Midville",
+   378
+  ],
+  [
+   "Iron City",
+   371
+  ],
+  [
+   "Wildwood",
+   368
+  ],
+  [
+   "Tiger",
+   362
+  ],
+  [
+   "Camak",
+   356
+  ],
+  [
+   "Junction City",
+   353
+  ],
+  [
+   "Bluffton",
+   350
+  ],
+  [
+   "Shady Dale",
+   345
+  ],
+  [
+   "Siloam",
+   344
+  ],
+  [
+   "Allentown",
+   341
+  ],
+  [
+   "Bronwood",
+   338
+  ],
+  [
+   "Taylorsville",
+   335
+  ],
+  [
+   "Buckhead town",
+   331
+  ],
+  [
+   "Dillard",
+   326
+  ],
+  [
+   "Sale City",
+   318
+  ],
+  [
+   "Oconee",
+   315
+  ],
+  [
+   "Montrose",
+   311
+  ],
+  [
+   "Sharpsburg",
+   309
+  ],
+  [
+   "Empire",
+   306
+  ],
+  [
+   "Mineral Bluff",
+   294
+  ],
+  [
+   "Naylor",
+   293
+  ],
+  [
+   "Higgston",
+   292
+  ],
+  [
+   "Tallulah Falls",
+   288
+  ],
+  [
+   "Wenona",
+   286
+  ],
+  [
+   "Smithville",
+   285
+  ],
+  [
+   "Rebecca",
+   284
+  ],
+  [
+   "Rocky Ford",
+   276
+  ],
+  [
+   "Talking Rock",
+   274
+  ],
+  [
+   "Garfield",
+   270
+  ],
+  [
+   "Bostwick",
+   269
+  ],
+  [
+   "Axson",
+   268
+  ],
+  [
+   "Ellenton",
+   267
+  ],
+  [
+   "Avera",
+   259
+  ],
+  [
+   "Carlton",
+   245
+  ],
+  [
+   "Woolsey",
+   235
+  ],
+  [
+   "Andersonville",
+   231
+  ],
+  [
+   "Pulaski",
+   230
+  ],
+  [
+   "Box Springs",
+   228
+  ],
+  [
+   "Scotland",
+   218
+  ],
+  [
+   "Oliver",
+   214
+  ],
+  [
+   "Summertown",
+   210
+  ],
+  [
+   "Brinson",
+   207
+  ],
+  [
+   "Calvary",
+   205
+  ],
+  [
+   "Haralson",
+   204
+  ],
+  [
+   "Bartow",
+   199
+  ],
+  [
+   "Du Pont",
+   197
+  ],
+  [
+   "Register",
+   195
+  ],
+  [
+   "Phillipsburg",
+   193
+  ],
+  [
+   "Kite",
+   188
+  ],
+  [
+   "Stockton",
+   185
+  ],
+  [
+   "Carl",
+   183
+  ],
+  [
+   "Vidette",
+   181
+  ],
+  [
+   "White Plains",
+   175
+  ],
+  [
+   "Rayle",
+   174
+  ],
+  [
+   "Climax",
+   170
+  ],
+  [
+   "Santa Claus",
+   169
+  ],
+  [
+   "Mitchell",
+   167
+  ],
+  [
+   "Surrency",
+   163
+  ],
+  [
+   "Jakin",
+   155
+  ],
+  [
+   "Orchard Hill",
+   152
+  ],
+  [
+   "Lilly",
+   150
+  ],
+  [
+   "Jersey",
+   148
+  ],
+  [
+   "Clyattville",
+   147
+  ],
+  [
+   "Alston",
+   140
+  ],
+  [
+   "Gough",
+   139
+  ],
+  [
+   "Girard",
+   137
+  ],
+  [
+   "Vernonburg",
+   133
+  ],
+  [
+   "Dewy Rose",
+   131
+  ],
+  [
+   "Juliette",
+   128
+  ],
+  [
+   "Jacksonville",
+   121
+  ],
+  [
+   "Gay",
+   119
+  ],
+  [
+   "Danville",
+   111
+  ],
+  [
+   "Riddleville",
+   110
+  ],
+  [
+   "The Rock",
+   109
+  ],
+  [
+   "Waresboro",
+   108
+  ],
+  [
+   "Waverly",
+   106
+  ],
+  [
+   "Geneva",
+   101
+  ],
+  [
+   "De Soto",
+   99
+  ],
+  [
+   "Manassas",
+   92
+  ],
+  [
+   "Dixie",
+   86
+  ],
+  [
+   "Canoochee",
+   84
+  ],
+  [
+   "Aldora",
+   82
+  ],
+  [
+   "Dixie Union",
+   81
+  ],
+  [
+   "Parrott",
+   79
+  ],
+  [
+   "Warthen",
+   78
+  ],
+  [
+   "Perkins",
+   69
+  ],
+  [
+   "Everett",
+   67
+  ],
+  [
+   "Millwood",
+   66
+  ],
+  [
+   "Seville",
+   61
+  ],
+  [
+   "Smarr",
+   58
+  ],
+  [
+   "Sharon",
+   56
+  ],
+  [
+   "Eagle Grove",
+   35
+  ],
+  [
+   "Tazewell",
+   33
+  ],
+  [
+   "Godfrey",
+   27
+  ],
+  [
+   "Mershon",
+   26
+  ],
+  [
+   "Boykin",
+   25
+  ],
+  [
+   "Norristown",
+   21
+  ],
+  [
+   "Ohoopee",
+   5
+  ]
+ ]
+}

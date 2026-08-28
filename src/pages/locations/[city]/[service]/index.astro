@@ -1,16 +1,25 @@
 ---
-import BaseLayout from '../../../layouts/BaseLayout.astro';
-import Header from '../../../components/Header.astro';
-import Footer from '../../../components/Footer.astro';
-import CTASection from '../../../components/CTASection.astro';
-import ContactForm from '../../../components/ContactForm.astro';
-import { mainServices } from '../../../data/services';
-import { locations, type Location } from '../../../data/locations';
-import { combinations } from '../../../data/combinations';
-import { site } from '../../../data/site';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Header.astro';
+import Footer from '../../../../components/Footer.astro';
+import CTASection from '../../../../components/CTASection.astro';
+import ContactForm from '../../../../components/ContactForm.astro';
+import { mainServices } from '../../../../data/services';
+import { buildLocalParagraph, buildLocalChallenges, buildAreasServed, buildLocalFaqs } from '../../../../data/services/local-context';
+import { locations, type Location } from '../../../../data/locations';
+import { combinations } from '../../../../data/combinations';
+import { site } from '../../../../data/site';
 
 export function getStaticPaths() {
-  return locations.flatMap(loc =>
+  // 4-tier pruning by population:
+  //   A (>=50k):   main page only (no child pages)
+  //   B (10k-50k): full expansion — service pages generated
+  //   C (2k-10k):  service pages generated (no subservice)
+  //   D (<2k/CDP): main page only
+  const expandableLocations = locations.filter(
+    (loc) => (loc.population ?? 0) >= 2000 && (loc.population ?? 0) < 50000
+  );
+  return expandableLocations.flatMap(loc =>
     mainServices.map(ms => ({
       params: { city: loc.slug, service: ms.slug },
       props: { location: loc, service: ms }
@@ -24,6 +33,9 @@ interface Props {
 }
 
 const { location, service } = Astro.props;
+
+// Tier B only (10k-50k) gets subservice child pages; Tier C (2k-10k) does not.
+const hasSubservicePages = (location.population ?? 0) >= 10000 && (location.population ?? 0) < 50000;
 
 // Find combination data if it exists
 const combo = combinations.find(
@@ -39,6 +51,12 @@ const title = titleFull.length > 60
 const description = combo
   ? combo.uniqueIntro.slice(0, 155)
   : `Licensed ${service.name.toLowerCase()} in ${location.name}, Georgia. ${location.county} County experts for residential, commercial, and industrial projects. Free estimates — call ${site.phone}.`;
+
+// Unique local paragraph (real per-city data)
+const localParagraph = buildLocalParagraph(location, service.name);
+const localChallenges = buildLocalChallenges(location);
+const areasServed = buildAreasServed(location);
+const localFaqs = buildLocalFaqs(location, service.name);
 
 // Breadcrumbs
 const breadcrumbs = [
@@ -73,10 +91,13 @@ const serviceSchema = {
 };
 
 // FAQ schema
-const faqItems = combo?.uniqueFaqs ?? service.subServices.slice(0, 3).map(sub => ({
-  question: `Do you offer ${sub.name.toLowerCase()} in ${location.name}?`,
-  answer: `Yes. ${site.name} provides ${sub.name.toLowerCase()} services throughout ${location.name} and all of ${location.county} County, Georgia. Contact us for a free estimate.`
-}));
+const faqItems = [
+  ...(combo?.uniqueFaqs ?? service.subServices.slice(0, 3).map(sub => ({
+    question: `Do you offer ${sub.name.toLowerCase()} in ${location.name}?`,
+    answer: `Yes. ${site.name} provides ${sub.name.toLowerCase()} services throughout ${location.name} and all of ${location.county} County, Georgia. Contact us for a free estimate.`
+  }))),
+  ...localFaqs,
+];
 
 const faqSchema = faqItems.length > 0 ? {
   "@context": "https://schema.org",
@@ -172,7 +193,7 @@ const otherServices = mainServices.filter(ms => ms.slug !== service.slug);
 
         <!-- Trust badges -->
         <div class="flex flex-wrap gap-6 mt-10 pt-8" style="border-top:1px solid rgba(255,255,255,0.18)">
-          {["Licensed & Insured", "Free Estimates", "All 159 GA Counties", "Same-Week Response"].map(badge => (
+          {["Licensed & Insured", "Free Estimates", "All 576 cities across Georgia", "Same-Week Response"].map(badge => (
             <div class="flex items-center gap-2 text-sm" style="color:rgba(255,255,255,0.75); font-family:'Inter',sans-serif">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
               {badge}
@@ -183,28 +204,35 @@ const otherServices = mainServices.filter(ms => ms.slug !== service.slug);
     </div>
   </section>
 
-  <!-- LOCAL CHALLENGES -->
-  {combo && combo.localProblems.length > 0 && (
-    <section class="py-16 bg-white">
-      <div class="max-w-7xl mx-auto px-6">
-        <h2 class="font-bold mb-8" style="font-size:1.75rem; color:#1A1A1A; font-family:'Outfit',sans-serif">
-          Common {service.name.toLowerCase()} challenges in {location.name}
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {combo.localProblems.map(problem => (
-            <div class="flex items-start gap-3 p-5 rounded-xl" style="background:#F5F3EF">
-              <div class="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background:#FEE2E2">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              </div>
-              <p style="color:#374151; font-size:0.9rem; line-height:1.6; font-family:'Inter',sans-serif">{problem}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
+  <!-- LOCAL CONTEXT (all cities — real per-city data) -->
+  <section class="py-10 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <p class="leading-relaxed" style="color:#4B5563; font-size:1.05rem; line-height:1.8; font-family:'Inter',sans-serif; max-width:800px">{localParagraph}</p>
+      <p class="leading-relaxed mt-3" style="color:#6B7280; font-size:0.95rem; line-height:1.7; font-family:'Inter',sans-serif; max-width:800px">{areasServed}</p>
+    </div>
+  </section>
 
-  <!-- SUB-SERVICES GRID -->
+  <!-- LOCAL CHALLENGES (all cities — generated from real per-city data) -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="font-bold mb-8" style="font-size:1.75rem; color:#1A1A1A; font-family:'Outfit',sans-serif">
+        Common {service.name.toLowerCase()} challenges in {location.name}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {(combo && combo.localProblems.length > 0 ? combo.localProblems : localChallenges).map(problem => (
+          <div class="flex items-start gap-3 p-5 rounded-xl" style="background:#F5F3EF">
+            <div class="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5" style="background:#FEE2E2">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C41C1C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <p style="color:#374151; font-size:0.9rem; line-height:1.6; font-family:'Inter',sans-serif">{problem}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SUB-SERVICES GRID (Tier B cities only) -->
+  {hasSubservicePages && (
   <section class="py-16" style="background:#F5F3EF">
     <div class="max-w-7xl mx-auto px-6">
       <h2 class="font-bold mb-3" style="font-size:1.75rem; color:#1A1A1A; font-family:'Outfit',sans-serif">
@@ -241,6 +269,7 @@ const otherServices = mainServices.filter(ms => ms.slug !== service.slug);
       </div>
     </div>
   </section>
+  )}
 
   <!-- OTHER SERVICES IN THIS CITY (sidebar-style row) -->
   <section class="py-14 bg-white">
@@ -324,7 +353,7 @@ const otherServices = mainServices.filter(ms => ms.slug !== service.slug);
       </div>
       <ContactForm
         title={`Free ${service.name} Estimate — ${location.name}, GA`}
-        subtitle={`Serving ${location.county} County and all 159 Georgia counties. We respond within 1 business day.`}
+        subtitle={`Serving ${location.county} County and 576 cities across Georgia. We respond within 1 business day.`}
       />
     </div>
   </section>
